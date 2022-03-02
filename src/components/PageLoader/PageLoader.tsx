@@ -43,7 +43,7 @@ const PageLoader = (props: ILoaderProps) => {
 
   return (
     <div
-      style={{ backgroundColor: theme === 'dark' ? '#222' : '#EDF1F7' }}
+      style={{ backgroundColor: theme === 'dark' ? '#282828' : '#EDF1F7' }}
       className={`${classes.Wrapper} ${isVisible ? '' : classes.Visuallyhidden} ${hide ? classes.Hidden : ''} ${
         fullscreen ? `${classes.Fullscreen}` : ''
       }`}

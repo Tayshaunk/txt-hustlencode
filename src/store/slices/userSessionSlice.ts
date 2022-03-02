@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "config/axios.config";
+import { IHustlencodeUser } from "interfaces/user.interface";
 import { loadAppAsyncThunk } from "store/asyncThunk/userSessionAsyncThunk";
 import { RootState } from "../store";
 
@@ -10,7 +11,7 @@ const hncStoredEmailStr = "hnc-user-stored-email";
 
 export interface IUserSessionState {
   token: string | null;
-  user: any | null;
+  user: IHustlencodeUser | null;
   storedEmailed: string;
   isLoadingApp: boolean;
 }

@@ -31,7 +31,7 @@ const Login = () => {
         <Col className={classes.leftCol} md={12} lg={5}>
           <Fade duration={1000} delay={500}>
             <div className={classes.navbar}>
-              <LogoBrand color="#008dde" />
+              <LogoBrand color="#273647" />
               <SelectPicker
                 style={{ minWidth: 75 }}
                 value={i18n.language || 'en'}

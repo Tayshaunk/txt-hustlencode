@@ -1,3 +1,15 @@
 $color-blue: #008dde;
 $color-dark-blue: #273647;
 $color-black: #282828;
+
+.profileContainer {
+  padding: 45px 20px;
+
+  @media (min-width: 768px) {
+    padding: 45px 35px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 45px 45px;
+  }
+}

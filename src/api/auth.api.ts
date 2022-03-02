@@ -1,5 +1,5 @@
 import axiosInstance from "../config/axios.config";
-import {IHustlencodeUser} from 'interfaces/user.interface'
+import { IHustlencodeUserSession} from 'interfaces/user.interface'
 
 // base API path for api requests
 const BASE_URL = `/hustlencode/auth`;
@@ -19,14 +19,13 @@ export const loginApi = async (credentials: any): Promise<string> => {
 };
 
 /**
- * Makes API request for users profile data
- * @returns 
+ * Makes API request for user session profile data
+ * @returns user session data
  */
-export const getProfileApi = async (): Promise<IHustlencodeUser> => {
+export const getProfileApi = async (): Promise<IHustlencodeUserSession> => {
   const url = `${BASE_URL}/profile`;
 
   const response = await axiosInstance.get<any>(url);
-  console.log(response.data);
 
   // return user token
   return response.data.payload;

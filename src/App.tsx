@@ -1,6 +1,6 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getIsLoadingApp, getToken, logout } from 'store/slices/userSessionSlice';
+import { getIsLoadingApp, getToken, getUser, logout } from 'store/slices/userSessionSlice';
 import PublicRoutes from 'routing/routes/index.routes';
 import AuthRoutes from 'routing/routes/auth.routes';
 import PageLoader from 'components/PageLoader/PageLoader';
@@ -15,8 +15,10 @@ function App() {
   // get user session
   const token = useAppSelector(getToken);
 
+  const user = useAppSelector(getUser);
+
   // gets loading state of our app
-  const isLoadingApp = useAppSelector(getIsLoadingApp);
+  const isLoading = useAppSelector(getIsLoadingApp);
 
   // logout user
   const logoutHandler = () => {
@@ -37,13 +39,13 @@ function App() {
     }
 
     // only make request if we have a user token
-    if (mounted && token) loadDataAsync();
-  }, [token]);
+    if (mounted && token && !user) loadDataAsync();
+  }, [token, user]);
 
   return (
     <div>
-      <PageLoader isVisible={isLoadingApp} fullscreen={true} theme="dark" />
-      <BrowserRouter>{token ? <AuthRoutes /> : <PublicRoutes />}</BrowserRouter>
+      <PageLoader isVisible={isLoading} fullscreen={true} theme="dark" />
+      <BrowserRouter>{token && user ? <AuthRoutes user={user} /> : <PublicRoutes />}</BrowserRouter>
     </div>
   );
 }

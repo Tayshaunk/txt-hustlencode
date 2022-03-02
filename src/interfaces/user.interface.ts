@@ -59,3 +59,16 @@ export interface IHustlencodeUser {
   };
   metrics: string;
 }
+
+export interface IHustlencodeUserSession {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  name: string;
+  role: string;
+  isActive: boolean;
+  accountStatus: string;
+  email: string;
+  username: string;
+  profileImg: string | null;
+}
