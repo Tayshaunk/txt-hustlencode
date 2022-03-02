@@ -1,18 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { store } from './app/store';
-import { Provider } from 'react-redux';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Provider } from "react-redux";
+import * as serviceWorker from "./serviceWorker";
+import { store } from "store/store";
+// translation lib
+import "./i18n";
+// styles
+import 'bootstrap/dist/css/bootstrap.min.css'; // boostrap
+import "./styles/main.scss";
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <HelmetProvider>
+    <Helmet>
+      <title>Hustle N' Code</title>
+      <meta name="description" content={"desc"} />
+    </Helmet>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </HelmetProvider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

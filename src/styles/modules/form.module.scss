@@ -1,0 +1,41 @@
+$color-blue: #008DDE;
+$color-black: #282828;
+$color-background: #282828;
+$color-red: #f8d7da;
+$color-dark-red: #881c24;
+
+.FormRow {
+  display: flex;
+  flex-direction: row;
+
+  .FormCol {
+    flex: 1;
+
+    &:first-of-type {
+      margin-right: 20px;
+    }
+
+    &:last-of-type {
+      margin-left: 20px;
+    }
+  }
+
+  .FormColFull{
+    flex: 1;
+  }
+}
+
+.FormBtnToolbar {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.FormField {
+  // override custom rs-suite value
+  margin-bottom: 20px !important;
+}
+
+.FormLabel {
+  font-size: 15px;
+  color: $color-black;
+}

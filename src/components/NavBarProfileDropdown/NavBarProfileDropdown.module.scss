@@ -1,0 +1,78 @@
+$color-blue: #57bcea;
+$color-black: #282828;
+$colorBackground: #282828;
+
+.profileContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  color: #1f1f1f;
+  order: 2;
+  margin-right: 10px;
+  margin-left: auto;
+
+  .dropdown {
+    display: none;
+
+    @media (min-width: 992px) {
+      display: block;
+    }
+
+    .dropdownLink {
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover .Name {
+        color: $color-blue;
+      }
+
+      .thumbnail {
+        width: 45px;
+        height: 45px;
+        overflow: hidden;
+        border-radius: 50%;
+
+        img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover;
+        }
+      }
+
+      .info {
+        margin-right: 10px;
+        margin-left: 10px;
+
+        .name {
+          margin: 0;
+          font-weight: 400;
+          text-align: right;
+          font-size: 15px;
+          text-transform: capitalize;
+          color: #fff;
+
+          &:hover{
+            color: $color-blue;
+            transition: all ease-in-out 300ms;
+          }
+        }
+
+        .type {
+          margin: 0;
+          font-size: 12px;
+          text-align: right;
+          text-transform: capitalize;
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}

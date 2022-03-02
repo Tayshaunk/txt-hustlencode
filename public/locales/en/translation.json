@@ -1,0 +1,8 @@
+{
+  "login": {
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "rememberMeLabel": "Remember Me",
+    "btnLabel": "Sign In"
+  }
+}

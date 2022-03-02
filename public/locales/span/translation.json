@@ -1,0 +1,8 @@
+{
+  "login": {
+    "emailLabel": "Correo Electronico",
+    "passwordLabel": "Contrasena",
+    "rememberMeLabel": "Remember Me",
+    "btnLabel": "Iniciar Sesión "
+  }
+}

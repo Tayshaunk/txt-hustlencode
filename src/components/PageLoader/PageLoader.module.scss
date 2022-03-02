@@ -1,0 +1,134 @@
+$color-loader-center: white;
+$color-loader-inner: #a7cced;
+$color-loader-outer: #008DDE;
+
+.Wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  color: white;
+  opacity: 1;
+  transition: all ease-in-out 300ms;
+  z-index: 9;
+  flex: 1;
+}
+
+.Fullscreen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999999999;
+}
+
+.Container {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.Center {
+  width: 8px;
+  height: 8px;
+  background-color: $color-loader-center;
+  border-radius: 50%;
+}
+
+.Inner,
+.Outer {
+  position: absolute;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: 1fr 1fr;
+  align-content: space-around;
+  justify-content: space-between;
+  animation: anim_inner 2000ms ease-in-out infinite;
+}
+
+.Inner__item,
+.Outer__item {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: $color-loader-inner;
+}
+
+.Outer {
+  gap: 16px;
+  animation: anim_outer 2000ms ease-in-out 200ms infinite;
+}
+
+.Outer__item {
+  width: 10px;
+  height: 10px;
+  background-color: $color-loader-outer;
+}
+
+.Fullscreen {
+  z-index: 9999;
+}
+
+@keyframes anim_outer {
+  from {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes anim_inner {
+  from {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    color: transparent;
+  }
+}
+
+.Loading__dot {
+  animation: 2s blink infinite;
+  box-sizing: border-box;
+}
+.Loading__dot:nth-child(2) {
+  animation-delay: 250ms;
+}
+.Loading__dot:nth-child(3) {
+  animation-delay: 500ms;
+}
+
+.Hidden {
+  display: none;
+}
+
+.Visuallyhidden {
+  opacity: 0;
+}
+
+@keyframes hide {
+  from {
+    display: flex;
+  }
+  to {
+    display: none;
+  }
+}

@@ -1,0 +1,29 @@
+$color-blue: #008DDE;
+$color-black: #282828;
+$color-background: #282828;
+$color-red: #F8D7DA;
+$color-dark-red: #881C24;
+
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.textCell {
+  text-transform: capitalize;
+}
+
+.TableRowMenu {
+  cursor: pointer;
+}
+
+.TableRowMenuItem {
+  &:hover{
+    background-color: $color-red;
+    transition: all ease-in-out 200ms;
+    opacity: 0.8;
+  }
+}

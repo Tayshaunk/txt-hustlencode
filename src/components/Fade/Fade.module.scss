@@ -1,0 +1,16 @@
+.Fade {
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-name: fadeIn;
+  opacity: 0;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

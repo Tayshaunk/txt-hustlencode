@@ -1,0 +1,13 @@
+@import './typography';
+@import './base';
+@import '~rsuite/dist/rsuite.min.css'; // Rsuite styles
+@import 'react-image-crop/src/ReactCrop.scss'; // cropper styles
+@import 'react-phone-input-2/lib/style.css'; // phone number input styles
+
+.rs-panel-heading {
+  font-weight: 500;
+}
+
+.rs-input {
+  font-size: 16px !important;
+}

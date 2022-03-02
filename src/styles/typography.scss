@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
+  font-family: 'Roboto', sans-serif !important;
+  margin: 0;
+}
+
+p,
+a,
+span,
+pre,
+div,
+strong {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+pre,
+p,
+a {
+  font-size: 1rem;
+}
+
+p,
+pre,
+a {
+  font-size: 1rem;
+}

@@ -1,56 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getIsLoadingApp, getToken, logout } from 'store/slices/userSessionSlice';
+import PublicRoutes from 'routing/routes/index.routes';
+import AuthRoutes from 'routing/routes/auth.routes';
+import PageLoader from 'components/PageLoader/PageLoader';
+import { useEffect } from 'react';
+import { loadAppAsyncThunk } from 'store/asyncThunk/userSessionAsyncThunk';
+import { serverErrorHandler } from 'services/server-error.service';
 
 function App() {
+  // get store dispatch
+  const dispatch = useAppDispatch();
+
+  // get user session
+  const token = useAppSelector(getToken);
+
+  // gets loading state of our app
+  const isLoadingApp = useAppSelector(getIsLoadingApp);
+
+  // logout user
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {
+    let mounted = true;
+
+    // makes async request for current user profile and updates user state
+    async function loadDataAsync() {
+      try {
+        // make req4uest to update user  session profile
+        await dispatch(loadAppAsyncThunk()).unwrap();
+      } catch (e: any) {
+        serverErrorHandler(e, logoutHandler);
+      }
+    }
+
+    // only make request if we have a user token
+    if (mounted && token) loadDataAsync();
+  }, [token]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <PageLoader isVisible={isLoadingApp} fullscreen={true} theme="dark" />
+      <BrowserRouter>{token ? <AuthRoutes /> : <PublicRoutes />}</BrowserRouter>
     </div>
   );
 }

@@ -1,0 +1,17 @@
+.pageWrapper {
+    width: 100%;
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  
+    .contentWrapper {
+      padding-top: 35px;
+
+      @media (min-width: 992px) {
+          padding-left: 20px;
+          padding-right: 20px;
+      }
+    }
+  }
+  

@@ -1,0 +1,50 @@
+$color-blue: #57bcea;
+$color-black: #282828;
+$colorBackground: #282828;
+
+.navbar {
+  display: flex;
+  position: fixed !important;
+  background-color: $colorBackground;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1920px;
+  margin: 0 auto;
+  box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
+  z-index: 999;
+  border-bottom: solid 1px #fff;
+
+  @media (min-width: 768px) {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  @media (min-width: 992px) {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .brandContainer {
+    @media (min-width: 992px) {
+      order: 1;
+    }
+    .brandLink {
+      font-size: 24px;
+      color: #fff;
+
+      &:hover {
+        color: $color-blue;
+        transition: all ease-in-out 300ms;
+      }
+
+      span {
+        color: $color-blue;
+      }
+    }
+  }
+}
