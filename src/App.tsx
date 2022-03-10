@@ -45,7 +45,7 @@ function App() {
   return (
     <div>
       <PageLoader isVisible={isLoading} fullscreen={true} theme="dark" />
-      <BrowserRouter>{token && user ? <AuthRoutes user={user} /> : <PublicRoutes />}</BrowserRouter>
+      <BrowserRouter>{token  ? <AuthRoutes /> : <PublicRoutes />}</BrowserRouter>
     </div>
   );
 }

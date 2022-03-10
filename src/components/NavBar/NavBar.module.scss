@@ -10,7 +10,7 @@ $colorBackground: #282828;
   left: 0;
   top: 0;
   z-index: 99;
-  height: 50px;
+  height: 65px;
   padding-left: 20px;
   padding-right: 20px;
   max-width: 1920px;
@@ -18,6 +18,7 @@ $colorBackground: #282828;
   box-shadow: 0 0.5rem 1rem 0 rgba(44, 51, 73, 0.1);
   z-index: 999;
   border-bottom: solid 1px #fff;
+  justify-content: space-between;
 
   @media (min-width: 768px) {
     padding-left: 35px;
@@ -47,4 +48,51 @@ $colorBackground: #282828;
       }
     }
   }
+}
+
+.burger {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  transition: all 0.5s ease;
+
+  .burgerStrip {
+    transition: all 0.5s ease;
+    div {
+      height: 3px;
+      border-radius: 2px;
+      background: rgb(56 56 56);
+      margin: 7px;
+      transition: all 0.65s cubic-bezier(0.075, 0.82, 0.165, 1);
+      width: 30px;
+    }
+  }
+
+  &:hover {
+    background: rgb(56 56 56);
+  }
+
+  &:hover .burgerStrip div {
+    background: white;
+  }
+}
+
+.burger:hover .burgerStrip div:first-child {
+  transform: translateY(13px) rotate(0deg);
+}
+.burger:hover .burgerStrip div:nth-child(2) {
+  opacity: 0;
+}
+.burger:hover .burgerStrip div:last-child {
+  transform: translateY(-13px) rotate(90deg);
+}
+.burger:hover .burgerStrip {
+  transform: scale(0.7) rotate(45deg);
+  transition: all 0.25s ease 0.05s;
 }

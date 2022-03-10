@@ -2,52 +2,66 @@ import React, { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import DelayedFallback from 'components/DelayedFallback/DelayedFallback';
 import Profile from 'pages/Profile/Profile';
+import EditPost from 'pages/EditPost/EditPost';
+import Aux from 'components/_Aux/_Aux';
+import NavBar from 'components/NavBar/NavBar';
+import ScrollToTop from 'components/Scroll/ScrollToTop';
+import CreatePost from 'pages/CreatePost/CreatePost';
+import EditProfileModule from 'pages/EditProfileAbout/EditProfileAbout';
+import { AsyncCreatePost, AsyncEditPost, AsyncEditProfileModulePage } from 'routing/imports/RouteLazy';
 import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/slices/userSessionSlice';
-import { IHustlencodeUser } from 'interfaces/user.interface';
-
 /**
  * Public routes that are not protected
  * @returns React element
  */
-const AuthRoutes = ({ user }: { user: IHustlencodeUser }) => {
-  console.log(user);
+const AuthRoutes = () => {
+  const user = useAppSelector(getUser);
   return (
-    <Routes>
-      <Route
-        path={'/settings'}
-        element={
-          <Suspense fallback={<DelayedFallback delay={250} />}>
-            <p>settings</p>
-            <p>settings</p>
-            <p>settings</p>
-          </Suspense>
-        }
-      />
+    <Aux>
+      <ScrollToTop />
+      <NavBar />
+      <Routes>
+        {/* renders users profile page  */}
+        <Route
+          path={'/:username'}
+          element={
+            <Suspense fallback={<DelayedFallback delay={250} />}>
+              <Profile />
+            </Suspense>
+          }
+        />
 
-      <Route
-        path={'/settings/lang'}
-        element={
-          <Suspense fallback={<DelayedFallback delay={250} />}>
-            <p>lang</p>
-            <p>lang</p>
-            <p>lang</p>
-            <p>lang</p>
-          </Suspense>
-        }
-      />
+        <Route
+          path={'/:username/profile/about/edit'}
+          element={
+            <Suspense fallback={<DelayedFallback delay={250} />}>
+              <AsyncEditProfileModulePage />
+            </Suspense>
+          }
+        />
 
-      <Route
-        path={'/:username'}
-        element={
-          <Suspense fallback={<DelayedFallback delay={250} />}>
-            <Profile />
-          </Suspense>
-        }
-      />
+        <Route
+          path={'/:username/posts/:id/edit'}
+          element={
+            <Suspense fallback={<DelayedFallback delay={250} />}>
+              <AsyncEditPost />
+            </Suspense>
+          }
+        />
 
-      <Route path="*" element={<Navigate to={`/${user.username}`} />} />
-    </Routes>
+        <Route
+          path={'/:username/create-post'}
+          element={
+            <Suspense fallback={<DelayedFallback delay={250} />}>
+              <AsyncCreatePost />
+            </Suspense>
+          }
+        />
+
+        <Route path="/" element={<Aux>{user ? <Navigate to={`${user.username}`}></Navigate> : <div />}</Aux>} />
+      </Routes>
+    </Aux>
   );
 };
 

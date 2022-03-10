@@ -1,0 +1,17 @@
+$color-blue: #008dde;
+$color-dark-blue: #273647;
+$color-black: #282828;
+
+.Date {
+  font-weight: 400;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: $color-black;
+  text-transform: none!important;
+}
+
+.Date:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

@@ -17,6 +17,7 @@ import ButtonSpinner from "components/Buttons/ButtonSpinner/ButtonSpinner";
 import { getFormValidationStatus } from "util/form.util";
 import { useTranslation } from "react-i18next";
 import { loginApi } from "api/auth.api";
+import { useNavigate } from "react-router-dom";
 
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
@@ -46,6 +47,10 @@ const LoginForm = () => {
   const [formValue, setFormValue] = useState<any>(INIT_FORM); // set default form values
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
 
+  // get navigation hook
+  const navigate = useNavigate();
+
+  // get translation helper 
   const { t } = useTranslation();
 
   // get redux store dispatch
@@ -92,8 +97,6 @@ const LoginForm = () => {
          **/
         const token: string = await loginApi(payload);
 
-        console.log(token);
-
         // update stored email value if user checked off 'remember me'
         if (formValue.saveEmail.length > 0 && formValue.saveEmail[0])
           dispatch(setStoredEmail(payload.email));
@@ -105,6 +108,8 @@ const LoginForm = () => {
         // stores users session toke, once its
         // set. user is redirected to auth routes
         dispatch(setToken(token));
+
+        navigate('/ronjovi')
       }
     } catch (e) {
       // hide spinner

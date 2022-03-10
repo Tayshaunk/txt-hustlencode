@@ -11,6 +11,8 @@ import classes from './NavBar.module.scss';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getUser, logout } from 'store/slices/userSessionSlice';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
+import useIsMobile from 'hooks/useIsMobile';
+import Aux from 'components/_Aux/_Aux';
 
 // export interface IProps {
 //   sideMenuIsOpen: boolean;
@@ -37,15 +39,39 @@ const NavBar = () => {
   // logs user out
   const logoutHandler = () => dispatch(logout());
 
+  const isMobile = useIsMobile();
+
+  const renderMobileMenuToggle = () => (
+    <Aux>
+      {isMobile.value ? (
+        <div className={classes.burger}>
+          <div className={classes.burgerStrip}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      ) : null}
+    </Aux>
+  );
+
+  const renderProfileDropDown = (user:IHustlencodeUser) => <Aux>{isMobile.value ? null : <NavBarProfileDropdown user={user} logout={logoutHandler} />}</Aux>;
   return (
     <Navbar className={classes.navbar}>
       <Navbar.Brand className={classes.brandContainer}>
-        <NavLink end to="/">
-          <LogoBrand color="white" />
-        </NavLink>
+        {isMobile.value ? (
+          <div>
+            <LogoBrand color="white" />
+          </div>
+        ) : (
+          <NavLink end to="/">
+            <LogoBrand color="white" />
+          </NavLink>
+        )}
       </Navbar.Brand>
 
-      {user ? <NavBarProfileDropdown user={user} logout={logoutHandler} /> : null}
+      {renderMobileMenuToggle()}
+      {user ? renderProfileDropDown(user) : null}
     </Navbar>
   );
 };

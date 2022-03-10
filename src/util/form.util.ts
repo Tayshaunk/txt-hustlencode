@@ -11,6 +11,7 @@ import { IPickerItem } from "../interfaces/picker.interface";
 export const getFormValidationStatus = (validationState: any): boolean => {
   let isValid = true;
 
+  // @ts-ignore
   for (const [key, value] of Object.entries(validationState)) {
     const payload: any = value;
 

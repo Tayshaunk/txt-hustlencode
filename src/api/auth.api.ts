@@ -22,7 +22,7 @@ export const loginApi = async (credentials: any): Promise<string> => {
  * Makes API request for user session profile data
  * @returns user session data
  */
-export const getProfileApi = async (): Promise<IHustlencodeUserSession> => {
+export const getCurrentUserApi = async (): Promise<IHustlencodeUserSession> => {
   const url = `${BASE_URL}/profile`;
 
   const response = await axiosInstance.get<any>(url);

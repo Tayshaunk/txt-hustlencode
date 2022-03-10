@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getProfileApi } from 'api/auth.api';
+import { getCurrentUserApi } from 'api/auth.api';
 import { AxiosError } from 'axios';
 import { IHustlencodeUserSession } from 'interfaces/user.interface';
 
@@ -11,7 +11,7 @@ export const loadAppAsyncThunk = createAsyncThunk<any>('userSession/loadApp', as
   // returns admin profile
   try {
     // make api request to verify reset code
-    const user: IHustlencodeUserSession = await getProfileApi();
+    const user: IHustlencodeUserSession = await getCurrentUserApi();
 
     return user;
   } catch (err: any) {

@@ -6,36 +6,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSProperties } from 'react';
 import { Button } from 'rsuite';
 
-export interface IFormButton {
+export interface IProps {
+  size?: 'lg' | 'md' | 'sm' | 'xs';
   type: 'button' | 'submit' | 'reset' | undefined;
-  appearance: 'default' | 'primary' | 'link' | 'subtle' | 'ghost';
+  appearance: Appearance; // RSUITE button appearance
+  color?: Color | undefined; // RSUITE button color - appearance must be 'primary'
   label: string;
   className?: string; // class names for button container
   isLoading: boolean;
   disabled: boolean;
   containerStyles?: CSSProperties; // styles for Button container
-  color?: any;
   onClick: () => void;
 }
 
 /**
  * Renders button with custom label that
- * show a spinner when a async action is loading
+ * shows a spinner when a async action is loading
  * @param props
  * @returns
  */
-const ButtonSpinner = (props: IFormButton) => {
-  const { containerStyles, type, label, className, isLoading, onClick, ...rest } = props;
+const ButtonSpinner = (props: IProps) => {
+  const { size = 'md', color, containerStyles, type, label, className, isLoading, onClick, ...rest } = props;
 
   return (
-    <Button style={containerStyles ? containerStyles : {}} type={type} className={className ? className : ''} onClick={onClick} {...rest}>
-      {isLoading ? (
-        <div className={classes.spinnerContainer}>
-          <FontAwesomeIcon spin icon={faSyncAlt} />
-        </div>
-      ) : (
-        <p>{label}</p>
-      )}
+    <Button
+      size={size}
+      color={color}
+      style={containerStyles ? containerStyles : {}}
+      type={type}
+      className={className ? className : ''}
+      onClick={onClick}
+      {...rest}
+    >
+      {isLoading ? <FontAwesomeIcon style={{ paddingLeft: 4, paddingRight: 4, paddingTop:1, paddingBottom: 1 }} spin icon={faSyncAlt} /> : <p>{label}</p>}
     </Button>
   );
 };

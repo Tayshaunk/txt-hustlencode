@@ -3,7 +3,7 @@ const prod = {
 };
 
 const dev = {
-  API_URL: 'http://localhost:3000',
+  API_URL: 'http://41a3-76-175-119-129.ngrok.io',
   // API_URL: "https://ronjovi-server.herokuapp.com/"
 };
 

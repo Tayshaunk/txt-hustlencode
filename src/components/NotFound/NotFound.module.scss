@@ -1,0 +1,42 @@
+.Container {
+  text-align: center;
+  height: calc(100% - 30px);
+}
+
+.Container img {
+  width: 100%;
+  max-width: 250px;
+  margin: auto;
+  margin-top: 45px;
+}
+
+.Container h1 {
+  font-size: 21px;
+  margin-bottom: 15px;
+  margin-top: 45px;
+}
+
+.Container p {
+  font-size: 16px;
+  padding: 0 25px;
+}
+
+.Container button {
+  margin-top: 35px;
+}
+
+@media (min-width: 768px) {
+  .Container img {
+    max-width: 350px;
+  }
+
+  .Container h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .Container p {
+    font-size: 19px;
+    padding: 0 50px;
+  }
+}

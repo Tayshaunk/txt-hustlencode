@@ -1,0 +1,37 @@
+.MenuBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 !important;
+  width: 100%;
+  height: 100%;
+  background-color: transparent !important;
+
+  &:hover {
+    box-shadow: none !important;
+  }
+}
+
+.MenuBtn:hover {
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+}
+
+.MenuBtn svg {
+  font-size: 16px;
+}
+
+.dropdown {
+  z-index: 9;
+
+  li {
+    padding: 15px 24px;
+
+    @media (min-width: 992px) {
+      padding: 14px 24px;
+    }
+
+    @media (min-width: 992px) {
+      padding: 12px 24px;
+    }
+  }
+}

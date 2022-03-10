@@ -1,0 +1,90 @@
+$color-blue: #008dde;
+$color-dark-blue: #273647;
+$color-black: #282828;
+
+.draggerDarkH {
+  background-color: #fff;
+}
+.draggerDarkV {
+  background-color: #fff;
+}
+
+.gutterDarkH {
+  background-color: $color-black;
+}
+.gutterDarkV {
+  background-color: $color-black;
+}
+
+.draggerLightH {
+  background-color: $color-black;
+}
+.draggerLighV {
+  background-color: $color-black;
+}
+
+.gutterLightH {
+  background-color: #fff;
+}
+.gutterLightV {
+  background-color: #fff;
+}
+
+.wrap {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-top;
+  background: #fff;
+  overflow-y: auto;
+  padding: 25px 25px;
+}
+
+.preview {
+  height: 100%;
+  width: 100%;
+
+  .header {
+    display: flex;
+    flex: 0 0 75px;
+    justify-content: space-between;
+
+    .btn {
+      p {
+        font-size: 14px;
+        padding: 1.5px;
+      }
+    }
+
+    .headerLeft {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+      }
+    }
+
+    .headerRight {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      @media (min-width: 768px) {
+        flex-direction: row;
+      }
+    }
+  }
+
+  .postContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    .post {
+      width: 500px;
+    }
+  }
+}

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { getProfileApi } from 'api/profile.api';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { serverErrorHandler } from 'services/server-error.service';
-import { useAppDispatch } from 'store/hooks';
-import { logout } from 'store/slices/userSessionSlice';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getUser, logout } from 'store/slices/userSessionSlice';
 
 export default function useProfile(username?: string) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -15,18 +15,22 @@ export default function useProfile(username?: string) {
   // clears user session data and logs user out
   const logoutHandler = () => dispatch(logout());
 
+  // get user session data
+  const user = useAppSelector(getUser);
+
   useEffect(() => {
     let mounted = true;
 
     /**
      * Makes async request for user profile info
      * Profile is stored in state
-     * @param username 
+     * @param username
      */
     async function loadDataAsync(username: string) {
       try {
         // request user profile
         const response: IHustlencodeUser = await getProfileApi(username);
+        console.log(response);
         // update state
         setValue(response);
         // hide loader
@@ -37,15 +41,15 @@ export default function useProfile(username?: string) {
       }
     }
 
-    if (mounted && username) loadDataAsync(username);
+    if (mounted && username && user) loadDataAsync(username);
 
     return () => {
       mounted = false;
     };
-  }, [username]);
+  }, [username, user]);
 
   return {
     value,
-    isLoading
+    isLoading,
   };
 }

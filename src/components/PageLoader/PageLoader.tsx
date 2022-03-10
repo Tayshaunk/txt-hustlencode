@@ -6,6 +6,7 @@ interface ILoaderProps {
   isVisible: boolean;
   fullscreen: boolean;
   theme: 'dark' | 'light';
+  style?: any;
 }
 
 /**
@@ -15,7 +16,7 @@ interface ILoaderProps {
  * @returns
  */
 const PageLoader = (props: ILoaderProps) => {
-  const { isVisible, fullscreen, theme } = props;
+  const { style={}, isVisible, fullscreen, theme } = props;
 
   const [hide, setHide] = useState(false); // loader is visible when hide = false
 
@@ -43,7 +44,7 @@ const PageLoader = (props: ILoaderProps) => {
 
   return (
     <div
-      style={{ backgroundColor: theme === 'dark' ? '#282828' : '#EDF1F7' }}
+      style={{ ...style, backgroundColor: theme === 'dark' ? '#282828' : '#fff' }}
       className={`${classes.Wrapper} ${isVisible ? '' : classes.Visuallyhidden} ${hide ? classes.Hidden : ''} ${
         fullscreen ? `${classes.Fullscreen}` : ''
       }`}
