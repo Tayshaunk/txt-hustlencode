@@ -1,9 +1,14 @@
-import PageLoader from "components/PageLoader/PageLoader";
-import { useEffect, useState } from "react";
-// styles
-import pageLayoutClasses from "styles/modules/pageLayout.module.scss";
-import { isReturnStatement } from "typescript";
+import PageLoader from 'components/PageLoader/PageLoader';
+import { useEffect, useState } from 'react';
 
+/**
+ * This component waits for timeout to complete
+ * before rendering the PageLoader. This is useful for
+ * React components that lazily loaded. It prevents the white flash when the
+ * component loads
+ * @param param0
+ * @returns
+ */
 const DelayedFallback = ({ delay }: { delay: number }) => {
   const [show, setShow] = useState(false);
 
@@ -19,9 +24,7 @@ const DelayedFallback = ({ delay }: { delay: number }) => {
     };
   }, [delay]);
 
-  return show ? (
-    <PageLoader theme="light" isVisible={true} fullscreen={true} />
-  ) : null;
+  return show ? <PageLoader theme="light" isVisible={true} fullscreen={true} /> : null;
 };
 
 export default DelayedFallback;

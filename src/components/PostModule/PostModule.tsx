@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { deletePostApi } from 'api/post.api';
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
 import ElipsisMenu from 'components/ElipsisMenu/ElipsisMenu';

@@ -21,9 +21,9 @@ const POST_INIT = {
  */
 export default function useUpdateProfileAbout() {
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
-    // setup localstorage keys using the current location
+  // setup localstorage keys using the current location
   const htmlChangesKey = location.pathname.replace('/', '') + 'html';
   const cssChangesKey = location.pathname.replace('/', '') + 'css';
   const jsChangesKey = location.pathname.replace('/', '') + 'js';
@@ -81,6 +81,8 @@ export default function useUpdateProfileAbout() {
     return () => {
       mounted = false;
     };
+    // TODO Resolve 'react-hooks/exhaustive-deps'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   /**

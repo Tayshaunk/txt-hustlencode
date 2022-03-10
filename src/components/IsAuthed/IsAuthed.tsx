@@ -1,5 +1,4 @@
 import Aux from 'components/_Aux/_Aux';
-import { IHustlencodeUser } from 'interfaces/user.interface';
 import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/slices/userSessionSlice';
 

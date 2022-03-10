@@ -5,9 +5,15 @@ import usePosts from 'hooks/usePosts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Modal } from 'rsuite';
 
+/**
+ * This component renders the users post feed and the 
+ * create post module
+ * @param param0 
+ * @returns 
+ */
 const PostFeed = ({ id }: { id: string }) => {
+  // get user's post feed
   const posts = usePosts(id);
 
   /**

@@ -1,6 +1,3 @@
-// classes
-import classes from './ButtonSpinner.module.scss';
-
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CSSProperties } from 'react';

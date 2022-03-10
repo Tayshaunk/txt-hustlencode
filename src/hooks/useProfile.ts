@@ -18,35 +18,40 @@ export default function useProfile(username?: string) {
   // get user session data
   const user = useAppSelector(getUser);
 
-  useEffect(() => {
-    let mounted = true;
+  useEffect(
+    () => {
+      let mounted = true;
 
-    /**
-     * Makes async request for user profile info
-     * Profile is stored in state
-     * @param username
-     */
-    async function loadDataAsync(username: string) {
-      try {
-        // request user profile
-        const response: IHustlencodeUser = await getProfileApi(username);
-        console.log(response);
-        // update state
-        setValue(response);
-        // hide loader
-        setIsLoading(false);
-      } catch (e) {
-        setIsLoading(false);
-        serverErrorHandler(e, logoutHandler);
+      /**
+       * Makes async request for user profile info
+       * Profile is stored in state
+       * @param username
+       */
+      async function loadDataAsync(username: string) {
+        try {
+          // request user profile
+          const response: IHustlencodeUser = await getProfileApi(username);
+          console.log(response);
+          // update state
+          setValue(response);
+          // hide loader
+          setIsLoading(false);
+        } catch (e) {
+          setIsLoading(false);
+          serverErrorHandler(e, logoutHandler);
+        }
       }
-    }
 
-    if (mounted && username && user) loadDataAsync(username);
+      if (mounted && username && user) loadDataAsync(username);
 
-    return () => {
-      mounted = false;
-    };
-  }, [username, user]);
+      return () => {
+        mounted = false;
+      };
+    },
+    // TODO Resolve 'react-hooks/exhaustive-deps'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [username, user],
+  );
 
   return {
     value,

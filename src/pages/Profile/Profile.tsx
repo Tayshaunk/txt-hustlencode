@@ -15,7 +15,6 @@ import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
 import classes from './Profile.module.scss';
 import CreatePostModule from './components/CreatePostModule/CreatePostModule';
 import useIsMobile from 'hooks/useIsMobile';
-import NotFoundRender from 'components/NotFoundRender/NotFoundRender';
 import { Button } from 'rsuite';
 import { useState } from 'react';
 

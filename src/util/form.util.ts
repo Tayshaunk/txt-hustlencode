@@ -1,5 +1,4 @@
-import { IPickerItem } from "../interfaces/picker.interface";
-
+import { IPickerItem } from '../interfaces/picker.interface';
 
 /**
  * Returns a boolean value. True if the form values do not have
@@ -8,25 +7,21 @@ import { IPickerItem } from "../interfaces/picker.interface";
  * @param validationState The form validation obj which contains errors if they exist
  * @returns Boolean value
  */
-export const getFormValidationStatus = (validationState: any): boolean => {
+export const getFormValidationStatus = (validationState: Object): boolean => {
+  // form is valid by default
   let isValid = true;
 
-  // @ts-ignore
-  for (const [key, value] of Object.entries(validationState)) {
-    const payload: any = value;
+  // get fields in form model obj
+  const fields = Object.entries(validationState)[1];
 
-    if (payload.hasError) {
-      isValid = false;
-    }
+  // check 
+  for (const field of fields) {
+    // field has error
+    if (field.hasError) isValid = false;
   }
 
   return isValid;
 };
-
-export function stringMapHelper(data: any | null): any {
-  if (data) return data;
-  return '';
-}
 
 /**
  * Scrolls user to errors on the form
@@ -70,7 +65,7 @@ export function getDateRange(years: number): IPickerItem[] {
   // add today
   range.push(getPickerItem(`${today}`));
 
-
+  // ort dates in desc order
   range.sort((a, b) => {
     if (a.value > b.value) {
       return -1;

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
 import usePostEditor from 'hooks/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
@@ -14,7 +14,6 @@ import { openErrorToaster } from 'services/toast.service';
 // styles
 import classes from './EditProfileAbout.module.scss';
 import useUpdateProfileAbout from 'hooks/useUpdateProfileAbout';
-import PostPreviewModule from 'components/PostPreviewModule/PostPreviewModule';
 import ProfilePreviewModule from 'components/ProfilePreviewModule/ProfilePreviewModule';
 
 const EditProfileAbout = () => {

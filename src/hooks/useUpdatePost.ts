@@ -44,29 +44,34 @@ export default function useUpdatePost(id?: string) {
 
   const postData = post.value;
 
-  useEffect(() => {
-    let mounted = true;
+  useEffect(
+    () => {
+      let mounted = true;
 
-    if (mounted && postData) {
-      if (localStorage[htmlChangesKey] || localStorage[cssChangesKey] || localStorage[jsChangesKey]) {
-        setShowUnsavedChanges(true);
+      if (mounted && postData) {
+        if (localStorage[htmlChangesKey] || localStorage[cssChangesKey] || localStorage[jsChangesKey]) {
+          setShowUnsavedChanges(true);
+        }
+
+        const map = {
+          html: postData.html || '',
+          css: postData.css || '',
+          js: postData.js || '',
+          linesOfCode: postData.linesOfCode || 0,
+        };
+
+        setValue(map);
+        setIsDoneLoading(true);
       }
 
-      const map = {
-        html: postData.html || '',
-        css: postData.css || '',
-        js: postData.js || '',
-        linesOfCode: postData.linesOfCode || 0,
+      return () => {
+        mounted = false;
       };
-
-      setValue(map);
-      setIsDoneLoading(true);
-    }
-
-    return () => {
-      mounted = false;
-    };
-  }, [postData]);
+    },
+    // TODO Resolve 'react-hooks/exhaustive-deps'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [postData],
+  );
 
   /**
    * Makes request to save post changes.

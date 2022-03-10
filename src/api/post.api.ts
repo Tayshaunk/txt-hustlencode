@@ -2,7 +2,6 @@ import { CreateHustlencodePostDto, UpdateHustlencodePostDto } from 'dtos/hustlen
 import { IHustlencodePost } from 'interfaces/post.interface';
 import { IServerResponse } from 'interfaces/server.interface';
 import axiosInstance from '../config/axios.config';
-import { IHustlencodeUser } from '../interfaces/user.interface';
 
 interface IHustlenCodePostPayload {
   posts: IHustlencodePost[];

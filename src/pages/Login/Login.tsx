@@ -4,15 +4,12 @@ import LoginForm from './components/LoginForm/LoginForm';
 import { useTranslation } from 'react-i18next';
 import Fade from 'components/Fade/Fade';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
-
-// images
-import backgroundImage from 'assets/images/login-background.jpg';
-
-// styles
-import classes from './Login.module.scss';
 import { PICKER_LANGUAGE } from 'constants/picker';
 import { SelectPicker } from 'rsuite';
 import OceanScene from './components/OceanScene/OceanScene';
+
+// styles
+import classes from './Login.module.scss';
 
 /**
  * Renders a view with a welcome message and Login
@@ -20,7 +17,7 @@ import OceanScene from './components/OceanScene/OceanScene';
  * @returns
  */
 const Login = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const changeLanguage = (language: 'en' | 'span') => {
     i18n.changeLanguage(language);

@@ -1,26 +1,17 @@
 import React from 'react';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import NavBarProfileDropdown from 'components/NavBarProfileDropdown/NavBarProfileDropdown';
 import { IHustlencodeUser } from 'interfaces/user.interface';
-
-// styles
-import classes from './NavBar.module.scss';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getUser, logout } from 'store/slices/userSessionSlice';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
 import useIsMobile from 'hooks/useIsMobile';
 import Aux from 'components/_Aux/_Aux';
 
-// export interface IProps {
-//   sideMenuIsOpen: boolean;
-//   user: IHustlencodeUser | null;
-//   token: string | null;
-//   logout: () => void;
-//   toggle: () => void;
-// }
+// styles
+import classes from './NavBar.module.scss';
+
 
 /**
  * Renders navigation menu.

@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { getProfileApi } from 'api/profile.api';
-import { IHustlencodeUser } from 'interfaces/user.interface';
 import { serverErrorHandler } from 'services/server-error.service';
 import { useAppDispatch } from 'store/hooks';
 import { logout } from 'store/slices/userSessionSlice';
@@ -8,11 +6,11 @@ import { IHustlencodePost } from 'interfaces/post.interface';
 import { getProfilePostsApi } from 'api/post.api';
 
 /**
- * Handles the post feed state. This hook will 
+ * Handles the post feed state. This hook will
  * make a async request for the user's 10 most recent
  * posts.
  * @param id - user's _id
- * @returns 
+ * @returns
  * - value: The list of user posts
  * - postCount: The total count of user posts. Determins if user can fetch more
  * - isLoading: Keeps track if the async request is in progress
@@ -42,11 +40,14 @@ export default function usePosts(id: string) {
       try {
         // request user post payload
         const response = await getProfilePostsApi(id, 10);
-        // update state
-        setValue(response.posts);
-        setPostCount(response.postCount);
-        // hide loader
-        setIsLoading(false);
+
+        if (mounted) {
+          // update state
+          setValue(response.posts);
+          setPostCount(response.postCount);
+          // hide loader
+          setIsLoading(false);
+        }
       } catch (e) {
         setIsLoading(false);
         serverErrorHandler(e, logoutHandler);
@@ -58,6 +59,8 @@ export default function usePosts(id: string) {
     return () => {
       mounted = false;
     };
+  // TODO: Resolve 'react-hooks/exhaustive-deps'
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   /**
@@ -84,7 +87,7 @@ export default function usePosts(id: string) {
    * Removes post from post feed
    * @param id: Id of post to remove
    */
-  function removePost(id:string){
+  function removePost(id: string) {
     setValue([...value.filter(p => p._id !== id)]);
     setPostCount(postCount - 1);
   }
@@ -95,6 +98,6 @@ export default function usePosts(id: string) {
     isLoading,
     isPulling,
     pullMorePosts,
-    removePost
+    removePost,
   };
 }

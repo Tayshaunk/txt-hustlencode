@@ -55,7 +55,7 @@ export default function useCreatePost(id: string | undefined) {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [htmlChangesKey, cssChangesKey, jsChangesKey]);
 
   /**
    * Makes request to make post

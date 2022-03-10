@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
 import usePostEditor from 'hooks/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
@@ -16,6 +16,12 @@ import ProfilePreviewModule from 'components/ProfilePreviewModule/ProfilePreview
 // styles
 import classes from './EditProfileInterests.module.scss';
 
+/**
+ * This page renders the code editors that
+ * allows users to update their 
+ * interests module
+ * @returns
+ */
 const EditProfileInterests = () => {
   // get react router navigate
   const navigate = useNavigate();
@@ -125,9 +131,7 @@ const EditProfileInterests = () => {
             exitEditorHandler={exitEditorHandler}
             saveAndExitHandler={saveAndExitHandler}
             saveHandler={saveHandler}
-
             isSaving={postUpdates.isSaving}
-
             actionLabel="Save Changes"
             updateHandler={updateHandler}
           >

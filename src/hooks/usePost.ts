@@ -18,38 +18,42 @@ export default function usePost(id: string | undefined) {
   // get user session data
   const user = useAppSelector(getUser);
 
-  useEffect(() => {
-    let mounted = true;
+  useEffect(
+    () => {
+      let mounted = true;
 
-    /**
-     * Makes async request for post details
-     * @param id - post _id
-     */
-    async function loadDataAsync(id: string) {
-      try {
-        // request user post payload
-        const response = await getPostApi(id);
-        // update state
-        setValue(response);
-        // hide loader
-        setIsLoading(false);
-      } catch (e) {
-        setIsLoading(false);
-        serverErrorHandler(e, logoutHandler);
+      /**
+       * Makes async request for post details
+       * @param id - post _id
+       */
+      async function loadDataAsync(id: string) {
+        try {
+          // request user post payload
+          const response = await getPostApi(id);
+          // update state
+          setValue(response);
+          // hide loader
+          setIsLoading(false);
+        } catch (e) {
+          setIsLoading(false);
+          serverErrorHandler(e, logoutHandler);
+        }
       }
-    }
 
-    if (mounted && user && id) loadDataAsync(id);
+      if (mounted && user && id) loadDataAsync(id);
 
-    return () => {
-      mounted = false;
-    };
-  }, [id, user]);
+      return () => {
+        mounted = false;
+      };
+    },
+    // TODO: Resolve 'react-hooks/exhaustive-deps'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [id, user],
+  );
 
   return {
     value,
     isLoading,
-    setValue
+    setValue,
   };
 }
-

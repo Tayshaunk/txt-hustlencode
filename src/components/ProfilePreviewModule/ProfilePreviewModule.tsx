@@ -1,12 +1,6 @@
-import ElipsisMenu from 'components/ElipsisMenu/ElipsisMenu';
-import IsAuthed from 'components/IsAuthed/IsAuthed';
 import { ICode } from 'interfaces/post.interface';
-import { createRef, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { useNavigate } from 'react-router-dom';
-import { Dropdown } from 'rsuite';
-import { useAppSelector } from 'store/hooks';
-import { getUser } from 'store/slices/userSessionSlice';
+import { useState } from 'react';
+// import styles
 import classes from './ProfilePreviewModule.module.scss';
 
 interface IProps {
@@ -17,11 +11,9 @@ interface IProps {
 
 const ProfilePreviewModule = (props: IProps) => {
   const [height, setHeight] = useState<number>();
-  
-  const { title, profileCode } = props;
 
-  // get current user
-  const user = useAppSelector(getUser);
+  // get props
+  const { title, profileCode } = props;
 
   // sets up code for module
   const code = `
@@ -52,7 +44,6 @@ const ProfilePreviewModule = (props: IProps) => {
     const h = e.target.contentWindow.document.getElementById('html').offsetHeight;
     setHeight(h);
   };
-
 
   return (
     <div className={classes.container}>

@@ -1,8 +1,9 @@
 import FromNowDate from 'components/FromNowDate/FromNowDate';
-import { ICode, IHustlencodePost } from 'interfaces/post.interface';
+import { ICode } from 'interfaces/post.interface';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { useState } from 'react';
 import { getProfileImage } from 'util/profile.util';
+// import styles
 import classes from './PostPreviewModule.module.scss';
 
 interface IProps {
