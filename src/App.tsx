@@ -13,6 +13,7 @@ function App() {
   // gets loading state of our app
   const isLoading = useAppSelector(getIsLoadingApp);
 
+  // req user session data
   useApp();
 
   return (

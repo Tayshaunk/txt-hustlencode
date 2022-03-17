@@ -13,7 +13,7 @@ const PublicRoutes = () => {
       <Route
         path={'/'}
         element={
-          <Suspense fallback={<DelayedFallback delay={250} />}>
+          <Suspense fallback={<DelayedFallback  theme="dark" fullscreen={true} delay={250} />}>
             <Login />
           </Suspense>
         }

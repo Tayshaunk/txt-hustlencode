@@ -1,0 +1,49 @@
+$color-blue: #57bcea;
+$color-black: #282828;
+$colorBackground: #282828;
+
+.mobileMenuContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+
+  .mobileMenu {
+    background-color: $color-black;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    ul {
+      list-style: none;
+      padding: 150px 0px;
+      margin: 0;
+      li {
+        text-align: center;
+        margin-bottom: 15px;
+        a,
+        p {
+          display: block;
+          color: #fff;
+          text-decoration: none;
+          font-size: 24px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          text-align: center;
+          padding: 12px 12px;
+          text-transform: capitalize;
+          &:hover{
+              cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

@@ -82,3 +82,11 @@ export const createPostApi = async (payload: CreateHustlencodePostDto): Promise<
 
   return response.data;
 };
+
+export const getExplorePostsApi = async (num: number): Promise<IHustlenCodePostPayload> => {
+  const url = `${BASE_URL}/explore/?count=${num}`;
+
+  const response = await axiosInstance.get<any>(url);
+
+  return response.data.payload;
+};

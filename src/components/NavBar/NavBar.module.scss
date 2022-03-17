@@ -51,6 +51,7 @@ $colorBackground: #282828;
 }
 
 .burger {
+  margin-left: auto;
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -63,36 +64,41 @@ $colorBackground: #282828;
   transition: all 0.5s ease;
 
   .burgerStrip {
+    transform: scale(0.7);
     transition: all 0.5s ease;
     div {
       height: 3px;
       border-radius: 2px;
-      background: rgb(56 56 56);
-      margin: 7px;
+      background: $color-black;
+      margin: 10px;
       transition: all 0.65s cubic-bezier(0.075, 0.82, 0.165, 1);
-      width: 30px;
+      width: 40px;
     }
   }
+}
 
-  &:hover {
-    background: rgb(56 56 56);
+.burgerActive {
+  background-color: $color-black;
+  .burgerStrip {
+    transform: scale(0.7) rotate(45deg);
+    transition: all 0.2s ease 0.05s;
+
+    div {
+      background: #fff;
+    }
+
+    div:first-child {
+      transform: translateY(13px) rotate(0deg);
+    }
+
+    div:nth-child(2) {
+      opacity: 0;
+    }
+
+    div:last-child {
+      transform: translateY(-13px) rotate(90deg);
+    }
   }
-
-  &:hover .burgerStrip div {
-    background: white;
-  }
 }
 
-.burger:hover .burgerStrip div:first-child {
-  transform: translateY(13px) rotate(0deg);
-}
-.burger:hover .burgerStrip div:nth-child(2) {
-  opacity: 0;
-}
-.burger:hover .burgerStrip div:last-child {
-  transform: translateY(-13px) rotate(90deg);
-}
-.burger:hover .burgerStrip {
-  transform: scale(0.7) rotate(45deg);
-  transition: all 0.25s ease 0.05s;
-}
+

@@ -6,7 +6,7 @@ import { ICode, IHustlencodePost } from 'interfaces/post.interface';
 import { updatePostApi } from 'api/post.api';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
 import usePost from './usePost';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { IServerResponse } from 'interfaces/server.interface';
 import { openSuccessToaster } from 'services/toast.service';
 
@@ -14,7 +14,6 @@ export interface IPostUser {
   name: string;
 }
 export default function useUpdatePost(id?: string) {
-  const navigate = useNavigate();
   const location = useLocation();
 
   // setup localstorage keys using the current location
@@ -124,8 +123,6 @@ export default function useUpdatePost(id?: string) {
 
       // clear unsaved changes
       clearStorage();
-
-      navigate('/');
     } catch (e) {
       setIsSaving(false);
       serverErrorHandler(e, logoutHandler);
@@ -136,7 +133,6 @@ export default function useUpdatePost(id?: string) {
    * Removes unsaved changes from local storage
    */
   const clearStorage = () => {
-    console.log('clearing storage');
     localStorage.removeItem(htmlChangesKey);
     localStorage.removeItem(cssChangesKey);
     localStorage.removeItem(jsChangesKey);
@@ -155,7 +151,6 @@ export default function useUpdatePost(id?: string) {
   const applyUnsavedChanges = () => {
     // only apply saved changes if post data exists
     if (post.value) {
-      console.log('applying changes');
       const updatedPost: IHustlencodePost = { ...post.value };
 
       // apply html changes

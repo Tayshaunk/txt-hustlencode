@@ -3,7 +3,7 @@ import { serverErrorHandler } from 'services/server-error.service';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getUser, logout } from 'store/slices/userSessionSlice';
 import { ICode } from 'interfaces/post.interface';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { IServerResponse } from 'interfaces/server.interface';
 import { openSuccessToaster } from 'services/toast.service';
 import { getProfileAboutApi, updateProfileAboutApi } from 'api/profile.api';
@@ -20,7 +20,6 @@ const POST_INIT = {
  * @returns
  */
 export default function useUpdateProfileAbout() {
-  const navigate = useNavigate();
   const location = useLocation();
 
   // setup localstorage keys using the current location
@@ -132,8 +131,6 @@ export default function useUpdateProfileAbout() {
 
       // clear unsaved changes
       clearStorage();
-
-      navigate('/');
     } catch (e) {
       setIsSaving(false);
       serverErrorHandler(e, logoutHandler);
@@ -144,7 +141,7 @@ export default function useUpdateProfileAbout() {
    * Removes unsaved changes from local storage
    */
   const clearStorage = () => {
-    console.log('clearing storage');
+
     localStorage.removeItem(htmlChangesKey);
     localStorage.removeItem(cssChangesKey);
     localStorage.removeItem(jsChangesKey);
@@ -161,7 +158,7 @@ export default function useUpdateProfileAbout() {
    * Restores unsaved code
    */
   const applyUnsavedChanges = () => {
-    console.log(value);
+
     const updatedPost: ICode = {
       html: '',
       css: '',

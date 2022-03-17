@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { serverErrorHandler } from 'services/server-error.service';
-import { useAppDispatch } from 'store/hooks';
-import { logout } from 'store/slices/userSessionSlice';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getPreviousPath, logout } from 'store/slices/userSessionSlice';
 import { ICode } from 'interfaces/post.interface';
 import { createPostApi } from 'api/post.api';
 import { CreateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
@@ -39,6 +39,9 @@ export default function useCreatePost(id: string | undefined) {
 
   // clears user session data and logs user out
   const logoutHandler = () => dispatch(logout());
+
+  // get previous path
+  const prevPath = useAppSelector(getPreviousPath);
 
   /**
    * Check if there are any unsaved changes
@@ -78,36 +81,8 @@ export default function useCreatePost(id: string | undefined) {
       clearStorage();
       setHasChanges(false);
 
-      navigate('/');
-    } catch (e) {
-      setIsSaving(false);
-      serverErrorHandler(e, logoutHandler);
-    }
-  };
-
-  /**
-   * Makes request create post and redirects user to
-   * profile page
-   * @param postId The post _id
-   * @param payload The post updates
-   */
-  const saveAndExit = async (payload: CreateHustlencodePostDto) => {
-    try {
-      setIsSaving(true);
-
-      // request user post payload
-      const response: IServerResponse = await createPostApi(payload);
-
-      // update state
-      openSuccessToaster(response.message, 3000);
-
-      // hide loader
-      setIsSaving(false);
-
-      // clear unsaved changes
-      clearStorage();
-
-      navigate('/');
+      // exit
+      navigate(prevPath);
     } catch (e) {
       setIsSaving(false);
       serverErrorHandler(e, logoutHandler);
@@ -118,7 +93,6 @@ export default function useCreatePost(id: string | undefined) {
    * Removes unsaved changes from local storage
    */
   const clearStorage = () => {
-    console.log('clearing storage');
     localStorage.removeItem(htmlChangesKey);
     localStorage.removeItem(cssChangesKey);
     localStorage.removeItem(jsChangesKey);
@@ -182,6 +156,6 @@ export default function useCreatePost(id: string | undefined) {
     applyUnsavedChanges,
     discardChanges,
     closeModal,
-    saveAndExit,
+    // saveAndExit,
   };
 }

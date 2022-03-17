@@ -1,6 +1,11 @@
 import PageLoader from 'components/PageLoader/PageLoader';
 import { useEffect, useState } from 'react';
 
+interface IProps{
+   delay: number;
+   theme: 'light'|'dark';
+   fullscreen: boolean;
+}
 /**
  * This component waits for timeout to complete
  * before rendering the PageLoader. This is useful for
@@ -9,7 +14,7 @@ import { useEffect, useState } from 'react';
  * @param param0
  * @returns
  */
-const DelayedFallback = ({ delay }: { delay: number }) => {
+const DelayedFallback = ({ delay, theme, fullscreen }:IProps ) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -24,7 +29,7 @@ const DelayedFallback = ({ delay }: { delay: number }) => {
     };
   }, [delay]);
 
-  return show ? <PageLoader theme="light" isVisible={true} fullscreen={true} /> : null;
+  return show ? <PageLoader theme={theme} isVisible={true} fullscreen={fullscreen} /> : null;
 };
 
 export default DelayedFallback;

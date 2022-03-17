@@ -21,7 +21,6 @@ export const loadAppAsyncThunk = createAsyncThunk<any>('userSession/loadApp', as
       throw err;
     }
 
-    console.log(error.response);
     // We got validation errors, let's return those so we can reference in our component and set form errors
     return rejectWithValue({
       response: {

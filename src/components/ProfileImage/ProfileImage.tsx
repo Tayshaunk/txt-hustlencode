@@ -11,7 +11,6 @@ interface IProps {
 const ProfileImage = (props: IProps) => {
   const { url, gender } = props;
 
-  console.log(url);
   /**
    * Returns profile image. If the custom url is not
    * provided, profile image placeholder is rendered

@@ -3,6 +3,7 @@ $color-dark-blue: #273647;
 $color-black: #282828;
 
 .container {
+  margin-top: 35px;
   margin-bottom: 25px;
   background-color: #fff;
   overflow: hidden;
@@ -15,12 +16,13 @@ $color-black: #282828;
     border-right: 1px solid $color-black;
     border-top: 1px solid $color-black;
     background-color: $color-black;
-    padding: 4px 0px 4px 16px;
+    padding: 4px 8px 4px 16px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 49px;
 
     p {
       color: #fff;

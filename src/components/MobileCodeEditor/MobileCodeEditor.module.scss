@@ -1,0 +1,126 @@
+$color-blue: #008dde;
+$color-dark-blue: #273647;
+$color-black: #282828;
+
+.tabToolBarWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0px;
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+  margin: 10px 0px;
+  color: $color-blue;
+}
+
+.tabButtonToolBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
+  align-items: center;
+  border-radius: 0px;
+  overflow: hidden;
+  padding: 0px 8px;
+
+
+  @media (min-width: 992px) {
+    border-radius: 3px;
+    flex: 0 0 500px;
+  }
+
+  .tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    border-bottom: solid 2px transparent;
+    border-radius: 0px;
+    .tabBtn {
+      background-color: transparent;
+      flex: 1;
+      border-radius: 3px;
+      padding: 14px 0px;
+
+      p {
+        text-align: center;
+        color: $color-black;
+        font-weight: 500;
+      }
+    }
+
+    &.active {
+      border-bottom: solid 2px $color-blue;
+      .tabBtn {
+        background-color: #fff;
+        p {
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-bottom: 20px;
+
+  @media (min-width: 992px) {
+    margin-bottom: 0px;
+  }
+
+  .btn {
+    overflow: hidden;
+    p {
+      font-size: 14px;
+      padding: 5px 1.5px;
+
+      @media (min-width: 992px) {
+        padding: 1.5px;
+      }
+    }
+  }
+
+  .headerLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    @media (min-width: 992px) {
+      flex-direction: row;
+      gap: 6px;
+    }
+  }
+
+  .headerRight {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    @media (min-width: 992px) {
+      flex-direction: row;
+      gap: 6px;
+    }
+  }
+}
+
+.editorContainer {
+  flex: 1;
+  padding-top: 0px;
+  background-color: #1e1e1e;
+}
+
+.postContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 30px 25px 50px 25px;
+  .post {
+    width: 100%;
+  }
+}

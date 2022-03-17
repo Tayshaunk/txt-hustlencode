@@ -5,7 +5,7 @@ import FromNowDate from 'components/FromNowDate/FromNowDate';
 import IsAuthed from 'components/IsAuthed/IsAuthed';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Button, Dropdown, Modal } from 'rsuite';
 import { serverErrorHandler } from 'services/server-error.service';
 import { openSuccessToaster } from 'services/toast.service';
@@ -79,7 +79,7 @@ const PostModule = (props: IProps) => {
    */
   const goToPostEditor = () => {
     if (postUser && postUser.username) {
-      navigate(`/${postUser.username}/posts/${postId}/edit`);
+      navigate(`/edit/post/${postId}`);
     }
   };
 
@@ -142,11 +142,11 @@ const PostModule = (props: IProps) => {
       </div>
       <div className={classes.nameContainer}>
         <div className={classes.name}>
-          <p>{postUser?.name}</p>
+          <NavLink to={`/user/${postUser?.username}`}>{postUser?.name}</NavLink>
         </div>
         <div>{createdOn ? <FromNowDate date={createdOn} /> : ''}</div>
       </div>
-      <IsAuthed userId={postUser?._id}>
+      <IsAuthed type="id" value={postUser?._id}>
         <ElipsisMenu width={40} height={40} placement="leftStart" menuOptions={menu} isLoading={isLoading} />
       </IsAuthed>
     </div>

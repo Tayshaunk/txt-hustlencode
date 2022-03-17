@@ -1,0 +1,36 @@
+$color-blue: #008dde;
+$color-dark-blue: #273647;
+$color-black: #282828;
+
+.tabButtonToolBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
+  align-items: center;
+  border-radius: 0px;
+  padding: 8px 0px;
+  margin: 15px auto 25px auto;
+
+  .innerContainer {
+    flex: 1;
+    display: flex;
+    border-bottom: 1px solid #e7e7e9;
+    padding: 10px 20px;
+
+    .tab {
+      display: flex;
+      justify-content: center;
+      border-bottom: solid 2px transparent;
+      text-align: center;
+      font-weight: 500;
+      color: $color-black;
+      padding: 6px 12px;
+      margin-right: 30px;
+
+      &.active {
+        color: $color-blue;
+      }
+    }
+  }
+}

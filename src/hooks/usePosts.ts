@@ -59,7 +59,7 @@ export default function usePosts(id: string) {
     return () => {
       mounted = false;
     };
-  // TODO: Resolve 'react-hooks/exhaustive-deps'
+  // TODO: Resolve 'react-hooks/exhaustive-deps
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -68,18 +68,20 @@ export default function usePosts(id: string) {
    * 10 more posts are requested
    */
   async function pullMorePosts() {
-    try {
-      setIsPulling(true);
-      // request user post payload
-      const response = await getProfilePostsApi(id, value.length + 10);
-      // update state
-      setValue(response.posts);
-      setPostCount(response.postCount);
-      // hide loader
-      setIsPulling(false);
-    } catch (e) {
-      setIsPulling(false);
-      serverErrorHandler(e, logoutHandler);
+    if(!isPulling){
+      try {
+        setIsPulling(true);
+        // request user post payload
+        const response = await getProfilePostsApi(id, value.length + 10);
+        // update state
+        setValue(response.posts);
+        setPostCount(response.postCount);
+        // hide loader
+        setIsPulling(false);
+      } catch (e) {
+        setIsPulling(false);
+        serverErrorHandler(e, logoutHandler);
+      }
     }
   }
 

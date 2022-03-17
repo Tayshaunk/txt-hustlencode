@@ -119,7 +119,6 @@ export default function usePostPreview(
   };
 
   const clearStorage = () => {
-    console.log('clearing storage');
     localStorage.removeItem(htmlChangesKey);
     localStorage.removeItem(cssChangesKey);
     localStorage.removeItem(jsChangesKey);
@@ -131,7 +130,6 @@ export default function usePostPreview(
 
   const applyUnsavedChanges = () => {
     if (post) {
-      console.log('applying changes');
       const updatedPost: CreateHustlencodePostDto | UpdateHustlencodePostDto = { ...post };
 
       // apply html changes

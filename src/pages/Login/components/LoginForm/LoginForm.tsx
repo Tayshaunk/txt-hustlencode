@@ -108,8 +108,6 @@ const LoginForm = () => {
         // stores users session toke, once its
         // set. user is redirected to auth routes
         dispatch(setToken(token));
-
-        navigate('/ronjovi')
       }
     } catch (e) {
       // hide spinner

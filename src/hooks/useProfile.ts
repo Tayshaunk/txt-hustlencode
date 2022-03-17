@@ -29,9 +29,10 @@ export default function useProfile(username?: string) {
        */
       async function loadDataAsync(username: string) {
         try {
+          setIsLoading(true);
           // request user profile
           const response: IHustlencodeUser = await getProfileApi(username);
-          console.log(response);
+    
           // update state
           setValue(response);
           // hide loader
@@ -43,6 +44,7 @@ export default function useProfile(username?: string) {
       }
 
       if (mounted && username && user) loadDataAsync(username);
+      else if(mounted && !username) setIsLoading(false);
 
       return () => {
         mounted = false;

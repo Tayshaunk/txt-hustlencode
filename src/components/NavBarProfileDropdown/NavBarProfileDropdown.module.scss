@@ -15,13 +15,23 @@ $colorBackground: #282828;
   .dropdown {
     display: none;
 
-    @media (min-width: 992px) {
+    @media (min-width: 768px) {
       display: block;
     }
 
     .dropdownLink {
-      min-width: 150px;
-      text-align: center;
+      font-family: 'Roboto', sans-serif;
+      padding: 0px;
+
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 8px 35px;
+      color: $color-black;
+    }
+
+    .dropdownLink:last-child {
+      border-top: solid 1px #dddfe2;
     }
 
     .profile {
@@ -59,7 +69,7 @@ $colorBackground: #282828;
           text-transform: capitalize;
           color: #fff;
 
-          &:hover{
+          &:hover {
             color: $color-blue;
             transition: all ease-in-out 300ms;
           }

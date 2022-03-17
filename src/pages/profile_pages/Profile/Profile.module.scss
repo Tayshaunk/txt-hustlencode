@@ -1,0 +1,40 @@
+$color-blue: #008dde;
+$color-dark-blue: #273647;
+$color-black: #282828;
+
+.profileContainer {
+  min-height: 100vh;
+
+  // contains the posts and about sections
+  .content {
+    padding-left: 0px;
+    padding-right: 0px;
+
+    @media (min-width: 992px) {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    @media (min-width: 1440px) {
+      padding-left: 165px;
+      padding-right: 165px;
+    }
+
+    .rightCol {
+      order: 1;
+
+      @media (min-width: 768px) {
+        order: 2;
+      }
+    }
+
+    .leftCol {
+      order: 2;
+
+      @media (min-width: 768px) {
+        order: 1;
+      }
+    }
+  }
+}
+

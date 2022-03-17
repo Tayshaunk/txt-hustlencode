@@ -1,8 +1,7 @@
-import { IsEmail, IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
-const INVALID_EMAIL = { message: 'Invalid email.' };
 
-// Paylod for hustlencode login
+// payload for updating the user's profile about module
 export class UpdateHustlencodeProfileAboutDto {
   @IsString()
   public html: string;
@@ -17,6 +16,7 @@ export class UpdateHustlencodeProfileAboutDto {
   public linesOfCode: number;
 }
 
+// payload for updating the user's profile interests module
 export class UpdateHustlencodeProfileInterestsDto {
   @IsString()
   public html: string;
@@ -29,4 +29,13 @@ export class UpdateHustlencodeProfileInterestsDto {
 
   @IsNumber()
   public linesOfCode: number;
+}
+
+// payload for updating the user's general information
+export class UpdateHustlencodeProfileGeneral {
+  @IsString()
+  public username: string;
+
+  @IsString()
+  public email: string;
 }

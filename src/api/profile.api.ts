@@ -64,7 +64,6 @@ export const updateProfileAboutApi = async (username: string, payload: UpdateHus
 
   const response = await axiosInstance.put<any>(url, payload);
 
-  console.log(response);
   // return user token
   return response.data;
 };
@@ -76,11 +75,11 @@ export const updateProfileAboutApi = async (username: string, payload: UpdateHus
  * @returns
  * - The the updated interests module
  */
-export const updateProfileInterestsApi = async (username: string, payload: UpdateHustlencodeProfileInterestsDto): Promise<ICode> => {
+export const updateProfileInterestsApi = async (username: string, payload: UpdateHustlencodeProfileInterestsDto): Promise<IServerResponse> => {
   const url = `${BASE_URL}/${username}/interests`;
 
-  const response = await axiosInstance.put<any>(url);
+  const response = await axiosInstance.put<any>(url, payload);
 
   // return user token
-  return response.data.payload;
+  return response.data;
 };
