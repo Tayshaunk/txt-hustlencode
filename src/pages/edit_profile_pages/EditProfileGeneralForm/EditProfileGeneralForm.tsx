@@ -9,7 +9,6 @@ import UsernameFormField from 'components/FormFields/single/UsernameFormField';
 import { ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { isEmpty } from 'lodash';
 import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/slices/userSessionSlice';
 
@@ -23,29 +22,30 @@ const EditProfileGeneralForm = () => {
   // get current use
   const user = useAppSelector(getUser);
 
+  /**
+   * Return message for username status
+   * -> return spinner if username is being checked
+   * -> return 'username is valid' if username is valid
+   * -> return 'username is not valid' if username is taken, or empty, or less than
+   * 4 characters
+   * -> return empty p element if username has not changed
+   *
+   * @returns
+   */
   const renderUsernameMessage = (): ReactElement<any> => {
-    if (form.value.username !== user?.username) {
-      console.log(form.isCheckingUsername);
+    // check if username value is different from current user name
+    if (form.value.username !== user?.username && form.value.username.trim() !== '') {
+      // return spinner if we are checking username
       if (form.isCheckingUsername) {
-        return <FontAwesomeIcon icon={faSpinner} spin />;
-      }
-
-      if (!form.isCheckingUsername && form.isUsernameValid) {
-        return <p style={{ color: 'green' }}>Username is valid.</p>;
-      }
-
-      if (
-        !form.isCheckingUsername &&
-        !form.isUsernameValid &&
-        !isEmpty(form.value.username) &&
-        form.value.username !== user?.username
-      ) {
-        return <p style={{ color: 'green' }}>Username is not valid.</p>;
+        return <FontAwesomeIcon className={classes.usernameSpinner} icon={faSpinner} spin />;
+      }else{
+        return <p className={form.isUsernameValid ? classes.validUsername:classes.invalidUsername}>{form.usernameMessage}</p>
       }
     }
 
-    return <p />;
+    return <p/>
   };
+
   return (
     <div className={classes.ContentWrapper}>
       <Form
@@ -57,7 +57,6 @@ const EditProfileGeneralForm = () => {
       >
         <UsernameFormField
           renderMessage={renderUsernameMessage}
-          checkAsync={true}
           type="text"
           name="username"
           label={'Username'}
@@ -72,7 +71,7 @@ const EditProfileGeneralForm = () => {
             appearance="primary"
             label={'Save Changes'}
             isLoading={form.isLoading}
-            disabled={form.isLoading}
+            disabled={false}
             onClick={form.submit}
             size="md"
             className={classes.saveBtn}

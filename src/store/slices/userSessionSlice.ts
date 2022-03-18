@@ -1,14 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axiosInstance from 'config/axios.config';
+import { hncStoredEmailStr, hncTokenStr, prevPathStorageKey } from 'constants/localstorage.constants';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { loadAppAsyncThunk } from 'store/asyncThunk/userSessionAsyncThunk';
 import { RootState } from '../store';
 
-// local storage variable names
-// they are used to store user session date ion local storage
-const hncTokenStr = 'hnc-user-token';
-const hncStoredEmailStr = 'hnc-user-stored-email';
-export const prevPathStorageKey = 'hnc-prev-path';
 export interface IUserSessionState {
   token: string | null;
   user: IHustlencodeUser | null;

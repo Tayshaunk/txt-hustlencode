@@ -32,11 +32,12 @@ $color-dark-red: #881c24;
 
 .FormField {
   // override custom rs-suite value
-  margin-bottom: 20px !important;
+  margin-bottom: 25px !important;
 }
 
 .FormLabel {
   font-size: 15px;
   color: $color-black;
-  font-weight: 500;
+  font-weight: 600;
+  margin-bottom: 6px !important;
 }

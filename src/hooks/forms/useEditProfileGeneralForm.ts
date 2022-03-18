@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Schema } from 'rsuite';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getUser, logout } from 'store/slices/userSessionSlice';
+import { getUser, logout, setUser } from 'store/slices/userSessionSlice';
 import { serverErrorHandler } from 'services/server-error.service';
 import { getFormValidationStatus } from 'util/form.util';
 import { UpdateHustlencodeProfileGeneral } from 'dtos/hustlencode-profile.dto';
 import debounce from 'lodash.debounce';
+import { checkUsernameAvailAPi, updateProfileGeneralApi } from 'api/account.api';
+import { IServerResponse } from 'interfaces/server.interface';
+import { openSuccessToaster } from 'services/toast.service';
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
-
-const usernameErrorMessage = 'Username is already taken.';
 
 const INIT_FORM = { username: '', email: '' };
 
@@ -28,7 +29,7 @@ export default function useEditProfileGeneralForm() {
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
   const [isCheckingUsername, setIsCheckingUsername] = useState(false); // flag for checking username process
   const [isUsernameValid, setIsUsernameValid] = useState(true); // true if username is valid
-  const [usernameErrorMessage, setUsernameErrorMessage] = useState<string | null>(null);
+  const [usernameMessage, setUsernameMessage] = useState<string | null>(null);
 
   // get redux store dispatch
   const dispatch = useAppDispatch();
@@ -43,7 +44,6 @@ export default function useEditProfileGeneralForm() {
     let mounted = true;
 
     if (mounted && user) {
-      console.log('set value');
       setValue({ ...INIT_FORM, username: user.username, email: user.email });
     }
 
@@ -52,17 +52,32 @@ export default function useEditProfileGeneralForm() {
     };
   }, [user]);
 
-  const asyncCheckUsername = (val: UpdateHustlencodeProfileGeneral): any => {
-    console.log(val);
-    setIsCheckingUsername(false);
-    setIsUsernameValid(true);
+  /**
+   * Makes API request to check if the username is
+   * available
+   * @param val
+   */
+  const asyncCheckUsername = async (val: string): Promise<void> => {
+    if (val.trim() !== '') {
+      try {
+        // make request to check for username availability
+        const response: IServerResponse = await checkUsernameAvailAPi(val);
+        // hide spinner
+        setIsCheckingUsername(false);
+        // update username status
+        setIsUsernameValid(response.payload);
+        setUsernameMessage(response.message);
+      } catch (e) {
+        setIsCheckingUsername(false);
+        serverErrorHandler(e, logoutHandler);
+      }
+    }
   };
 
   /**
    * debounce search with 300ms wait time
    * Ignore continous search calls until  timer has
    * elapsed
-   *
    */
   const debouncedChangeHandler = useMemo(
     () => debounce(asyncCheckUsername, 300),
@@ -71,6 +86,10 @@ export default function useEditProfileGeneralForm() {
     [],
   );
 
+  /**
+   * Makes async request to updated the user's
+   * username and email.
+   */
   const submit = async () => {
     try {
       // verify that form is valid
@@ -78,15 +97,17 @@ export default function useEditProfileGeneralForm() {
         // show spinner
         setIsLoading(true);
 
-        //const response: IServerResponse = await updateProfileGeneralApi(value);
+        // make api req
+        const response: IServerResponse = await updateProfileGeneralApi(value);
 
         // show success message
-        //openSuccessToaster(response.payload, 3500);
+        openSuccessToaster(response.message, 3500);
 
         // hide spinner
         setIsLoading(false);
 
-        //dispatch(setUser(response.payload));
+        // update user sesssion data
+        dispatch(setUser(response.payload));
       }
     } catch (e) {
       // hide spinner
@@ -95,16 +116,27 @@ export default function useEditProfileGeneralForm() {
     }
   };
 
+  /**
+   * Update the form state when the form field values change
+   * The username field is checked to ensure that the provided username is
+   * avaiable
+   * @param val
+   */
   const onChange = (val: UpdateHustlencodeProfileGeneral) => {
-    // check username
-    if (val.username.trim() !== value.username) {
+    /**
+     * check username if:
+     * username is not the same as current username
+     * username is not empty
+     * username is value has changed
+     */
+    if (val.username.trim() !== user?.username && val.username.trim() !== '' && val.username !== value.username) {
       setIsCheckingUsername(true);
-      debouncedChangeHandler(val);
-    }
+      debouncedChangeHandler(val.username);
+    } else setIsCheckingUsername(false);
 
     // check email
     setValue(val);
   };
 
-  return { isCheckingUsername, usernameErrorMessage, model, value, isLoading, isUsernameValid, submit, onChange };
+  return { isCheckingUsername, model, value, isLoading, isUsernameValid, usernameMessage, submit, onChange };
 }

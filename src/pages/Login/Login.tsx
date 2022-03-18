@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm/LoginForm';
 import { useTranslation } from 'react-i18next';
 import Fade from 'components/Fade/Fade';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
-import { PICKER_LANGUAGE } from 'constants/picker';
+import { PICKER_LANGUAGE } from 'constants/picker.constants';
 import { SelectPicker } from 'rsuite';
 import OceanScene from './components/OceanScene/OceanScene';
 

@@ -1,10 +1,29 @@
-.FormBtnToolbar{
-    display: flex;
-    justify-content: flex-end;
+.FormBtnToolbar {
+  display: flex;
+  justify-content: flex-end;
 
-    .saveBtn{
-        p{
-            font-size: 14px;
-        }
+  .saveBtn {
+    p {
+      font-size: 14px;
     }
+  }
+}
+
+.validUsername {
+  color: green;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.invalidUsername {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  
+}
+
+
+.usernameSpinner{
+  margin-top: 6px;
+  margin-left: 2px;
 }
