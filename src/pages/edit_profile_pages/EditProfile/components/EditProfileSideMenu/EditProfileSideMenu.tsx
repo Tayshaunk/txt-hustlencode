@@ -13,7 +13,11 @@ const links: IEditProfileMenuLink[] = [
   },
   {
     label: 'Edit Profile',
-    to: '/account/profle',
+    to: '/account/profile',
+  },
+  {
+    label: 'Manage Password',
+    to: '/account/password',
   },
 ];
 

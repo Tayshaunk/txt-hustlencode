@@ -12,12 +12,12 @@ export const getFormValidationStatus = (validationState: Object): boolean => {
   let isValid = true;
 
   // get fields in form model obj
-  const fields = Object.entries(validationState)[1];
+  const fields = Object.entries(validationState);
 
-  // check 
+  // check
   for (const field of fields) {
-    // field has error
-    if (field.hasError) isValid = false;
+    console.log(field);
+    if (field[1].hasError) isValid = false;
   }
 
   return isValid;

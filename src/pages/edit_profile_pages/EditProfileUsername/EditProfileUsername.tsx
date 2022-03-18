@@ -1,10 +1,7 @@
 import { Form, ButtonToolbar } from 'rsuite';
 import TextFormField from 'components/FormFields/single/TextFormField';
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
-import useEditProfileGeneralForm from 'hooks/forms/useEditProfileGeneralForm';
-
-// styles
-import classes from './EditProfileGeneralForm.module.scss';
+import useEditProfileGeneralForm from 'hooks/forms/useEditProfileUsername';
 import UsernameFormField from 'components/FormFields/single/UsernameFormField';
 import { ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,11 +9,14 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/slices/userSessionSlice';
 
+// styles
+import classes from './EditProfileUsername.module.scss';
+
 /**
  * Render form where user can update their username
  * @returns
  */
-const EditProfileGeneralForm = () => {
+const EditProfileUsername = () => {
   const form = useEditProfileGeneralForm();
 
   // get current use
@@ -71,7 +71,7 @@ const EditProfileGeneralForm = () => {
             appearance="primary"
             label={'Save Changes'}
             isLoading={form.isLoading}
-            disabled={false}
+            disabled={form.isCheckingUsername || !form.isUsernameValid}
             onClick={form.submit}
             size="md"
             className={classes.saveBtn}
@@ -82,4 +82,4 @@ const EditProfileGeneralForm = () => {
   );
 };
 
-export default EditProfileGeneralForm;
+export default EditProfileUsername;

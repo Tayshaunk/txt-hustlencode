@@ -10,6 +10,8 @@ import {
   AsyncEditProfileGeneralPage,
   AsyncEditProfileInterestsModulePage,
   AsyncEditProfilePage,
+  AsyncEditProfilePasswordPage,
+  AsyncEditProfileUsernamePage,
   AsyncProfileAboutPage,
   AsyncProfilePage,
   AsyncProfilePostsPage,
@@ -92,12 +94,32 @@ const AuthRoutes = () => {
             </Suspense>
           }
         >
-          {/* renders profile about section */}
+          {/* renders page to edit username */}
           <Route
             index
             element={
               <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+                <AsyncEditProfileUsernamePage />
+              </Suspense>
+            }
+          />
+
+          {/* renders page to edit profile general info */}
+          <Route
+            path="profile"
+            element={
+              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
                 <AsyncEditProfileGeneralPage />
+              </Suspense>
+            }
+          />
+
+          {/* renders page to edit profile password*/}
+          <Route
+            path="password"
+            element={
+              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+                <AsyncEditProfilePasswordPage />
               </Suspense>
             }
           />

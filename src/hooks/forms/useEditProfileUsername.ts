@@ -4,28 +4,29 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getUser, logout, setUser } from 'store/slices/userSessionSlice';
 import { serverErrorHandler } from 'services/server-error.service';
 import { getFormValidationStatus } from 'util/form.util';
-import { UpdateHustlencodeProfileGeneral } from 'dtos/hustlencode-profile.dto';
 import debounce from 'lodash.debounce';
-import { checkUsernameAvailAPi, updateProfileGeneralApi } from 'api/account.api';
+import { checkUsernameAvailApi, updateProfileUsernameApi } from 'api/account.api';
 import { IServerResponse } from 'interfaces/server.interface';
 import { openSuccessToaster } from 'services/toast.service';
+import { UpdateHustlencodeProfileUsernameDto } from 'dtos/hustlencode-account.dto';
+
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
 
 const INIT_FORM = { username: '', email: '' };
 
 /**
- * Define validation model for profile general form
- * Users must provide a username and email that is
- * valid in order to submit
+ * Define validation model for updating profile:
+ * - username
+ * - email
  */
 const model = Schema.Model({
   username: StringType().isRequired('Please enter a username.'),
   email: StringType().isRequired('Please enter an email.').isEmail('Please enter a valid email.'),
 });
 
-export default function useEditProfileGeneralForm() {
-  const [value, setValue] = useState<UpdateHustlencodeProfileGeneral>(INIT_FORM); // set default form values
+export default function useEditProfileUsername() {
+  const [value, setValue] = useState<UpdateHustlencodeProfileUsernameDto>(INIT_FORM); // set default form values
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
   const [isCheckingUsername, setIsCheckingUsername] = useState(false); // flag for checking username process
   const [isUsernameValid, setIsUsernameValid] = useState(true); // true if username is valid
@@ -61,7 +62,7 @@ export default function useEditProfileGeneralForm() {
     if (val.trim() !== '') {
       try {
         // make request to check for username availability
-        const response: IServerResponse = await checkUsernameAvailAPi(val);
+        const response: IServerResponse = await checkUsernameAvailApi(val);
         // hide spinner
         setIsCheckingUsername(false);
         // update username status
@@ -98,7 +99,7 @@ export default function useEditProfileGeneralForm() {
         setIsLoading(true);
 
         // make api req
-        const response: IServerResponse = await updateProfileGeneralApi(value);
+        const response: IServerResponse = await updateProfileUsernameApi(value);
 
         // show success message
         openSuccessToaster(response.message, 3500);
@@ -122,7 +123,7 @@ export default function useEditProfileGeneralForm() {
    * avaiable
    * @param val
    */
-  const onChange = (val: UpdateHustlencodeProfileGeneral) => {
+  const onChange = (val: UpdateHustlencodeProfileUsernameDto) => {
     /**
      * check username if:
      * username is not the same as current username
