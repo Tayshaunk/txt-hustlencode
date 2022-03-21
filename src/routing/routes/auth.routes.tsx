@@ -37,7 +37,7 @@ const AuthRoutes = () => {
         <Route
           index
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
               <Explore />
             </Suspense>
           }
@@ -47,7 +47,7 @@ const AuthRoutes = () => {
         <Route
           path={'create-post'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
               <AsyncCreatePost />
             </Suspense>
           }
@@ -57,7 +57,7 @@ const AuthRoutes = () => {
         <Route
           path={'user'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback style={{ height: '100vh', width: '100vw' }}  theme="dark" fullscreen={false} delay={250} />}>
               <AsyncProfilePage />
             </Suspense>
           }
@@ -89,7 +89,7 @@ const AuthRoutes = () => {
         <Route
           path={'account'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback style={{ height: '100vh', width: '100vw' }} theme="dark" fullscreen={false} delay={250} />}>
               <AsyncEditProfilePage />
             </Suspense>
           }
@@ -130,7 +130,7 @@ const AuthRoutes = () => {
         <Route
           path={'edit/profile/about'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
               <AsyncEditProfileAboutModulePage />
             </Suspense>
           }
@@ -139,7 +139,7 @@ const AuthRoutes = () => {
         <Route
           path={'edit/profile/interests'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
               <AsyncEditProfileInterestsModulePage />
             </Suspense>
           }
@@ -148,7 +148,7 @@ const AuthRoutes = () => {
         <Route
           path={'edit/post/:id'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={true} delay={250} />}>
+            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
               <AsyncEditPost />
             </Suspense>
           }

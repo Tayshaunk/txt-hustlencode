@@ -16,6 +16,7 @@ const EditProfileGeneral = () => {
 
   return (
     <div className={classes.ContentWrapper}>
+
       <Form
         formValue={form.value}
         fluid={true}
