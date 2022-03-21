@@ -52,7 +52,7 @@ export const AsyncProfilePostsPage = React.lazy(() => {
 /**
  * Lazy import component for edit profile page
  */
- export const AsyncEditProfilePage = React.lazy(() => {
+export const AsyncEditProfilePage = React.lazy(() => {
   return import('pages/edit_profile_pages/EditProfile/EditProfile');
 });
 
@@ -63,21 +63,23 @@ export const AsyncEditProfileUsernamePage = React.lazy(() => {
   return import('pages/edit_profile_pages/EditProfileUsername/EditProfileUsername');
 });
 
-
-
 /**
  * Lazy import component for page that allows user to edit general profile info
  */
- export const AsyncEditProfileGeneralPage = React.lazy(() => {
+export const AsyncEditProfileGeneralPage = React.lazy(() => {
   return import('pages/edit_profile_pages/EditProfileGeneral/EditProfileGeneral');
 });
-
-
 
 /**
  * Lazy import component for edit profile username/email page
  */
- export const AsyncEditProfilePasswordPage = React.lazy(() => {
+export const AsyncEditProfilePasswordPage = React.lazy(() => {
   return import('pages/edit_profile_pages/EditProfilePassword/EditProfilePassword');
 });
 
+/**
+ * Lazy import component for edit profile username/email page
+ */
+export const AsyncEditProfileLayoutPage = React.lazy(() => {
+  return import('pages/code_editor_pages/EditProfileLayout/EditProfileLayout');
+});

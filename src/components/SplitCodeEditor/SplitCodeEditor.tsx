@@ -8,9 +8,9 @@ import { IUseCodeEditor } from 'interfaces/code.interface';
 import classes from './SplitCodeEditor.module.scss';
 
 interface IProps {
-  htmlEditor: IUseCodeEditor;
-  cssEditor: IUseCodeEditor;
-  jsEditor: IUseCodeEditor;
+  htmlEditor?: IUseCodeEditor;
+  cssEditor?: IUseCodeEditor;
+  jsEditor?: IUseCodeEditor;
   isSaving: boolean;
   hasChanges: boolean;
   actionLabel: string;
@@ -53,10 +53,20 @@ const SplitCodeEditor = (props: IProps) => {
       onResizeFinished={handleResize}
       initialSizes={sizes}
     >
-      <ReactSplit direction={SplitDirection.Horizontal} gutterClassName={classes.gutterDarkH} draggerClassName={classes.draggerDarkH}>
-        <CodeEditor editor={htmlEditor} height={sizes[0]} title="HTML" defaultLanguage="html" defaultValue="" />
-        <CodeEditor editor={cssEditor} height={sizes[0]} title="CSS" defaultLanguage="css" defaultValue="" />
-        <CodeEditor editor={jsEditor} height={sizes[0]} title="JS" defaultLanguage="javascript" defaultValue="" />
+      <ReactSplit
+        direction={SplitDirection.Horizontal}
+        gutterClassName={classes.gutterDarkH}
+        draggerClassName={classes.draggerDarkH}
+      >
+        {htmlEditor ? (
+          <CodeEditor editor={htmlEditor} height={sizes[0]} title="HTML" defaultLanguage="html" defaultValue="" />
+        ) : null}
+        {cssEditor ? (
+          <CodeEditor editor={cssEditor} height={sizes[0]} title="CSS" defaultLanguage="css" defaultValue="" />
+        ) : null}
+        {jsEditor ? (
+          <CodeEditor editor={jsEditor} height={sizes[0]} title="JS" defaultLanguage="javascript" defaultValue="" />
+        ) : null}
       </ReactSplit>
 
       <div className={classes.wrap}>

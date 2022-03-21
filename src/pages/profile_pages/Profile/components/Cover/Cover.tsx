@@ -1,3 +1,4 @@
+import IsAuthed from 'components/IsAuthed/IsAuthed';
 import ProfileImage from 'components/ProfileImage/ProfileImage';
 import { NavLink } from 'react-router-dom';
 import { getProfileCoverImage } from 'util/profile.util';
@@ -24,7 +25,9 @@ const Profile = (props: IProps) => {
   return (
     <div className={classes.container}>
       <div className={classes.coverImageContainer}>
-        {coverImage ? <img className={classes.coverImage} src={getProfileCoverImage(coverImage)} alt="profile cover" /> : null}
+        {coverImage ? (
+          <img className={classes.coverImage} src={getProfileCoverImage(coverImage)} alt="profile cover" />
+        ) : null}
       </div>
 
       <div className={classes.details}>
@@ -37,9 +40,11 @@ const Profile = (props: IProps) => {
             <p>{username}</p>
           </div>
         </div>
-        <div className={classes.actions}>
-          <NavLink to="/account">Edit Profile</NavLink>
-        </div>
+        <IsAuthed type="username" value={username}>
+          <div className={classes.actions}>
+            <NavLink to="/account">Edit Profile</NavLink>
+          </div>
+        </IsAuthed>
       </div>
     </div>
   );

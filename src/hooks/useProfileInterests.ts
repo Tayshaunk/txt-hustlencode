@@ -40,10 +40,12 @@ export default function useProfileInterests(username?: string) {
         // get code for about module
         const data = await getProfileInterestsApi(username);
 
-        // store the retrieved code
-        setValue(data);
-        // hide page loader
-        setIsDoneLoading(true);
+        if (mounted) {
+          // store the retrieved code
+          setValue(data);
+          // hide page loader
+          setIsDoneLoading(true);
+        }
       } catch (e) {
         setIsDoneLoading(true);
         serverErrorHandler(e, logoutHandler);

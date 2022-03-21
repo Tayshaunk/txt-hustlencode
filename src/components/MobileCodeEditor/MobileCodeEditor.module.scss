@@ -26,7 +26,6 @@ $color-black: #282828;
   overflow: hidden;
   padding: 0px 8px;
 
-
   @media (min-width: 992px) {
     border-radius: 3px;
     flex: 0 0 500px;
@@ -119,8 +118,10 @@ $color-black: #282828;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  padding: 30px 25px 50px 25px;
+  padding-top: 30px;
+
   .post {
     width: 100%;
+    flex: 1;
   }
 }

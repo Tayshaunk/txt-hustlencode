@@ -3,7 +3,7 @@ $color-dark-blue: #273647;
 $color-black: #282828;
 
 .container {
-  background-color: #fff;
+  background-color: $color-black;
   height: 100vh;
   width: 100%;
   padding-bottom: 0px !important;
@@ -105,15 +105,11 @@ $color-black: #282828;
   background-color: $color-black;
   top: 100px;
 
-  .icon{
 
-  }
+}
 
-  .msg{
 
-  }
-
-  .btns{
-
-  }
+.moduleContainer{
+  width: 500px;
+  margin: auto;
 }

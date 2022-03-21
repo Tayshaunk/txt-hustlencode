@@ -40,10 +40,12 @@ export default function useProfileAbout(username?: string) {
         // get code for about module
         const data = await getProfileAboutApi(username);
 
-        // store the retrieved code
-        setValue(data);
-        // hide page loader
-        setIsDoneLoading(true);
+        if (mounted) {
+          // store the retrieved code
+          setValue(data);
+          // hide page loader
+          setIsDoneLoading(true);
+        }
       } catch (e) {
         setIsDoneLoading(true);
         serverErrorHandler(e, logoutHandler);

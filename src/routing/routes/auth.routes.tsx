@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import DelayedFallback from 'components/DelayedFallback/DelayedFallback';
 import Aux from 'components/_Aux/_Aux';
 import NavBar from 'components/NavBar/NavBar';
 import {
@@ -9,6 +8,7 @@ import {
   AsyncEditProfileAboutModulePage,
   AsyncEditProfileGeneralPage,
   AsyncEditProfileInterestsModulePage,
+  AsyncEditProfileLayoutPage,
   AsyncEditProfilePage,
   AsyncEditProfilePasswordPage,
   AsyncEditProfileUsernamePage,
@@ -19,6 +19,7 @@ import {
 import Explore from 'pages/Explore/Explore';
 import useScrollToTop from 'hooks/useScrollToTop';
 import NotFound from 'components/NotFound/NotFound';
+import PageLoader from 'components/PageLoader/PageLoader';
 
 /**
  * Public routes that are not protected
@@ -37,7 +38,16 @@ const AuthRoutes = () => {
         <Route
           index
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <Explore />
             </Suspense>
           }
@@ -47,7 +57,16 @@ const AuthRoutes = () => {
         <Route
           path={'create-post'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <AsyncCreatePost />
             </Suspense>
           }
@@ -57,7 +76,16 @@ const AuthRoutes = () => {
         <Route
           path={'user'}
           element={
-            <Suspense fallback={<DelayedFallback style={{ height: '100vh', width: '100vw' }}  theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <AsyncProfilePage />
             </Suspense>
           }
@@ -66,7 +94,16 @@ const AuthRoutes = () => {
           <Route
             path=":username"
             element={
-              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+              <Suspense
+                fallback={
+                  <PageLoader
+                    style={{ height: '100vh', width: '100vw' }}
+                    theme="light"
+                    fullscreen={false}
+                    isVisible={true}
+                  />
+                }
+              >
                 <AsyncProfileAboutPage />
               </Suspense>
             }
@@ -76,7 +113,16 @@ const AuthRoutes = () => {
           <Route
             path={':username/posts'}
             element={
-              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+              <Suspense
+                fallback={
+                  <PageLoader
+                    style={{ height: '100vh', width: '100vw' }}
+                    theme="light"
+                    fullscreen={false}
+                    isVisible={true}
+                  />
+                }
+              >
                 <AsyncProfilePostsPage />
               </Suspense>
             }
@@ -89,7 +135,16 @@ const AuthRoutes = () => {
         <Route
           path={'account'}
           element={
-            <Suspense fallback={<DelayedFallback style={{ height: '100vh', width: '100vw' }} theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <AsyncEditProfilePage />
             </Suspense>
           }
@@ -98,7 +153,16 @@ const AuthRoutes = () => {
           <Route
             index
             element={
-              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+              <Suspense
+                fallback={
+                  <PageLoader
+                    style={{ height: '100vh', width: '100vw' }}
+                    theme="light"
+                    fullscreen={false}
+                    isVisible={true}
+                  />
+                }
+              >
                 <AsyncEditProfileUsernamePage />
               </Suspense>
             }
@@ -108,7 +172,16 @@ const AuthRoutes = () => {
           <Route
             path="profile"
             element={
-              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+              <Suspense
+                fallback={
+                  <PageLoader
+                    style={{ height: '100vh', width: '100vw' }}
+                    theme="light"
+                    fullscreen={false}
+                    isVisible={true}
+                  />
+                }
+              >
                 <AsyncEditProfileGeneralPage />
               </Suspense>
             }
@@ -118,7 +191,16 @@ const AuthRoutes = () => {
           <Route
             path="password"
             element={
-              <Suspense fallback={<DelayedFallback theme="light" fullscreen={false} delay={250} />}>
+              <Suspense
+                fallback={
+                  <PageLoader
+                    style={{ height: '100vh', width: '100vw' }}
+                    theme="light"
+                    fullscreen={false}
+                    isVisible={true}
+                  />
+                }
+              >
                 <AsyncEditProfilePasswordPage />
               </Suspense>
             }
@@ -130,7 +212,16 @@ const AuthRoutes = () => {
         <Route
           path={'edit/profile/about'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <AsyncEditProfileAboutModulePage />
             </Suspense>
           }
@@ -139,8 +230,35 @@ const AuthRoutes = () => {
         <Route
           path={'edit/profile/interests'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <AsyncEditProfileInterestsModulePage />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path={'edit/profile/layout'}
+          element={
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
+              <AsyncEditProfileLayoutPage />
             </Suspense>
           }
         />
@@ -148,7 +266,16 @@ const AuthRoutes = () => {
         <Route
           path={'edit/post/:id'}
           element={
-            <Suspense fallback={<DelayedFallback theme="dark" fullscreen={false} delay={250} />}>
+            <Suspense
+              fallback={
+                <PageLoader
+                  style={{ height: '100vh', width: '100vw' }}
+                  theme="dark"
+                  fullscreen={false}
+                  isVisible={true}
+                />
+              }
+            >
               <AsyncEditPost />
             </Suspense>
           }

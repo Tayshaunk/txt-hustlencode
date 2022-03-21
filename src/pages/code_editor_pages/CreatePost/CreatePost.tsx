@@ -120,7 +120,14 @@ const CreatePost = () => {
           hasChanges={createPost.hasChanges}
           actionLabel="Create Post"
         >
-          {user && createPost.value ? <PostPreviewModule postCode={createPost.value} createdOn={new Date()} postUser={user} /> : <div />}
+          {user && createPost.value ? (
+            <div className={classes.moduleContainer}>
+              {' '}
+              <PostPreviewModule postCode={createPost.value} createdOn={new Date()} postUser={user} />
+            </div>
+          ) : (
+            <div />
+          )}
         </SplitCodeEditor>
       )}
     </Aux>
@@ -128,7 +135,13 @@ const CreatePost = () => {
 
   return (
     <div className={`${pageLayoutClasses.pageWrapper} ${classes.container}`} id="wrapper">
-      <Modal backdrop="static" role="alertdialog" open={createPost.showUnsavedChanges} onClose={createPost.closeModal} size="xs">
+      <Modal
+        backdrop="static"
+        role="alertdialog"
+        open={createPost.showUnsavedChanges}
+        onClose={createPost.closeModal}
+        size="xs"
+      >
         <Modal.Body>
           <p>Would you like to restore unsaved changes?</p>
         </Modal.Body>

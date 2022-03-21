@@ -19,6 +19,7 @@ const ProfileAboutModule = ({ username }: { username: string }) => {
   // get current user
   const user = useAppSelector(getUser);
 
+  // get about module code
   const profileAbout = useProfileAbout(username);
 
   // sets up code for module

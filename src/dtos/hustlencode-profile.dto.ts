@@ -39,3 +39,18 @@ export class UpdateHustlencodeProfileGeneral {
   @IsString()
   public email: string;
 }
+
+// payload for updating the user's profile interests module
+export class UpdateHustlencodeProfileLayoutDto {
+  @IsString()
+  public html: string;
+
+  @IsString()
+  public css: string;
+
+  @IsString()
+  public js: string;
+
+  @IsNumber()
+  public linesOfCode: number;
+}

@@ -1,4 +1,3 @@
-
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
 import usePostEditor from 'hooks/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
@@ -18,7 +17,6 @@ import usePreviousPathNav from 'hooks/usePreviousPathNav';
 import classes from './EditProfileAbout.module.scss';
 
 const EditProfileAbout = () => {
-
   // get state for updating post content
   const postUpdates = useUpdateProfileAbout();
 
@@ -35,7 +33,7 @@ const EditProfileAbout = () => {
   const isMobile = useIsMobile();
 
   // gets hook for navigation to previous page
-  const previosPathNav = usePreviousPathNav()
+  const previosPathNav = usePreviousPathNav();
 
   /**
    * Calls method to update the post preview
@@ -109,7 +107,7 @@ const EditProfileAbout = () => {
   /**
    * Returns true if editors contain no code
    * Otherwise returns false
-   * @returns 
+   * @returns
    */
   const areEditorsEmpty = (): boolean => {
     if (htmlEditor.value.trim() === '' && cssEditor.value.trim() === '' && jsEditor.value.trim() === '') return true;
@@ -142,7 +140,12 @@ const EditProfileAbout = () => {
             {postUpdates.value ? (
               <ProfilePreviewModule profileCode={postUpdates.value} key={'aboutWidget'} title={'About'} />
             ) : (
-              <PageLoader style={{ height: '100%', width: '100%' }} isVisible={true} fullscreen={false} theme={'light'} />
+              <PageLoader
+                style={{ height: '100%', width: '100%' }}
+                isVisible={true}
+                fullscreen={false}
+                theme={'light'}
+              />
             )}
           </MobileTabs>
         ) : (
@@ -158,7 +161,13 @@ const EditProfileAbout = () => {
             hasChanges={postUpdates.hasChanges}
             actionLabel="Save Changes"
           >
-            {postUpdates.value ? <ProfilePreviewModule profileCode={postUpdates.value} key={'aboutWidget'} title={'About'} /> : <div />}
+            {postUpdates.value ? (
+              <div className={classes.moduleContainer}>
+                <ProfilePreviewModule profileCode={postUpdates.value} key={'aboutWidget'} title={'About'} />
+              </div>
+            ) : (
+              <div />
+            )}
           </SplitCodeEditor>
         )}
       </NotFoundRender>
@@ -167,7 +176,13 @@ const EditProfileAbout = () => {
 
   return (
     <div className={`${pageLayoutClasses.pageWrapper} ${classes.container}`} id="wrapper">
-      <Modal backdrop="static" role="alertdialog" open={postUpdates.showUnsavedChanges} onClose={postUpdates.closeModal} size="xs">
+      <Modal
+        backdrop="static"
+        role="alertdialog"
+        open={postUpdates.showUnsavedChanges}
+        onClose={postUpdates.closeModal}
+        size="xs"
+      >
         <Modal.Body>
           <p>Would you like to restore unsaved changes?</p>
         </Modal.Body>
@@ -181,7 +196,11 @@ const EditProfileAbout = () => {
         </Modal.Footer>
       </Modal>
 
-      {postUpdates.isDoneLoading ? renderPostEditors() : <PageLoader isVisible={true} fullscreen={true} theme={'dark'} />}
+      {postUpdates.isDoneLoading ? (
+        renderPostEditors()
+      ) : (
+        <PageLoader isVisible={true} fullscreen={false} theme={'dark'} />
+      )}
     </div>
   );
 };

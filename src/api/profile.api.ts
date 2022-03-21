@@ -1,4 +1,4 @@
-import { UpdateHustlencodeProfileAboutDto, UpdateHustlencodeProfileInterestsDto } from 'dtos/hustlencode-profile.dto';
+import { UpdateHustlencodeProfileAboutDto, UpdateHustlencodeProfileInterestsDto, UpdateHustlencodeProfileLayoutDto } from 'dtos/hustlencode-profile.dto';
 import { ICode } from 'interfaces/post.interface';
 import { IServerResponse } from 'interfaces/server.interface';
 import axiosInstance from '../config/axios.config';
@@ -50,6 +50,38 @@ export const getProfileInterestsApi = async (username: string): Promise<ICode> =
 
   // return user token
   return response.data.payload;
+};
+
+
+/**
+ * Returns Code for the profile layout
+ * @param username the user's username
+ * @returns
+ * - Code for layout
+ */
+ export const getProfileLayoutApi = async (username: string): Promise<ICode> => {
+  const url = `${BASE_URL}/${username}/layout`;
+
+  const response = await axiosInstance.get<any>(url);
+
+  // return user token
+  return response.data.payload;
+};
+
+/**
+ * Updates and returns the code for the profile layout
+ * @param username the user's username
+ * @param payload The updated code for layout
+ * @returns
+ * - The update profile layout code
+ */
+ export const updateProfileLayoutApi = async (username: string, payload: UpdateHustlencodeProfileLayoutDto): Promise<IServerResponse> => {
+  const url = `${BASE_URL}/${username}/layout`;
+
+  const response = await axiosInstance.put<any>(url, payload);
+
+  // return user token
+  return response.data;
 };
 
 /**

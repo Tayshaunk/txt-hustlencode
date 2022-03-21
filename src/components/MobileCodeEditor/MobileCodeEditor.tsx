@@ -1,14 +1,14 @@
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
 import { IUseCodeEditor } from 'interfaces/code.interface';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'rsuite';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import classes from './MobileCodeEditor.module.scss';
 
 interface IProps {
-  htmlEditor: IUseCodeEditor;
-  cssEditor: IUseCodeEditor;
-  jsEditor: IUseCodeEditor;
+  htmlEditor?: IUseCodeEditor;
+  cssEditor?: IUseCodeEditor;
+  jsEditor?: IUseCodeEditor;
   isSaving: boolean;
   children: any;
   actionLabel: string;
@@ -18,27 +18,50 @@ interface IProps {
   updateHandler: () => void;
 }
 
-const tabs = [
-  {
-    label: 'HTML',
-  },
-  {
-    label: 'CSS',
-  },
-  {
-    label: 'JS',
-  },
-  {
-    label: 'Preview',
-  },
-];
-
 const MobileCodeEditor = (props: IProps) => {
-  const { isSaving, htmlEditor, cssEditor, jsEditor, actionLabel, children, exitEditorHandler, saveAndExitHandler, saveHandler, updateHandler } =
-    props;
+  const {
+    isSaving,
+    htmlEditor,
+    cssEditor,
+    jsEditor,
+    actionLabel,
+    children,
+    exitEditorHandler,
+    saveAndExitHandler,
+    saveHandler,
+    updateHandler,
+  } = props;
 
   // current active tab
-  const [activeTab, setActiveTab] = useState<number>(3);
+  const [tabs, setTabs] = useState<any[]>([]);
+  // current active tab
+  const [activeTab, setActiveTab] = useState<number>(tabs.length - 1);
+
+  useEffect(() => {
+    let mounted = true;
+
+    function getTabs() {
+      const t = [];
+      if (htmlEditor) t.push({ label: 'HTML' });
+      if (cssEditor) t.push({ label: 'CSS' });
+      if (jsEditor) t.push({ label: 'JS' });
+      t.push({ label: 'Preview' });
+
+      console.log(t);
+      setTabs(t);
+      setActiveTab(t.length - 1);
+    }
+
+    if (mounted) getTabs();
+
+    return () => {
+      mounted = false;
+    };
+  }, [htmlEditor, cssEditor, jsEditor]);
+
+  const getTabIndex = (label: string) => {
+    return tabs.map(t => t.label).indexOf(label);
+  };
 
   return (
     <div className={classes.tabToolBarWrapper}>
@@ -49,7 +72,7 @@ const MobileCodeEditor = (props: IProps) => {
               className={classes.tabBtn}
               onClick={() => {
                 setActiveTab(i);
-                if (i === 3) updateHandler();
+                if (tabs.length - 1 === 3) updateHandler();
               }}
             >
               <p>{t.label}</p>
@@ -58,19 +81,28 @@ const MobileCodeEditor = (props: IProps) => {
         ))}
       </div>
 
-      <div style={{ display: activeTab === 0 ? 'block' : 'none' }} className={classes.editorContainer}>
-        <CodeEditor editor={htmlEditor} height={100} defaultLanguage="html" defaultValue="" />
-      </div>
+      {htmlEditor ? (
+        <div
+          style={{ display: activeTab === getTabIndex('HTML') ? 'block' : 'none' }}
+          className={classes.editorContainer}
+        >
+          <CodeEditor editor={htmlEditor} height={100} defaultLanguage="html" defaultValue="" />
+        </div>
+      ) : null}
 
-      <div style={{ display: activeTab === 1 ? 'block' : 'none' }} className={classes.editorContainer}>
-        <CodeEditor editor={cssEditor} height={100} defaultLanguage="css" defaultValue="" />
-      </div>
+      {cssEditor ? (
+        <div style={{ display: activeTab === getTabIndex('CSS') ? 'block' : 'none' }} className={classes.editorContainer}>
+          <CodeEditor editor={cssEditor} height={100} defaultLanguage="css" defaultValue="" />
+        </div>
+      ) : null}
 
-      <div style={{ display: activeTab === 2 ? 'block' : 'none' }} className={classes.editorContainer}>
-        <CodeEditor editor={jsEditor} height={100} defaultLanguage="javascript" defaultValue="" />
-      </div>
+      {jsEditor ? (
+        <div style={{ display: activeTab === getTabIndex('JS') ? 'block' : 'none' }} className={classes.editorContainer}>
+          <CodeEditor editor={jsEditor} height={100} defaultLanguage="javascript" defaultValue="" />
+        </div>
+      ) : null}
 
-      <div style={{ display: activeTab === 3 ? 'flex' : 'none' }} className={classes.postContainer}>
+      <div style={{ display: activeTab === getTabIndex('Preview') ? 'flex' : 'none' }} className={classes.postContainer}>
         <div className={classes.header}>
           <div className={classes.headerLeft}>
             <ButtonSpinner

@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
 import usePostEditor from 'hooks/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
@@ -9,20 +8,16 @@ import { Button, Modal } from 'rsuite';
 import Aux from 'components/_Aux/_Aux';
 import PageLoader from 'components/PageLoader/PageLoader';
 import NotFoundRender from 'components/NotFoundRender/NotFoundRender';
-import useUpdatePost from 'hooks/useUpdatePost';
-import { openErrorToaster } from 'services/toast.service';
-import PostPreviewModule from 'components/PostPreviewModule/PostPreviewModule';
+import useUpdateProfileLayout from 'hooks/useUpdateProfileLayout';
 import usePreviousPathNav from 'hooks/usePreviousPathNav';
+import ProfileLayoutPreview from 'components/ProfileLayoutPreview/ProfileLayoutPreview';
 
 // styles
-import classes from './EditPost.module.scss';
+import classes from './EditProfileLayout.module.scss';
 
-const EditPost = () => {
-  // get route params the post _id
-  const { id } = useParams();
-
+const EditProfileLayout = () => {
   // get state for updating post content
-  const postUpdates = useUpdatePost(id);
+  const postUpdates = useUpdateProfileLayout();
 
   // gets the html editor state
   const htmlEditor = usePostEditor(postUpdates.value?.html, postUpdates.setHasChanges, 'html');
@@ -36,8 +31,8 @@ const EditPost = () => {
   // tracks is screen width is within mobile range
   const isMobile = useIsMobile();
 
-  // get previous path
-  const prevPath = usePreviousPathNav();
+  // gets hook for navigation to previous page
+  const previosPathNav = usePreviousPathNav();
 
   /**
    * Calls method to update the post preview
@@ -55,30 +50,26 @@ const EditPost = () => {
    * and calls method to make server req
    */
   const saveHandler = async () => {
-    if (!areEditorsEmpty()) {
-      // get total lines of code for each editor
-      const linesOfCode = htmlEditor.getLinesCount() + cssEditor.getLinesCount() + jsEditor.getLinesCount();
+    // get total lines of code for each editor
+    const linesOfCode = htmlEditor.getLinesCount() + cssEditor.getLinesCount() + jsEditor.getLinesCount();
 
-      // construct update payload
-      const payload: UpdateHustlencodePostDto = {
-        html: htmlEditor.value,
-        css: cssEditor.value,
-        js: jsEditor.value,
-        linesOfCode,
-      };
+    // construct update payload
+    const payload: UpdateHustlencodePostDto = {
+      html: htmlEditor.value,
+      css: cssEditor.value,
+      js: jsEditor.value,
+      linesOfCode,
+    };
 
-      // save changes
-      await postUpdates.saveChanges(payload);
-    } else {
-      openErrorToaster('Please write some code code first.', 3000);
-    }
+    // save changes
+    await postUpdates.saveChanges(payload);
   };
 
   /**
    * Navigates user to profile page
    */
   const exitEditorHandler = () => {
-    prevPath.goBack();
+    previosPathNav.goBack();
   };
 
   /**
@@ -86,31 +77,22 @@ const EditPost = () => {
    * page
    */
   const saveAndExitHandler = async () => {
-    if (!areEditorsEmpty()) {
-      // get total lines of code for each editor
-      const linesOfCode = htmlEditor.getLinesCount() + cssEditor.getLinesCount() + jsEditor.getLinesCount();
+    // get total lines of code for each editor
+    const linesOfCode = htmlEditor.getLinesCount() + cssEditor.getLinesCount() + jsEditor.getLinesCount();
 
-      // construct update payload
-      const payload: UpdateHustlencodePostDto = {
-        html: htmlEditor.value,
-        css: cssEditor.value,
-        js: jsEditor.value,
-        linesOfCode,
-      };
+    // construct update payload
+    const payload: UpdateHustlencodePostDto = {
+      html: htmlEditor.value,
+      css: cssEditor.value,
+      js: jsEditor.value,
+      linesOfCode,
+    };
 
-      // update post and return to profile
-      await postUpdates.saveAndExit(payload);
+    // update post and return to profile
+    await postUpdates.saveAndExit(payload);
 
-      exitEditorHandler();
-    } else {
-      openErrorToaster('Please write some code code first.', 3000);
-    }
-  };
-
-  const areEditorsEmpty = (): boolean => {
-    if (htmlEditor.value.trim() === '' && cssEditor.value.trim() === '' && jsEditor.value.trim() === '') return true;
-
-    return false;
+    // go to previous page
+    previosPathNav.goBack();
   };
 
   /**
@@ -122,10 +104,9 @@ const EditPost = () => {
    */
   const renderPostEditors = () => (
     <Aux>
-      <NotFoundRender val={postUpdates.post.value}>
+      <NotFoundRender val={postUpdates.value}>
         {isMobile.value ? (
           <MobileTabs
-            htmlEditor={htmlEditor}
             cssEditor={cssEditor}
             jsEditor={jsEditor}
             exitEditorHandler={exitEditorHandler}
@@ -135,12 +116,8 @@ const EditPost = () => {
             actionLabel="Save Changes"
             updateHandler={updateHandler}
           >
-            {postUpdates.value && postUpdates.post.value && postUpdates.post.value.user ? (
-              <PostPreviewModule
-                postCode={postUpdates.value}
-                createdOn={postUpdates.post.value.createdOn}
-                postUser={postUpdates.post.value.user}
-              />
+            {postUpdates.value ? (
+              <ProfileLayoutPreview profileCode={postUpdates.value} />
             ) : (
               <PageLoader
                 style={{ height: '100%', width: '100%' }}
@@ -152,7 +129,6 @@ const EditPost = () => {
           </MobileTabs>
         ) : (
           <SplitCodeEditor
-            htmlEditor={htmlEditor}
             cssEditor={cssEditor}
             jsEditor={jsEditor}
             exitEditorHandler={exitEditorHandler}
@@ -163,17 +139,7 @@ const EditPost = () => {
             hasChanges={postUpdates.hasChanges}
             actionLabel="Save Changes"
           >
-            {postUpdates.value && postUpdates.post.value && postUpdates.post.value.user ? (
-              <div className={classes.moduleContainer}>
-                <PostPreviewModule
-                  postCode={postUpdates.value}
-                  createdOn={postUpdates.post.value.createdOn}
-                  postUser={postUpdates.post.value.user}
-                />
-              </div>
-            ) : (
-              <div />
-            )}
+            {postUpdates.value ? <ProfileLayoutPreview profileCode={postUpdates.value} /> : <div />}
           </SplitCodeEditor>
         )}
       </NotFoundRender>
@@ -205,10 +171,10 @@ const EditPost = () => {
       {postUpdates.isDoneLoading ? (
         renderPostEditors()
       ) : (
-        <PageLoader style={{ height: '100vh', width: '100vw' }} isVisible={true} fullscreen={false} theme={'dark'} />
+        <PageLoader isVisible={true} fullscreen={false} theme={'dark'} />
       )}
     </div>
   );
 };
 
-export default EditPost;
+export default EditProfileLayout;

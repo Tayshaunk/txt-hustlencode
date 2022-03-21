@@ -140,7 +140,12 @@ const EditProfileInterests = () => {
             {postUpdates.value ? (
               <ProfilePreviewModule profileCode={postUpdates.value} key={'aboutWidget'} title={'About'} />
             ) : (
-              <PageLoader style={{ height: '100%', width: '100%' }} isVisible={true} fullscreen={false} theme={'light'} />
+              <PageLoader
+                style={{ height: '100%', width: '100%' }}
+                isVisible={true}
+                fullscreen={false}
+                theme={'light'}
+              />
             )}
           </MobileTabs>
         ) : (
@@ -156,7 +161,13 @@ const EditProfileInterests = () => {
             hasChanges={postUpdates.hasChanges}
             actionLabel="Save Changes"
           >
-            {postUpdates.value ? <ProfilePreviewModule profileCode={postUpdates.value} key={'aboutWidget'} title={'About'} /> : <div />}
+            {postUpdates.value ? (
+              <div className={classes.moduleContainer}>
+                <ProfilePreviewModule profileCode={postUpdates.value} key={'interestsWidget'} title={'Interests'} />{' '}
+              </div>
+            ) : (
+              <div />
+            )}
           </SplitCodeEditor>
         )}
       </NotFoundRender>
@@ -165,7 +176,13 @@ const EditProfileInterests = () => {
 
   return (
     <div className={`${pageLayoutClasses.pageWrapper} ${classes.container}`} id="wrapper">
-      <Modal backdrop="static" role="alertdialog" open={postUpdates.showUnsavedChanges} onClose={postUpdates.closeModal} size="xs">
+      <Modal
+        backdrop="static"
+        role="alertdialog"
+        open={postUpdates.showUnsavedChanges}
+        onClose={postUpdates.closeModal}
+        size="xs"
+      >
         <Modal.Body>
           <p>Would you like to restore unsaved changes?</p>
         </Modal.Body>
@@ -179,7 +196,11 @@ const EditProfileInterests = () => {
         </Modal.Footer>
       </Modal>
 
-      {postUpdates.isDoneLoading ? renderPostEditors() : <PageLoader isVisible={true} fullscreen={true} theme={'dark'} />}
+      {postUpdates.isDoneLoading ? (
+        renderPostEditors()
+      ) : (
+        <PageLoader isVisible={true} fullscreen={false} theme={'dark'} />
+      )}
     </div>
   );
 };

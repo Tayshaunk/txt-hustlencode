@@ -26,8 +26,8 @@ const NavBarProfileDropdown = (props: IProps) => {
   const dropdown: IDropdownMenuItem[] = [
     { label: 'Explore', url: '/' },
     { label: 'My Profile', url: `/user/${user.username}` },
-    { label: 'Edit Profile', url: `/account` },
-    // { label: 'User Settings', url: `/user/${user.username}` },
+    { label: 'Profile Settings', url: `/account` },
+    { label: 'Edit Layout', url: `/edit/profile/layout` },
   ];
 
   return (

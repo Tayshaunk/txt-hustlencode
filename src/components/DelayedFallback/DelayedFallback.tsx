@@ -16,7 +16,7 @@ interface IProps {
  * @returns
  */
 const DelayedFallback = ({ delay, theme, fullscreen, style }: IProps) => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     // do not show loader until delay is done

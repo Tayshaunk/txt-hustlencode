@@ -48,7 +48,8 @@ const MobileNavMenu = ({ user, logout, hide }: IProps) => {
   const menu = [
     { label: 'Explore', action: () => closeAndNav(`/`) },
     { label: 'My Profile', action: () => closeAndNav(`/user/${user.username}`) },
-    // { label: 'User Settings', action: () => closeAndNav(`/${user.username}`) },
+    { label: 'Profile Settings', action: () => closeAndNav(`/account`) },
+    { label: 'Edit Layout', action: () => closeAndNav(`/edit/profile/layout`) },
     { label: 'Logout', action: logout },
   ];
 
