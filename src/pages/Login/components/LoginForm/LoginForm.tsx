@@ -1,3 +1,5 @@
+// styles
+import classes from "./LoginForm.module.scss";
 import { useEffect, useState } from "react";
 import { Schema, Form, ButtonToolbar } from "rsuite";
 import { useAppDispatch, useAppSelector } from "store/hooks";
@@ -7,9 +9,6 @@ import {
   setStoredEmail,
   setToken,
 } from "store/slices/userSessionSlice";
-
-// styles
-import classes from "./LoginForm.module.scss";
 import { serverErrorHandler } from "services/server-error.service";
 import TextFormField from "components/FormFields/single/TextFormField";
 import CheckboxFormField from "components/FormFields/single/CheckboxFormField";
@@ -17,7 +16,6 @@ import ButtonSpinner from "components/Buttons/ButtonSpinner/ButtonSpinner";
 import { getFormValidationStatus } from "util/form.util";
 import { useTranslation } from "react-i18next";
 import { loginApi } from "api/auth.api";
-import { useNavigate } from "react-router-dom";
 
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
@@ -46,9 +44,6 @@ const INIT_FORM = { email: "", password: "", saveEmail: [] };
 const LoginForm = () => {
   const [formValue, setFormValue] = useState<any>(INIT_FORM); // set default form values
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
-
-  // get navigation hook
-  const navigate = useNavigate();
 
   // get translation helper 
   const { t } = useTranslation();

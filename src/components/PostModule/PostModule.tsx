@@ -135,7 +135,7 @@ const PostModule = (props: IProps) => {
     <div className={classes.header}>
       <div className={classes.imgContainer}>
         {postUser ? (
-          <img src={getProfileImage(postUser.profileImg)} alt={`${postUser.name} profile thumbnail`} />
+          <img src={getProfileImage(postUser.profileImg, postUser.gender)} alt={`${postUser.name} profile thumbnail`} />
         ) : (
           <img src="https://hustlencode.s3.us-west-1.amazonaws.com/unspecified.jpg" alt="profile thumbnail" />
         )}

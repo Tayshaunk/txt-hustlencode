@@ -21,7 +21,7 @@ export interface ISearchResult {
   name: string;
   username: string;
   profileImg: string | null;
-  gender: string;
+  gender: Gender;
 }
 
 const NavbarSearch = () => {

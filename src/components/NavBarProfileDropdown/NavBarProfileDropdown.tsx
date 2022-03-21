@@ -40,7 +40,7 @@ const NavBarProfileDropdown = (props: IProps) => {
           renderToggle={(prop: any, ref: any) => (
             <div {...prop} ref={ref} className={classes.profile}>
               <div className={classes.thumbnail}>
-                <img style={{ width: '100%' }} src={getProfileImage(user.profileImg)} alt="User profile" />
+                <img style={{ width: '100%' }} src={getProfileImage(user.profileImg, user.gender)} alt="User profile" />
               </div>
 
               <div className={classes.info}>

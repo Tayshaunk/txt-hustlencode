@@ -83,3 +83,4 @@ export const updateProfileInterestsApi = async (username: string, payload: Updat
   // return user token
   return response.data;
 };
+

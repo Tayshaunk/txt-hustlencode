@@ -1,7 +1,7 @@
 import ProfileImage from 'components/ProfileImage/ProfileImage';
 import { NavLink } from 'react-router-dom';
-import { Button, ButtonToolbar } from 'rsuite';
-import { getCoverImage } from 'util/profile.util';
+import { getProfileCoverImage } from 'util/profile.util';
+
 // styles
 import classes from './Cover.module.scss';
 
@@ -9,7 +9,7 @@ interface IProps {
   coverImage: string | null; // url for the cover image
   profileImage: string | null; // url for the profile image
   name: string;
-  gender: string;
+  gender: Gender;
   username: string;
 }
 
@@ -24,7 +24,7 @@ const Profile = (props: IProps) => {
   return (
     <div className={classes.container}>
       <div className={classes.coverImageContainer}>
-        {coverImage ? <img className={classes.coverImage} src={getCoverImage(coverImage)} alt="profile cover" /> : null}
+        {coverImage ? <img className={classes.coverImage} src={getProfileCoverImage(coverImage)} alt="profile cover" /> : null}
       </div>
 
       <div className={classes.details}>
@@ -38,9 +38,7 @@ const Profile = (props: IProps) => {
           </div>
         </div>
         <div className={classes.actions}>
-          <NavLink to="/account">
-            Edit Profile
-          </NavLink>
+          <NavLink to="/account">Edit Profile</NavLink>
         </div>
       </div>
     </div>

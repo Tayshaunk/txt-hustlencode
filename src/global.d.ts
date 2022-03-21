@@ -13,3 +13,5 @@ type Placement =
   | 'leftEnd'
   | 'rightStart'
   | 'rightEnd';
+  
+type Gender = 'male' | 'female' | 'unspecified'

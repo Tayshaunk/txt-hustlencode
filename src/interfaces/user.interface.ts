@@ -11,7 +11,7 @@ export interface IHustlencodeUser {
   organization: string | null;
   password: string;
   phoneNumber: number | null;
-  gender: string;
+  gender: Gender;
   dob: Date;
   profileImg: string | null;
   coverImg: string;
@@ -71,4 +71,5 @@ export interface IHustlencodeUserSession {
   email: string;
   username: string;
   profileImg: string | null;
+  coverImg: string | null;
 }

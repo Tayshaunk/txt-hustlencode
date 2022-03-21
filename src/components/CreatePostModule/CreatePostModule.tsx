@@ -23,7 +23,7 @@ const CreatePostModule = () => {
     <div className={classes.header} onClick={navToEditor}>
       <div className={classes.imgContainer}>
         {user ? (
-          <img src={getProfileImage(user.profileImg)} alt={`${user.name} profile thumbnail`} />
+          <img src={getProfileImage(user.profileImg, user.gender)} alt={`${user.name} profile thumbnail`} />
         ) : (
           <img src="https://hustlencode.s3.us-west-1.amazonaws.com/unspecified.jpg" alt="profile thumbnail" />
         )}

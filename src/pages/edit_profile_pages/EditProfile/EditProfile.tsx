@@ -1,4 +1,3 @@
-import CreatePostModule from 'components/CreatePostModule/CreatePostModule';
 import PageLoader from 'components/PageLoader/PageLoader';
 import Aux from 'components/_Aux/_Aux';
 import { Container, Col, Row } from 'react-bootstrap';
