@@ -4,5 +4,10 @@
     "passwordLabel": "Contrasena",
     "rememberMeLabel": "Remember Me",
     "btnLabel": "Iniciar Sesión "
+  },
+
+  "forgotPassword": {
+    "emailLabel": "Email",
+    "btnLabel": "Send Reset Instructions"
   }
 }

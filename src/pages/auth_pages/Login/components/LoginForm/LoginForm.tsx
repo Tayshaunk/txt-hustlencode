@@ -16,6 +16,7 @@ import ButtonSpinner from "components/Buttons/ButtonSpinner/ButtonSpinner";
 import { getFormValidationStatus } from "util/form.util";
 import { useTranslation } from "react-i18next";
 import { loginApi } from "api/auth.api";
+import { NavLink } from "react-router-dom";
 
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
@@ -135,6 +136,7 @@ const LoginForm = () => {
         <CheckboxFormField
           name="saveEmail"
           label=""
+          className={classes.checkField}
           checkboxes={[
             {
               label: t("login.rememberMeLabel"),
@@ -154,6 +156,12 @@ const LoginForm = () => {
             containerStyles={{ width: "100%" }}
           />
         </ButtonToolbar>
+
+        <div className={classes.helpLinks}>
+          <NavLink to="/forgot-password">
+            <p>Forgot password?</p>
+          </NavLink>
+        </div>
       </Form>
     </div>
   );

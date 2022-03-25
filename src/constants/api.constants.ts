@@ -6,7 +6,7 @@ const prod = {
 
 // server url for local development
 const dev = {
-  API_URL: 'http://1fed-76-175-119-129.ngrok.io',
+  API_URL: 'http://localhost:3000',
 };
 
 // if env variable is development load dev url

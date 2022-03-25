@@ -109,6 +109,7 @@ export const getEmail = (state: RootState) => state.currentUser.storedEmailed;
 // get previous path
 export const getPreviousPath = (state: RootState) => state.currentUser.previousPath;
 
+// gets navigation history
 export const getHistory = (state: RootState) => state.currentUser.history;
 
 // get loader

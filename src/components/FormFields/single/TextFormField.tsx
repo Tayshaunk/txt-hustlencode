@@ -11,14 +11,19 @@ interface ITextFormField {
   helpMessage?: string; // help message to display
   placeholder?: string; // field placeholder
   checkAsync?: boolean; // true if we need to perform async checks on form field
+  className?: any; // custom class name for form field group
 }
 const TextFormField = forwardRef((props: ITextFormField, ref: any) => {
-  const { checkAsync = false, placeholder = '', name, helpMessage, label, ...rest } = props;
+  const { className, checkAsync = false, placeholder = '', name, helpMessage, label, ...rest } = props;
 
   return (
-    <Form.Group ref={ref} className={classes.FormField}>
+    <Form.Group ref={ref} className={`${classes.FormField} ${className ? className : ''}`}>
       <Form.ControlLabel className={classes.FormLabel}>{label} </Form.ControlLabel>
-      {checkAsync ? <Form.Control checkAsync placeholder={placeholder} name={name} acceptor={InputGroup} {...rest} />:<Form.Control placeholder={placeholder} name={name} acceptor={InputGroup} {...rest} />}
+      {checkAsync ? (
+        <Form.Control checkAsync placeholder={placeholder} name={name} acceptor={InputGroup} {...rest} />
+      ) : (
+        <Form.Control placeholder={placeholder} name={name} acceptor={InputGroup} {...rest} />
+      )}
       {helpMessage ? <Form.HelpText>{helpMessage}</Form.HelpText> : null}
     </Form.Group>
   );

@@ -18,7 +18,7 @@ export const openToaster = (
 ) => {
   toaster.push(
     <Notification type={type} header={header ? header : ''} duration={duration} closable>
-      {message}
+      <p>{message}</p>
     </Notification>,
     { placement: placement },
   );
@@ -33,7 +33,7 @@ export const openToaster = (
 export const openSuccessToaster = (message: string, duration: number) => {
   toaster.push(
     <Notification type="success" header="Success" duration={duration} closable>
-      {message}
+      <p>{message}</p>
     </Notification>,
     { placement: 'topEnd' },
   );
@@ -48,7 +48,22 @@ export const openSuccessToaster = (message: string, duration: number) => {
 export const openErrorToaster = (message: string, duration: number) => {
   toaster.push(
     <Notification type="error" header="Error" duration={duration} closable>
-      {message}
+      <p>{message}</p>
+    </Notification>,
+    { placement: 'topEnd' },
+  );
+};
+
+/**
+ * Opens a info toast with a custom message.
+ * After the duration the toast will disappear
+ * @param message the message to display within the toast
+ * @param duration time for toast to remain visible
+ */
+export const openInfoToaster = (message: string, duration: number) => {
+  toaster.push(
+    <Notification type="info" header="Info" duration={duration} closable>
+      <p>{message}</p>
     </Notification>,
     { placement: 'topEnd' },
   );

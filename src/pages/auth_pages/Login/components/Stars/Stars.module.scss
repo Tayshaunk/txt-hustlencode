@@ -1,0 +1,91 @@
+.sky {
+  .stars1 {
+    z-index: 10;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: transparent;
+    animation: animStar 100s linear infinite;
+
+    &::after {
+      content: ' ';
+      top: -600px;
+      width: 1px;
+      height: 1px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: transparent;
+    }
+  }
+
+  .stars2 {
+    z-index: 10;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: transparent;
+    animation: animStar 125s linear infinite;
+    &::after {
+      content: ' ';
+      top: -600px;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      position: absolute;
+      background: transparent;
+    }
+  }
+
+  .stars3 {
+    z-index: 10;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: transparent;
+    animation: animStar 175s linear infinite;
+    &::after {
+      content: ' ';
+      top: -600px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      position: absolute;
+      background-color: transparent;
+    }
+  }
+
+  .shootingStars {
+    z-index: 0;
+    width: 5px;
+    height: 85px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), white);
+    animation: animShootingStar 10s linear infinite;
+  }
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2560px) translateX(-2560px);
+  }
+}
+
+@keyframes animShootingStar {
+  from {
+    transform: translateY(0px) translateX(0px) rotate(-45deg);
+    opacity: 1;
+    height: 5px;
+  }
+  to {
+    transform: translateY(-2560px) translateX(-2560px) rotate(-45deg);
+    opacity: 1;
+    height: 800px;
+  }
+}

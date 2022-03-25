@@ -16,7 +16,6 @@ export const getFormValidationStatus = (validationState: Object): boolean => {
 
   // check
   for (const field of fields) {
-    console.log(field);
     if (field[1].hasError) isValid = false;
   }
 
