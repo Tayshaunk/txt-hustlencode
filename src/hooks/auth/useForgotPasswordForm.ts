@@ -66,7 +66,7 @@ export default function useForgotPasswordForm() {
         const message: string = await forgotPasswordApi(value);
 
         // opens success message
-        openInfoToaster(message, 50000);
+        openInfoToaster(message, 5000);
 
         // hide spinner
         setIsLoading(false);

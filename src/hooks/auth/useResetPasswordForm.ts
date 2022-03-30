@@ -65,7 +65,7 @@ export default function useResetPasswordForm(id?: string | null, token?: string)
         const message: string = await resetPasswordApi(value);
 
         // opens success message
-        openSuccessToaster(message, 50000);
+        openSuccessToaster(message, 5000);
 
         // hide spinner
         setIsLoading(false);

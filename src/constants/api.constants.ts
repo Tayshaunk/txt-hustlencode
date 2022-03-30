@@ -1,7 +1,7 @@
 
 // server url for production
 const prod = {
-  API_URL: 'https://ronjovi-server.herokuapp.com/',
+  API_URL: 'https://ronjovi-server.herokuapp.com',
 };
 
 // server url for local development
