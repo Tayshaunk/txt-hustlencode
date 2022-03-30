@@ -1,18 +1,18 @@
 import { useParams } from 'react-router-dom';
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
-import usePostEditor from 'hooks/usePostEditor';
+import usePostEditor from 'hooks/editor/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
-import useIsMobile from 'hooks/useIsMobile';
+import useIsMobile from 'hooks/shared/useIsMobile';
 import MobileTabs from '../../../components/MobileCodeEditor/MobileCodeEditor';
 import SplitCodeEditor from '../../../components/SplitCodeEditor/SplitCodeEditor';
 import { Button, Modal } from 'rsuite';
 import Aux from 'components/_Aux/_Aux';
 import PageLoader from 'components/PageLoader/PageLoader';
 import NotFoundRender from 'components/NotFoundRender/NotFoundRender';
-import useUpdatePost from 'hooks/useUpdatePost';
+import useUpdatePost from 'hooks/posts/useUpdatePost';
 import { openErrorToaster } from 'services/toast.service';
 import PostPreviewModule from 'components/PostPreviewModule/PostPreviewModule';
-import usePreviousPathNav from 'hooks/usePreviousPathNav';
+import usePreviousPathNav from 'hooks/shared/usePreviousPathNav';
 
 // styles
 import classes from './EditPost.module.scss';

@@ -4,7 +4,7 @@ import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
 
 // styles
 import classes from './EditProfileGeneralForm.module.scss';
-import useEditProfileGeneral from 'hooks/forms/useEditProfileGeneral';
+import useEditProfileGeneral from 'hooks/profile/useEditProfileGeneral';
 
 /**
  * This component renders a form that allows the user to

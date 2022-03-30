@@ -4,7 +4,7 @@ import { getIsLoadingApp, getToken } from 'store/slices/userSessionSlice';
 import PublicRoutes from 'routing/routes/index.routes';
 import AuthRoutes from 'routing/routes/auth.routes';
 import PageLoader from 'components/PageLoader/PageLoader';
-import useApp from 'hooks/useApp';
+import useApp from 'hooks/app/useApp';
 
 function App() {
   // get user session token

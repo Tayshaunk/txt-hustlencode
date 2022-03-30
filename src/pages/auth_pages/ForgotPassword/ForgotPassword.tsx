@@ -5,7 +5,7 @@ import Fade from 'components/Fade/Fade';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
 import { PICKER_LANGUAGE } from 'constants/picker.constants';
 import { SelectPicker } from 'rsuite';
-import OceanScene from './components/OceanScene/OceanScene';
+import OceanScene from '../../../components/OceanScene/OceanScene';
 
 // styles
 import classes from './ForgotPassword.module.scss';

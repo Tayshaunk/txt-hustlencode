@@ -6,7 +6,7 @@ import { IHustlencodeUser } from 'interfaces/user.interface';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getUser, logout } from 'store/slices/userSessionSlice';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
-import useIsMobile from 'hooks/useIsMobile';
+import useIsMobile from 'hooks/shared/useIsMobile';
 import Aux from 'components/_Aux/_Aux';
 import MobileNavMenu from 'components/MobileNavMenu/MobileNavMenu';
 import NavbarSearch from 'components/NavBarSearch/NavBarSearch';

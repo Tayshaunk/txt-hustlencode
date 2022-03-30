@@ -54,7 +54,7 @@ export default function useForgotPasswordForm() {
     try {
       // verify that form is valid
       if (getFormValidationStatus(model.check(value))) {
-        console.log(value);
+
         // show spinner
         setIsLoading(true);
 

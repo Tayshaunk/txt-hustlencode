@@ -4,7 +4,7 @@ import Aux from 'components/_Aux/_Aux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useExplore from 'hooks/useExplore';
+import useExplore from 'hooks/posts/useExplore';
 
 const ExploreFeed = () => {
   // get user's explore post feed

@@ -47,7 +47,6 @@ const MobileCodeEditor = (props: IProps) => {
       if (jsEditor) t.push({ label: 'JS' });
       t.push({ label: 'Preview' });
 
-      console.log(t);
       setTabs(t);
       setActiveTab(t.length - 1);
     }

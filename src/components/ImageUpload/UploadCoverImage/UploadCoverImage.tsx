@@ -11,7 +11,7 @@ import Aux from 'components/_Aux/_Aux';
 
 import { IServerResponse } from 'interfaces/server.interface';
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
-import useUploadImage from 'hooks/useUploadImage';
+import useUploadImage from 'hooks/upload/useUploadImage';
 
 interface IProps {
   image: any; // current cover image

@@ -1,7 +1,7 @@
 import PageLoader from 'components/PageLoader/PageLoader';
 import PostModule from 'components/PostModule/PostModule';
 import Aux from 'components/_Aux/_Aux';
-import usePosts from 'hooks/usePosts';
+import usePosts from 'hooks/posts/usePosts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

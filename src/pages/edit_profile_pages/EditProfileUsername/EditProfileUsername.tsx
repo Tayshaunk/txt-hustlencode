@@ -1,7 +1,7 @@
 import { Form, ButtonToolbar } from 'rsuite';
 import TextFormField from 'components/FormFields/single/TextFormField';
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
-import useEditProfileGeneralForm from 'hooks/forms/useEditProfileUsername';
+import useEditProfileGeneralForm from 'hooks/profile/useEditProfileUsername';
 import UsernameFormField from 'components/FormFields/single/UsernameFormField';
 import { ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

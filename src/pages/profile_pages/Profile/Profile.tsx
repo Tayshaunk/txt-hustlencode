@@ -1,5 +1,5 @@
 import { Outlet, useParams } from 'react-router-dom';
-import useProfile from 'hooks/useProfile';
+import useProfile from 'hooks/profile/useProfile';
 import PageLoader from 'components/PageLoader/PageLoader';
 import Aux from 'components/_Aux/_Aux';
 import { IHustlencodeUser } from 'interfaces/user.interface';

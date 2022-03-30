@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { IServerErrorRespone } from "../interfaces/server.interface";
 import { openErrorToaster } from "./toast.service";
 
-const DEFAULT_TIME = 4500;
+const DEFAULT_TIME = 5000;
 
 /**
  * This method handles server errors. An danger alert is

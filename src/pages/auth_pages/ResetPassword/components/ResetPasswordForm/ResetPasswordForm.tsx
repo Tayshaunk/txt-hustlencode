@@ -1,23 +1,18 @@
 // styles
-import classes from './ForgotPasswordForm.module.scss';
+import classes from './ResetPasswordForm.module.scss';
 import { Form, ButtonToolbar } from 'rsuite';
 import TextFormField from 'components/FormFields/single/TextFormField';
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
-import { useTranslation } from 'react-i18next';
-import useForgotPasswordForm from 'hooks/auth/useForgotPasswordForm';
 import { NavLink } from 'react-router-dom';
+import useResetPasswordForm from 'hooks/auth/useResetPasswordForm';
 
-/**
- * Renders form where users can enter their email in order
- * to receive instructions on how to reset their password
- * @returns
- */
-const ForgotPasswordForm = () => {
-  // get translation helper
-  const { t } = useTranslation();
-
-  // get form s
-  const form = useForgotPasswordForm();
+interface IProps {
+  token?: string;
+  userId?: string | null;
+}
+const ResetPasswordForm = (props: IProps) => {
+  // get reset password form state
+  const form = useResetPasswordForm(props.userId, props.token);
 
   return (
     <div className={classes.ContentWrapper}>
@@ -35,13 +30,14 @@ const ForgotPasswordForm = () => {
         formValue={form.value}
         onChange={form.updateForm}
       >
-        <TextFormField type="email" name="email" label={t('forgotPassword.emailLabel')} />
+        <TextFormField helpMessage="Minimum 4 characters" type="password" name="password" label={'Password'} />
+        <TextFormField type="password" name="passwordConfirm" label={'Confirm Password'} />
 
         <ButtonToolbar className={classes.FormBtnToolbar}>
           <ButtonSpinner
             type="submit"
             appearance="primary"
-            label={t('forgotPassword.btnLabel')}
+            label={'Reset Password'}
             isLoading={form.isLoading}
             disabled={form.isLoading}
             onClick={form.submit}
@@ -53,14 +49,10 @@ const ForgotPasswordForm = () => {
           <NavLink to="/">
             <p>Return to login.</p>
           </NavLink>
-
-          <NavLink to="/">
-            <p>Sign up.</p>
-          </NavLink>
         </div>
       </Form>
     </div>
   );
 };
 
-export default ForgotPasswordForm;
+export default ResetPasswordForm;

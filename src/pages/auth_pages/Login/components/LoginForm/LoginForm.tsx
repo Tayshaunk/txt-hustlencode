@@ -1,22 +1,17 @@
 // styles
-import classes from "./LoginForm.module.scss";
-import { useEffect, useState } from "react";
-import { Schema, Form, ButtonToolbar } from "rsuite";
-import { useAppDispatch, useAppSelector } from "store/hooks";
-import {
-  clearStoredEmail,
-  getEmail,
-  setStoredEmail,
-  setToken,
-} from "store/slices/userSessionSlice";
-import { serverErrorHandler } from "services/server-error.service";
-import TextFormField from "components/FormFields/single/TextFormField";
-import CheckboxFormField from "components/FormFields/single/CheckboxFormField";
-import ButtonSpinner from "components/Buttons/ButtonSpinner/ButtonSpinner";
-import { getFormValidationStatus } from "util/form.util";
-import { useTranslation } from "react-i18next";
-import { loginApi } from "api/auth.api";
-import { NavLink } from "react-router-dom";
+import classes from './LoginForm.module.scss';
+import { useEffect, useState } from 'react';
+import { Schema, Form, ButtonToolbar } from 'rsuite';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { clearStoredEmail, getEmail, setStoredEmail, setToken } from 'store/slices/userSessionSlice';
+import { serverErrorHandler } from 'services/server-error.service';
+import TextFormField from 'components/FormFields/single/TextFormField';
+import CheckboxFormField from 'components/FormFields/single/CheckboxFormField';
+import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
+import { getFormValidationStatus } from 'util/form.util';
+import { useTranslation } from 'react-i18next';
+import { loginApi } from 'api/auth.api';
+import { NavLink } from 'react-router-dom';
 
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
@@ -29,13 +24,11 @@ const { StringType } = Schema.Types;
  * rsuite(5.5.2): https://rsuitejs.com/components/form-validation/
  */
 const model = Schema.Model({
-  email: StringType()
-    .isRequired("Please enter a valid email.")
-    .isEmail("Please enter a valid email."),
-  password: StringType().isRequired("Please enter your password."),
+  email: StringType().isRequired('Please enter a valid email.').isEmail('Please enter a valid email.'),
+  password: StringType().isRequired('Please enter your password.'),
 });
 
-const INIT_FORM = { email: "", password: "", saveEmail: [] };
+const INIT_FORM = { email: '', password: '', saveEmail: [] };
 
 /**
  * Renders login form that allows users to login using their credentials.
@@ -46,7 +39,7 @@ const LoginForm = () => {
   const [formValue, setFormValue] = useState<any>(INIT_FORM); // set default form values
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
 
-  // get translation helper 
+  // get translation helper
   const { t } = useTranslation();
 
   // get redux store dispatch
@@ -59,8 +52,7 @@ const LoginForm = () => {
   useEffect(() => {
     let mounted = true;
 
-    if (mounted && storedEmail)
-      setFormValue({ ...INIT_FORM, saveEmail: ["true"], email: storedEmail });
+    if (mounted && storedEmail) setFormValue({ ...INIT_FORM, saveEmail: ['true'], email: storedEmail });
 
     return () => {
       mounted = false;
@@ -94,8 +86,7 @@ const LoginForm = () => {
         const token: string = await loginApi(payload);
 
         // update stored email value if user checked off 'remember me'
-        if (formValue.saveEmail.length > 0 && formValue.saveEmail[0])
-          dispatch(setStoredEmail(payload.email));
+        if (formValue.saveEmail.length > 0 && formValue.saveEmail[0]) dispatch(setStoredEmail(payload.email));
         else dispatch(clearStoredEmail()); // otherwise clear
 
         // hide spinner
@@ -114,24 +105,10 @@ const LoginForm = () => {
 
   return (
     <div className={classes.ContentWrapper}>
-      <Form
-        fluid={true}
-        className={classes.CustomForm}
-        model={model}
-        formValue={formValue}
-        onChange={setFormValue}
-      >
-        <TextFormField
-          type="email"
-          name="email"
-          label={t("login.emailLabel")}
-        />
+      <Form fluid={true} className={classes.CustomForm} model={model} formValue={formValue} onChange={setFormValue}>
+        <TextFormField type="email" name="email" label={t('login.emailLabel')} />
 
-        <TextFormField
-          type="password"
-          name="password"
-          label={t("login.passwordLabel")}
-        />
+        <TextFormField type="password" name="password" label={t('login.passwordLabel')} />
 
         <CheckboxFormField
           name="saveEmail"
@@ -139,8 +116,8 @@ const LoginForm = () => {
           className={classes.checkField}
           checkboxes={[
             {
-              label: t("login.rememberMeLabel"),
-              value: "true",
+              label: t('login.rememberMeLabel'),
+              value: 'true',
             },
           ]}
         />
@@ -149,17 +126,21 @@ const LoginForm = () => {
           <ButtonSpinner
             type="submit"
             appearance="primary"
-            label={t("login.btnLabel")}
+            label={t('login.btnLabel')}
             isLoading={isLoading}
             disabled={isLoading}
             onClick={submitForm}
-            containerStyles={{ width: "100%" }}
+            containerStyles={{ width: '100%' }}
           />
         </ButtonToolbar>
 
         <div className={classes.helpLinks}>
           <NavLink to="/forgot-password">
             <p>Forgot password?</p>
+          </NavLink>
+
+          <NavLink to="/">
+            <p>Sign up.</p>
           </NavLink>
         </div>
       </Form>

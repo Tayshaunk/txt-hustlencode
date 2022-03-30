@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getWidth } from 'util/window.util';
-import Stars from '../Stars/Stars';
-import TypeWriter from '../Typewriter/Typewriter';
+import Stars from '../../pages/auth_pages/ForgotPassword/components/Stars/Stars';
+import TypeWriter from '../../pages/auth_pages/ForgotPassword/components/Typewriter/Typewriter';
 import wave from 'assets/images/wave.png';
 import boat from 'assets/images/ship.png';
 

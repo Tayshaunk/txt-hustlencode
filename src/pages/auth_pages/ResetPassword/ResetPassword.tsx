@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
-import LoginForm from './components/LoginForm/LoginForm';
 import { useTranslation } from 'react-i18next';
 import Fade from 'components/Fade/Fade';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
@@ -8,23 +7,31 @@ import { PICKER_LANGUAGE } from 'constants/picker.constants';
 import { SelectPicker } from 'rsuite';
 
 // styles
-import classes from './Login.module.scss';
+import classes from './ResetPassword.module.scss';
 import OceanScene from 'components/OceanScene/OceanScene';
+import ResetPasswordForm from './components/ResetPasswordForm/ResetPasswordForm';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 /**
  * Renders a view with a welcome message and Login
  * Form. Users are able to sign in with their credentials
  * @returns
  */
-const Login = () => {
+const ResetPassword = () => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (language: 'en' | 'span') => {
     i18n.changeLanguage(language);
   };
 
+  // get token from url
+  const { token } = useParams();
+
+  // get url query params
+  const [queryParams] = useSearchParams();
+
   return (
-    <Container className={`${classes.loginContainer} g-0`} fluid>
+    <Container className={`${classes.container} g-0`} fluid>
       <Row className={classes.row}>
         <Col className={classes.leftCol} md={12} lg={5}>
           <Fade duration={400} delay={200}>
@@ -44,7 +51,7 @@ const Login = () => {
           </Fade>
 
           <Fade duration={400} delay={250}>
-            <LoginForm />
+            <ResetPasswordForm token={token} userId={queryParams.get('id')} />
           </Fade>
         </Col>
 
@@ -58,4 +65,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPassword;

@@ -10,7 +10,7 @@ import { getUserSearchApi } from 'api/search.api';
 import { NavLink } from 'react-router-dom';
 import Aux from 'components/_Aux/_Aux';
 import ProfileImage from 'components/ProfileImage/ProfileImage';
-import useOutsideClick from 'hooks/useOutsideClick';
+import useOutsideClick from 'hooks/shared/useOutsideClick';
 
 // styles
 import classes from './NavbarSearch.module.scss';

@@ -17,7 +17,7 @@ import {
   AsyncProfilePostsPage,
 } from 'routing/imports/RouteLazy';
 import Explore from 'pages/Explore/Explore';
-import useScrollToTop from 'hooks/useScrollToTop';
+import useScrollToTop from 'hooks/shared/useScrollToTop';
 import NotFound from 'components/NotFound/NotFound';
 import PageLoader from 'components/PageLoader/PageLoader';
 

@@ -1,7 +1,7 @@
 import ElipsisMenu from 'components/ElipsisMenu/ElipsisMenu';
 import IsAuthed from 'components/IsAuthed/IsAuthed';
 import PageLoader from 'components/PageLoader/PageLoader';
-import useProfileInterests from 'hooks/useProfileInterests';
+import useProfileInterests from 'hooks/profile/useProfileInterests';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'rsuite';

@@ -17,3 +17,19 @@ export class HncLoginDto {
   @IsString()
   public password: string;
 }
+
+
+// payload for resetting a forgotten password
+export class HncResetPasswordDto {
+  @IsString()
+  public password: string;
+
+  @IsString()
+  public passwordConfirm: string;
+
+  @IsString()
+  public userId: string;
+  
+  @IsString()
+  public token: string;
+}

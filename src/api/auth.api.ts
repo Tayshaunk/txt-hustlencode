@@ -2,7 +2,7 @@ import axiosInstance from '../config/axios.config';
 import { IHustlencodeUserSession } from 'interfaces/user.interface';
 import { IServerResponse } from 'interfaces/server.interface';
 import { AxiosResponse } from 'axios';
-import { HncForgotPasswordDto, HncLoginDto } from 'dtos/hustlencode-auth.dto';
+import { HncForgotPasswordDto, HncLoginDto, HncResetPasswordDto } from 'dtos/hustlencode-auth.dto';
 
 // base API path for api requests
 const BASE_URL = `/hustlencode/auth`;
@@ -41,6 +41,16 @@ export const getCurrentUserApi = async (): Promise<IHustlencodeUserSession> => {
  */
 export const forgotPasswordApi = async (payload: HncForgotPasswordDto): Promise<string> => {
   const url = `${BASE_URL}/forgot-password`;
+
+  // make request for email reset instructions
+  const response: AxiosResponse<IServerResponse> = await axiosInstance.post<any>(url, payload);
+
+  // return user token
+  return response.data.message;
+};
+
+export const resetPasswordApi = async (payload: HncResetPasswordDto): Promise<string> => {
+  const url = `${BASE_URL}/reset-password`;
 
   // make request for email reset instructions
   const response: AxiosResponse<IServerResponse> = await axiosInstance.post<any>(url, payload);

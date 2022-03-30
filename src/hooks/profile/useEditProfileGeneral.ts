@@ -57,8 +57,6 @@ export default function useEditProfileGeneral() {
       if (getFormValidationStatus(model.check(value))) {
         // show spinner
         setIsLoading(true);
-
-        console.log(value)
         // make api req
         const response: IServerResponse = await updateProfileGeneralApi(value);
 
@@ -72,7 +70,7 @@ export default function useEditProfileGeneral() {
         dispatch(setUser(response.payload));
       }
     } catch (e) {
-      console.log(e)
+
       // hide spinner
       setIsLoading(false);
       serverErrorHandler(e, logoutHandler);

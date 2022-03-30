@@ -4,7 +4,7 @@ import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
 
 // styles
 import classes from './EditProfilePassword.module.scss';
-import useEditProfilePasswordForm from 'hooks/forms/useEditProfilePasswordForm';
+import useEditProfilePasswordForm from 'hooks/profile/useEditProfilePasswordForm';
 
 
 /**

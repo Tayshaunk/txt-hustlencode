@@ -1,7 +1,7 @@
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
-import usePostEditor from 'hooks/usePostEditor';
+import usePostEditor from 'hooks/editor/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
-import useIsMobile from 'hooks/useIsMobile';
+import useIsMobile from 'hooks/shared/useIsMobile';
 import MobileTabs from '../../../components/MobileCodeEditor/MobileCodeEditor';
 import SplitCodeEditor from '../../../components/SplitCodeEditor/SplitCodeEditor';
 import { Button, Modal } from 'rsuite';
@@ -10,11 +10,11 @@ import PageLoader from 'components/PageLoader/PageLoader';
 import NotFoundRender from 'components/NotFoundRender/NotFoundRender';
 import { openErrorToaster } from 'services/toast.service';
 import ProfilePreviewModule from 'components/ProfilePreviewModule/ProfilePreviewModule';
-import useUpdateProfileInterests from 'hooks/useUpdateProfileInterests';
+import useUpdateProfileInterests from 'hooks/profile/useUpdateProfileInterests';
 
 // styles
 import classes from './EditProfileInterests.module.scss';
-import usePreviousPathNav from 'hooks/usePreviousPathNav';
+import usePreviousPathNav from 'hooks/shared/usePreviousPathNav';
 
 /**
  * This page renders the code editors that

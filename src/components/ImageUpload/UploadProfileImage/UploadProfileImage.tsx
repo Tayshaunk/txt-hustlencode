@@ -8,7 +8,7 @@ import { Button } from 'rsuite';
 import CustomTooltip from 'components/Tooltip/CustomTooltip';
 import CropModal from '../CropModal/CropModal';
 import Aux from 'components/_Aux/_Aux';
-import useUploadImage from 'hooks/useUploadImage';
+import useUploadImage from 'hooks/upload/useUploadImage';
 import { IServerResponse } from 'interfaces/server.interface';
 import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
 

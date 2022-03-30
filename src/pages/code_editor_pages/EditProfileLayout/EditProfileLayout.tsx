@@ -1,15 +1,15 @@
 import pageLayoutClasses from 'styles/modules/pageLayout.module.scss';
-import usePostEditor from 'hooks/usePostEditor';
+import usePostEditor from 'hooks/editor/usePostEditor';
 import { UpdateHustlencodePostDto } from 'dtos/hustlencode-post.dto';
-import useIsMobile from 'hooks/useIsMobile';
+import useIsMobile from 'hooks/shared/useIsMobile';
 import MobileTabs from '../../../components/MobileCodeEditor/MobileCodeEditor';
 import SplitCodeEditor from '../../../components/SplitCodeEditor/SplitCodeEditor';
 import { Button, Modal } from 'rsuite';
 import Aux from 'components/_Aux/_Aux';
 import PageLoader from 'components/PageLoader/PageLoader';
 import NotFoundRender from 'components/NotFoundRender/NotFoundRender';
-import useUpdateProfileLayout from 'hooks/useUpdateProfileLayout';
-import usePreviousPathNav from 'hooks/usePreviousPathNav';
+import useUpdateProfileLayout from 'hooks/profile/useUpdateProfileLayout';
+import usePreviousPathNav from 'hooks/shared/usePreviousPathNav';
 import ProfileLayoutPreview from 'components/ProfileLayoutPreview/ProfileLayoutPreview';
 
 // styles
