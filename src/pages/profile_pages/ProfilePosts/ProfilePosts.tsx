@@ -4,6 +4,7 @@ import PageLoader from 'components/PageLoader/PageLoader';
 import PostFeed from 'pages/profile_pages/ProfilePosts/PostFeed/PostFeed';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useOutletContext } from 'react-router-dom';
+import ViewComment from '../../../components/Comments/ViewComment'
 
 const ProfilePosts = () => {
   // get user profile from router outlet context

@@ -5,8 +5,10 @@ import usePosts from 'hooks/posts/usePosts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ViewComment from '../../../../components/Comments/ViewComment'
 // styles
 import classes from './PostFeed.module.scss';
+import { Fragment } from 'react';
 
 /**
  * This component renders the users post feed and the
@@ -46,16 +48,19 @@ const PostFeed = ({ username }: { username: string }) => {
       }
     >
       {posts.value.map(post => (
-        <PostModule
-          postId={post._id}
-          createdOn={post.createdOn}
-          postUser={post.user}
-          key={post._id}
-          html={post.html}
-          css={post.css}
-          js={post.js}
-          removePost={posts.removePost}
-        />
+        <Fragment>
+          <PostModule
+            postId={post._id}
+            createdOn={post.createdOn}
+            postUser={post.user}
+            key={post._id}
+            html={post.html}
+            css={post.css}
+            js={post.js}
+            removePost={posts.removePost}
+          />
+          <ViewComment />
+        </Fragment>
       ))}
     </InfiniteScroll>
   );
