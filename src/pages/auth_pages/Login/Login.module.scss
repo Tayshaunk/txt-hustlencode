@@ -1,12 +1,21 @@
-$color-blue: #008dde;
-$color-dark-blue: #273647;
-$color-black: #282828;
+:root {
+  --color-blue: #008dde;
+  --color-dark-blue: #273647;
+  --color-black: #282828;
+  --color-white: white;
+}
+
+[data-theme='dark'] {
+  --color-blue: grey;
+  --color-white: black;
+}
 
 .loginContainer {
   padding: 0px;
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: var(--color-white);
 
   .row {
     height: 100%;
@@ -54,7 +63,7 @@ $color-black: #282828;
 
         h1 {
           font-weight: 400;
-          color: $color-dark-blue;
+          color: var(--color-dark-blue);
         }
       }
     }

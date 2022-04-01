@@ -12,6 +12,7 @@ import { getFormValidationStatus } from 'util/form.util';
 import { useTranslation } from 'react-i18next';
 import { loginApi } from 'api/auth.api';
 import { NavLink } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage';
 
 // Extract schema types for form validation
 const { StringType } = Schema.Types;
@@ -102,9 +103,16 @@ const LoginForm = () => {
       serverErrorHandler(e, () => {});
     }
   };
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+  const switchTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  };
 
   return (
-    <div className={classes.ContentWrapper}>
+    <div className={classes.ContentWrapper} data-theme={theme}>
       <Form fluid={true} className={classes.CustomForm} model={model} formValue={formValue} onChange={setFormValue}>
         <TextFormField type="email" name="email" label={t('login.emailLabel')} />
 
