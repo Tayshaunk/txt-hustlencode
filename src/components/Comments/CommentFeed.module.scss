@@ -1,0 +1,11 @@
+.commentFeedContainer {
+    .loadCommentsBorder {
+        border-left: 1px solid #dddfe2;
+        border-right: 1px solid #dddfe2;
+        border-bottom: 1px solid #dddfe2;
+    }
+
+    .loadCommentsBorder:hover {
+        cursor: pointer;
+    }
+}

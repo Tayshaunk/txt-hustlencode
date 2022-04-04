@@ -4,10 +4,15 @@ import { NavLink } from 'react-router-dom';
 import ElipsisMenu from 'components/ElipsisMenu/ElipsisMenu';
 import { Button, Dropdown, Modal } from 'rsuite';
 
+// dummy data
+import userPostDummyPosts from 'dummyComments';
+
+// components
+import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
+
 // styles
 import classes from './ViewComment.module.scss';
 import pageclasses from 'styles/modules/pageLayout.module.scss';
-import ButtonSpinner from 'components/Buttons/ButtonSpinner/ButtonSpinner';
 
 interface CommmentProps {
   profileImg: string;
@@ -17,16 +22,7 @@ interface CommmentProps {
   postDate: string;
 }
 
-// comment dummy data
-const userPostDummy = {
-  profileImg: 'https://hustlencode.s3.us-west-1.amazonaws.com/unspecified.jpg',
-  name: 'Miguel Menjivar',
-  comment: 'hello everyone, this is a nice post!!',
-  postDate: 'Just now',
-  username: 'miguel-txt',
-};
-
-const ViewComment = () => {
+const ViewComment = (props: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
 
@@ -70,23 +66,24 @@ const ViewComment = () => {
   const renderHeading = () => (
       <div>
         <div className={classes.header}>
-        <div className={classes.imgContainer}>
+          <div className={classes.imgContainer}>
             {/* TODO: make sure to finish this and make it dynamic if user does not have profile picture */}
-            <img src={userPostDummy.profileImg} alt={`${userPostDummy.name} profile thumbnail`} />
-        </div>
+            <img src={props.profileImg} alt={`${props.name} profile thumbnail`} />
+          </div>
 
-        <div className={classes.nameContainer}>
+          <div className={classes.nameContainer}>
             <div className={classes.name}>
-            <NavLink to={`/user/${userPostDummy.username}`}>{userPostDummy.name}</NavLink>
+            <NavLink to={`/user/${props.username}`}>{props.name}</NavLink>
             </div>
-            <div><span className={classes.dateColor}>{userPostDummy.postDate}</span></div>
+            <div><span className={classes.dateColor}>{props.postDate}</span></div>
+          </div>
 
-            {/* TODO: make it dynamic based if user logged in or not */}
+          <ElipsisMenu width={40} height={40} placement="leftStart" menuOptions={menu} isLoading={isLoading} />
         </div>
-            <ElipsisMenu width={40} height={40} placement="leftStart" menuOptions={menu} isLoading={isLoading} />
-        </div>
+
+        {/* TODO: make it dynamic based if user logged in or not */}
         <div className={classes.commentBorder}>
-            <p className={classes.commentSection}>{userPostDummy.comment}</p>
+          <p className={classes.commentSection}>{props.comment}</p>
         </div>
     </div>
   );

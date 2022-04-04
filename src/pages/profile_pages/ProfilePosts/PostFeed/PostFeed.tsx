@@ -5,7 +5,7 @@ import usePosts from 'hooks/posts/usePosts';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ViewComment from '../../../../components/Comments/ViewComment'
+import CommentFeed from '../../../../components/Comments/CommentFeed'
 // styles
 import classes from './PostFeed.module.scss';
 import { Fragment } from 'react';
@@ -59,7 +59,9 @@ const PostFeed = ({ username }: { username: string }) => {
             js={post.js}
             removePost={posts.removePost}
           />
-          <ViewComment />
+
+          {/* TODO: remove this after testing has been finished */}
+          <CommentFeed />
         </Fragment>
       ))}
     </InfiniteScroll>
