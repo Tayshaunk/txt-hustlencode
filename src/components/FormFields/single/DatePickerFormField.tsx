@@ -13,7 +13,15 @@ const DatePickerFormField = forwardRef((props: any, ref: any) => {
   return (
     <Form.Group ref={ref} className={classes.FormField}>
       <Form.ControlLabel className={classes.FormLabel}>{label} </Form.ControlLabel>
-      <Form.Control format="MM/dd/yyyy" style={{ width: '100%', height: 38 }} name={name} accepter={DatePicker} oneTap {...rest} placement="auto" />
+      <Form.Control
+        format="MM/dd/yyyy"
+        style={{ width: '100%', height: 38 }}
+        name={name}
+        accepter={DatePicker}
+        oneTap
+        {...rest}
+        placement="topStart"
+      />
       {helpMessage ? <Form.HelpText>{helpMessage}</Form.HelpText> : null}
     </Form.Group>
   );

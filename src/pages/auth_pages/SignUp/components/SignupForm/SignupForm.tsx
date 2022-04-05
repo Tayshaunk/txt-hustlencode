@@ -37,16 +37,16 @@ const model = Schema.Model({
     .isRequired('Please enter your Personal Email')
     .isEmail('Please Enter a valid email, e.g. johndoe03@email.com'),
   username: StringType().isRequired('Set your username. e.g. john_doe'),
-  password: StringType().isRequired('Create a password'),
-  verfiyPassword: StringType()
-    .addRule((val, data) => {
-      console.log('user input: ', val);
-      if (val !== data.password) {
+  password: StringType().isRequired('Create a password').minLength(4, 'Password must be 4 characters long.'),
+  verifyPassword: StringType()
+    .isRequired('Please Re-Enter your Password.')
+    .addRule((value, data) => {
+      console.log(value);
+      if (value !== data.password) {
         return false;
       }
       return true;
-    }, 'The two passwords do not match')
-    .isRequired('Please Re-Enter your Password.'),
+    }, 'The two passwords do not match'),
   gender: StringType().isRequired('Choose your gender'),
   program: StringType().isRequired('Choose Program'),
   birthday: DateType().isRequired('Enter your Birthday'),
@@ -122,9 +122,8 @@ const SignupForm = () => {
   // get dispatc
   const dispatch = useAppDispatch();
 
-
-  const logoutHandler = () =>{
-    dispatch(logout())
+  const logoutHandler = () => {
+    dispatch(logout());
   };
 
   const submitForm = () => {
@@ -132,15 +131,15 @@ const SignupForm = () => {
   };
 
   /**
- * Return message for username status
- * -> return spinner if username is being checked
- * -> return 'username is valid' if username is valid
- * -> return 'username is not valid' if username is taken, or empty, or less than
- * 4 characters
- * -> return empty p element if username has not changed
- *
- * @returns
- */
+   * Return message for username status
+   * -> return spinner if username is being checked
+   * -> return 'username is valid' if username is valid
+   * -> return 'username is not valid' if username is taken, or empty, or less than
+   * 4 characters
+   * -> return empty p element if username has not changed
+   *
+   * @returns
+   */
   const renderUsernameMessage = (): ReactElement<any> => {
     // check if username value is different from current user name
     if (formValue.username.trim() !== '') {
@@ -148,21 +147,21 @@ const SignupForm = () => {
       if (formValue.isCheckingUsername) {
         return <FontAwesomeIcon className={classes.usernameSpinner} icon={faSpinner} spin />;
       } else {
-        return <p className={isUsernameValid ? classes.validUsername : classes.invalidUsername}>{usernameMessage}</p>
+        return <p className={isUsernameValid ? classes.validUsername : classes.invalidUsername}>{usernameMessage}</p>;
       }
     }
 
-    return <p />
+    return <p />;
   };
 
-
-  const onChange = (val:any) => {
+  const onChange = (val: any) => {
+    console.log(val);
     /**
- * check username if:
- * username is not the same as current username
- * username is not empty
- * username is value has changed
- */
+     * check username if:
+     * username is not the same as current username
+     * username is not empty
+     * username is value has changed
+     */
     if (val.username.trim() !== '') {
       setIsCheckingUsername(true);
       debouncedChangeHandler(val.username);
@@ -170,13 +169,13 @@ const SignupForm = () => {
 
     // update form state
     setFormValue(val);
-  }
+  };
 
   /**
- * Makes API request to check if the username is
- * available
- * @param val
- */
+   * Makes API request to check if the username is
+   * available
+   * @param val
+   */
   const asyncCheckUsername = async (val: string): Promise<void> => {
     if (val.trim() !== '') {
       try {
@@ -194,14 +193,12 @@ const SignupForm = () => {
     }
   };
 
-
-
   /**
    * debounce search with 300ms wait time
    * Ignore continous search calls until  timer has
    * elapsed
    */
-   const debouncedChangeHandler = useMemo(
+  const debouncedChangeHandler = useMemo(
     () => debounce(asyncCheckUsername, 300),
     // TODO Resolve 'react-hooks/exhaustive-deps'
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -218,20 +215,10 @@ const SignupForm = () => {
             </Col>
             <Col>
               <TextFormField type="text" name="lastName" label="Last Name" />
-
-
             </Col>
           </Row>
           <TextFormField type="email" name="email" label="Email" />
           <UsernameFormField renderMessage={renderUsernameMessage} name="username" label={'Username'} type={'text'} />
-          <Row>
-            <Col>
-              <TextFormField type="password" name="password" label="Password" />
-            </Col>
-            <Col>
-              <TextFormField type="password" name="verifyPassword" label="Re-Enter your Password" />
-            </Col>
-          </Row>
           <Row>
             <Col>
               <SelectFormField name="gender" label="Gender" data={GENDER_DATA} />
@@ -243,6 +230,12 @@ const SignupForm = () => {
           <Row>
             <Col>
               <DatePickerFormField name="birthday" label="Birthday" />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <TextFormField type="password" name="password" label="Password" />
+              <TextFormField type="password" name="verifyPassword" label="Re-Enter your Password" />
             </Col>
           </Row>
           <ButtonToolbar className={classes.FormBtnToolbar}>
