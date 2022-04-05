@@ -138,9 +138,8 @@ const LoginForm = () => {
           <NavLink to="/forgot-password">
             <p>Forgot password?</p>
           </NavLink>
-
-          <NavLink to="/">
-            <p>Sign up.</p>
+          <NavLink to="/sign-up">
+            <p>Sign Up</p>
           </NavLink>
         </div>
       </Form>
