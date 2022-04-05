@@ -61,7 +61,7 @@ const PostFeed = ({ username }: { username: string }) => {
           />
 
           {/* TODO: remove this after testing has been finished */}
-          <CommentFeed />
+          <CommentFeed postId={post._id}/>
         </Fragment>
       ))}
     </InfiniteScroll>
