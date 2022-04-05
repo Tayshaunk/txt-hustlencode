@@ -1,5 +1,5 @@
 import { Schema, Form } from 'rsuite';
-import { useState } from 'react';
+import { ReactElement, useMemo, useState } from 'react';
 import TextFormField from 'components/FormFields/single/TextFormField';
 import SelectFormField from 'components/FormFields/single/SelectFormField';
 import { IPickerItem } from 'interfaces/picker.interface';
@@ -10,6 +10,15 @@ import { ButtonToolbar } from 'rsuite';
 // styles
 import classes from './SignupForm.module.scss';
 import { Container, Row, Col } from 'react-bootstrap';
+import UsernameFormField from 'components/FormFields/single/UsernameFormField';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { debounce } from 'lodash';
+import { serverErrorHandler } from 'services/server-error.service';
+import { IServerResponse } from 'interfaces/server.interface';
+import { checkUsernameAvailApi } from 'api/account.api';
+import { useAppDispatch } from 'store/hooks';
+import { logout } from 'store/slices/userSessionSlice';
 
 // Extract schema types for form validation
 const { StringType, DateType } = Schema.Types;
@@ -106,14 +115,102 @@ const PROGRAMS_DATA: IPickerItem[] = [
 const SignupForm = () => {
   const [formValue, setFormValue] = useState<any>(INIT_FORM); // set default form values
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
+  const [isCheckingUsername, setIsCheckingUsername] = useState(false); // flag for checking username process
+  const [isUsernameValid, setIsUsernameValid] = useState(true); // true if username is valid
+  const [usernameMessage, setUsernameMessage] = useState<string | null>(null);
+
+  // get dispatc
+  const dispatch = useAppDispatch();
+
+
+  const logoutHandler = () =>{
+    dispatch(logout())
+  };
 
   const submitForm = () => {
     console.log(model);
   };
 
+  /**
+ * Return message for username status
+ * -> return spinner if username is being checked
+ * -> return 'username is valid' if username is valid
+ * -> return 'username is not valid' if username is taken, or empty, or less than
+ * 4 characters
+ * -> return empty p element if username has not changed
+ *
+ * @returns
+ */
+  const renderUsernameMessage = (): ReactElement<any> => {
+    // check if username value is different from current user name
+    if (formValue.username.trim() !== '') {
+      // return spinner if we are checking username
+      if (formValue.isCheckingUsername) {
+        return <FontAwesomeIcon className={classes.usernameSpinner} icon={faSpinner} spin />;
+      } else {
+        return <p className={isUsernameValid ? classes.validUsername : classes.invalidUsername}>{usernameMessage}</p>
+      }
+    }
+
+    return <p />
+  };
+
+
+  const onChange = (val:any) => {
+    /**
+ * check username if:
+ * username is not the same as current username
+ * username is not empty
+ * username is value has changed
+ */
+    if (val.username.trim() !== '') {
+      setIsCheckingUsername(true);
+      debouncedChangeHandler(val.username);
+    } else setIsCheckingUsername(false);
+
+    // update form state
+    setFormValue(val);
+  }
+
+  /**
+ * Makes API request to check if the username is
+ * available
+ * @param val
+ */
+  const asyncCheckUsername = async (val: string): Promise<void> => {
+    if (val.trim() !== '') {
+      try {
+        // make request to check for username availability
+        const response: IServerResponse = await checkUsernameAvailApi(val);
+        // hide spinner
+        setIsCheckingUsername(false);
+        // update username status
+        setIsUsernameValid(response.payload);
+        setUsernameMessage(response.message);
+      } catch (e) {
+        setIsCheckingUsername(false);
+        serverErrorHandler(e, logoutHandler);
+      }
+    }
+  };
+
+
+
+  /**
+   * debounce search with 300ms wait time
+   * Ignore continous search calls until  timer has
+   * elapsed
+   */
+   const debouncedChangeHandler = useMemo(
+    () => debounce(asyncCheckUsername, 300),
+    // TODO Resolve 'react-hooks/exhaustive-deps'
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
   return (
     <div className={classes.ContentWrapper}>
-      <Form fluid={true} model={model} formValue={formValue} onChange={setFormValue}>
+      <Form fluid={true} model={model} formValue={formValue} onChange={onChange}>
         <Container>
           <Row>
             <Col>
@@ -121,10 +218,12 @@ const SignupForm = () => {
             </Col>
             <Col>
               <TextFormField type="text" name="lastName" label="Last Name" />
+
+
             </Col>
           </Row>
           <TextFormField type="email" name="email" label="Email" />
-          <TextFormField type="text" name="username" label="Username" />
+          <UsernameFormField renderMessage={renderUsernameMessage} name="username" label={'Username'} type={'text'} />
           <Row>
             <Col>
               <TextFormField type="password" name="password" label="Password" />
