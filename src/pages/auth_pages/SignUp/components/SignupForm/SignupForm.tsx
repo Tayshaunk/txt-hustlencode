@@ -19,6 +19,9 @@ import { IServerResponse } from 'interfaces/server.interface';
 import { checkUsernameAvailApi } from 'api/account.api';
 import { useAppDispatch } from 'store/hooks';
 import { logout } from 'store/slices/userSessionSlice';
+import { HncSignupDto } from 'dtos/hustlencode-auth.dto';
+import { signUpApi } from 'api/auth.api';
+import { useNavigate } from 'react-router-dom';
 
 // Extract schema types for form validation
 const { StringType, DateType } = Schema.Types;
@@ -48,7 +51,7 @@ const model = Schema.Model({
       return true;
     }, 'The two passwords do not match'),
   gender: StringType().isRequired('Choose your gender'),
-  program: StringType().isRequired('Choose Program'),
+  organization: StringType().isRequired('Choose organization'),
   birthday: DateType().isRequired('Enter your Birthday'),
 });
 
@@ -59,6 +62,9 @@ const INIT_FORM = {
   username: '',
   password: '',
   verifyPassword: '',
+  organization: '',
+  birthday: new Date(),
+  gender: ''
 };
 
 const GENDER_DATA: IPickerItem[] = [
@@ -113,11 +119,13 @@ const PROGRAMS_DATA: IPickerItem[] = [
  * @returns
  */
 const SignupForm = () => {
-  const [formValue, setFormValue] = useState<any>(INIT_FORM); // set default form values
+  const [formValue, setFormValue] = useState<HncSignupDto>(INIT_FORM); // set default form values
   const [isLoading, setIsLoading] = useState(false); // flag for submission process
   const [isCheckingUsername, setIsCheckingUsername] = useState(false); // flag for checking username process
   const [isUsernameValid, setIsUsernameValid] = useState(true); // true if username is valid
   const [usernameMessage, setUsernameMessage] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   // get dispatc
   const dispatch = useAppDispatch();
@@ -126,8 +134,23 @@ const SignupForm = () => {
     dispatch(logout());
   };
 
-  const submitForm = () => {
-    console.log(model);
+  const submitForm = async() => {
+    try{
+      setIsLoading(true);
+
+      // get user session token
+      const token:string = await signUpApi(formValue);
+
+      // store token
+      //dispatch(setToken(token))
+
+      // redirect to profile page
+      // navigate('')
+      setIsLoading(false);
+    }catch(e){
+      setIsLoading(false);
+      serverErrorHandler(e, logoutHandler)
+    }
   };
 
   /**
@@ -144,7 +167,7 @@ const SignupForm = () => {
     // check if username value is different from current user name
     if (formValue.username.trim() !== '') {
       // return spinner if we are checking username
-      if (formValue.isCheckingUsername) {
+      if (isCheckingUsername) {
         return <FontAwesomeIcon className={classes.usernameSpinner} icon={faSpinner} spin />;
       } else {
         return <p className={isUsernameValid ? classes.validUsername : classes.invalidUsername}>{usernameMessage}</p>;
@@ -154,15 +177,15 @@ const SignupForm = () => {
     return <p />;
   };
 
+
   const onChange = (val: any) => {
-    console.log(val);
     /**
      * check username if:
      * username is not the same as current username
      * username is not empty
      * username is value has changed
      */
-    if (val.username.trim() !== '') {
+    if (val.username.trim() !== '' && formValue.username !== val.username) {
       setIsCheckingUsername(true);
       debouncedChangeHandler(val.username);
     } else setIsCheckingUsername(false);
@@ -224,7 +247,7 @@ const SignupForm = () => {
               <SelectFormField name="gender" label="Gender" data={GENDER_DATA} />
             </Col>
             <Col>
-              <SelectFormField name="program" label="Programs" data={PROGRAMS_DATA} />
+              <SelectFormField name="organization" label="Organizations" data={PROGRAMS_DATA} />
             </Col>
           </Row>
           <Row>

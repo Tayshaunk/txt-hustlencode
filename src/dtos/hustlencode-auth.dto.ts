@@ -33,3 +33,33 @@ export class HncResetPasswordDto {
   @IsString()
   public token: string;
 }
+
+// Payload for the hustlencode signup
+export class HncSignupDto {
+  @IsString()
+  public firstName: string;
+
+  @IsString()
+  public lastName: string;
+
+  @IsEmail({}, INVALID_EMAIL)
+  public email: string;
+
+  @IsString()
+  public username: string;
+
+  @IsString()
+  public gender: string;
+
+  @IsString()
+  public organization: string;
+
+  @IsString()
+  public birthday: Date;
+
+  @IsString()
+  public password: string;
+
+  @IsString()
+  public verifyPassword: string;
+}

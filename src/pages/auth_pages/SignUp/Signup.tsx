@@ -1,10 +1,7 @@
 import { Col, Row, Container } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 import SignupForm from './components/SignupForm/SignupForm';
 import Fade from 'components/Fade/Fade';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
-import { PICKER_LANGUAGE } from 'constants/picker.constants';
-import { SelectPicker } from 'rsuite';
 
 // Styles
 import classes from './Signup.module.scss';
