@@ -1,5 +1,4 @@
 import React from 'react';
-
 /**
  * Lazy import component for page to edit profile about module
  */

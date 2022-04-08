@@ -7,6 +7,7 @@ import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
 import { PICKER_LANGUAGE } from 'constants/picker.constants';
 import { SelectPicker } from 'rsuite';
 import useLocalStorage from 'use-local-storage';
+import { Toggle } from 'rsuite';
 
 // styles
 import classes from './Login.module.scss';
@@ -40,7 +41,10 @@ const Login = () => {
           <Fade duration={400} delay={200}>
             <div className={classes.navbar}>
               <LogoBrand color="#273647" />
-              <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button>
+              {/* <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button> */}
+              <Toggle arial-label="Switch" onChange={switchTheme}>
+                Switch to {theme === 'light' ? 'Dark' : 'Light'}
+              </Toggle>
 
               <SelectPicker
                 style={{ minWidth: 75 }}

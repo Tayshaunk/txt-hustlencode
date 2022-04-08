@@ -1,3 +1,4 @@
+//Default Colors
 :root {
   --color-blue: #008dde;
   --color-dark-blue: #273647;
@@ -12,17 +13,18 @@
   --color-loader-outer: #008dde;
 }
 
+//Dark Mode colors
 @media (prefers-color-scheme: dark) {
   [data-theme='dark'] {
-    --color-blue: #5090d3;
+    --color-blue: white;
     --color-dark-blue: #273647;
-    --color-black: grey;
-    --color-white: #38444d;
+    --color-black: #d3d3d3;
+    --color-white: #2c2f33;
     --color-dark-red: #881c24;
     --color-pink: #f8d7da;
     --color-background: #282828;
 
-    --color-loader-center: black;
+    --color-loader-center: #23272a;
     --color-loader-inner: #a7cced;
     --color-loader-outer: #008dde;
   }
@@ -41,7 +43,6 @@
 
   .dropdown {
     display: none;
-
     @media (min-width: 768px) {
       display: block;
     }
@@ -52,9 +53,11 @@
 
       display: block;
       width: 100%;
+      height: 100%;
       text-align: left;
       padding: 8px 35px;
       color: var(--color-black);
+      background-color: var(--color-white);
     }
 
     .dropdownLink:last-child {

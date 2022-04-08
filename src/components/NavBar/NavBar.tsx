@@ -10,8 +10,6 @@ import useIsMobile from 'hooks/shared/useIsMobile';
 import Aux from 'components/_Aux/_Aux';
 import MobileNavMenu from 'components/MobileNavMenu/MobileNavMenu';
 import NavbarSearch from 'components/NavBarSearch/NavBarSearch';
-
-import useLocalStorage from 'use-local-storage';
 // import DarkModeButton from 'components/DarkModeButton/DarkModeButton';
 
 // styles
@@ -24,16 +22,6 @@ import classes from './NavBar.module.scss';
  */
 
 const NavBar = () => {
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const defaultlight = window.matchMedia('(prefers-color-scheme: light)').matches;
-
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
-
-  const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  };
-
   const [isActive, setIsActive] = useState<boolean>(false);
 
   // user session
@@ -69,12 +57,9 @@ const NavBar = () => {
   const renderProfileDropDown = (user: IHustlencodeUser) => (
     <Aux>{isMobile.value ? null : <NavBarProfileDropdown user={user} logout={logoutHandler} />}</Aux>
   );
-  console.log(theme);
   return (
     <Aux>
-      <Navbar className={classes.navbar} data-theme={theme}>
-        <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button>
-
+      <Navbar className={classes.navbar}>
         <Navbar.Brand className={classes.brandContainer}>
           {isMobile.value ? (
             <div>

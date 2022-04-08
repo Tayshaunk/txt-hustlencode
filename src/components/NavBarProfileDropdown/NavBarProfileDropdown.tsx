@@ -3,6 +3,7 @@ import { IHustlencodeUser } from 'interfaces/user.interface';
 import { getProfileImage } from 'util/profile.util';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
+import { Toggle } from 'rsuite';
 // styles
 import classes from './NavBarProfileDropdown.module.scss';
 import { IDropdownMenuItem } from 'interfaces/dropdown.interface';
@@ -22,6 +23,7 @@ const NavBarProfileDropdown = (props: IProps) => {
 
   const navigate = useNavigate();
 
+  // Theme Changer Functions
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const defaultlight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
@@ -31,6 +33,7 @@ const NavBarProfileDropdown = (props: IProps) => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
   };
+
   // Dropdown menu items
   const dropdown: IDropdownMenuItem[] = [
     { label: 'Explore', url: '/' },
@@ -67,7 +70,10 @@ const NavBarProfileDropdown = (props: IProps) => {
           <Dropdown.Item className={classes.dropdownLink} onClick={logout}>
             Sign Out
           </Dropdown.Item>
-          <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button>
+
+          <Dropdown.Item className={classes.dropdownLink}>
+            <Toggle arial-label="Switch" onChange={switchTheme} />
+          </Dropdown.Item>
         </Dropdown>
       ) : null}
     </div>
