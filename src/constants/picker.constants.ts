@@ -1,3 +1,5 @@
+import { IPickerItem } from "interfaces/picker.interface";
+
 /**
  * Picker options for txter profile types
  */
@@ -191,5 +193,51 @@ export const PICKER_LANGUAGE = [
   {
     value: 'span',
     label: 'span',
+  },
+];
+
+export const GENDER_DATA: IPickerItem[] = [
+  {
+    label: 'Male',
+    value: 'Male',
+    role: '',
+  },
+  {
+    label: 'Female',
+    value: 'Female',
+    role: '',
+  },
+  {
+    label: 'Unspedified',
+    value: 'Unspecified',
+    role: '',
+  },
+];
+
+export const PROGRAMS_DATA: IPickerItem[] = [
+  {
+    label: 'Urban TXT',
+    value: 'Urban TXT',
+    role: 'Urban TXT',
+  },
+  {
+    label: 'DIY Girls',
+    value: 'DIY Girls',
+    role: 'DIY Girls',
+  },
+  {
+    label: 'Expand LA',
+    value: 'Expand LA',
+    role: 'Expand LA',
+  },
+  {
+    label: 'HNC Hackathon',
+    value: 'HNC Hackathon',
+    role: 'HNC Hackathon',
+  },
+  {
+    label: 'Other',
+    value: 'Other',
+    role: 'Other',
   },
 ];
