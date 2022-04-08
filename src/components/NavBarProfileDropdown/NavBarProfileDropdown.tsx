@@ -4,9 +4,12 @@ import { getProfileImage } from 'util/profile.util';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from 'use-local-storage';
 import { Toggle } from 'rsuite';
+import { getColorTheme, setTheme } from 'store/slices/userSessionSlice';
+import useApp from 'hooks/app/useApp';
 // styles
 import classes from './NavBarProfileDropdown.module.scss';
 import { IDropdownMenuItem } from 'interfaces/dropdown.interface';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 interface IProps {
   user: IHustlencodeUser;
@@ -23,15 +26,17 @@ const NavBarProfileDropdown = (props: IProps) => {
 
   const navigate = useNavigate();
 
-  // Theme Changer Functions
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const defaultlight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  // get store dispatcher
+  const dispatch = useAppDispatch();
 
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+  // get current theme
+  const theme = useAppSelector(getColorTheme);
 
   const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
+    const newTheme: ColorTheme = theme === 'light' ? 'dark' : 'light';
+    console.log(newTheme);
+    // call action to update theme
+    dispatch(setTheme(newTheme));
   };
 
   // Dropdown menu items
@@ -72,7 +77,13 @@ const NavBarProfileDropdown = (props: IProps) => {
           </Dropdown.Item>
 
           <Dropdown.Item className={classes.dropdownLink}>
-            <Toggle arial-label="Switch" onChange={switchTheme} />
+            <Toggle
+              checked={theme === 'light' ? true : false}
+              arial-label="Switch"
+              onChange={switchTheme}
+              checkedChildren="light"
+              unCheckedChildren="dark"
+            />{' '}
           </Dropdown.Item>
         </Dropdown>
       ) : null}

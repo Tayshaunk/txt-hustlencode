@@ -18,17 +18,6 @@ function App() {
   // req user session data
   useApp();
 
-  // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  // console.log(defaultDark);
-  // const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'light' : 'dark');
-
-  // const switchTheme = () => {
-  //   const newTheme = theme === 'light' ? 'dark' : 'light';
-
-  //   setTheme(newTheme);
-  // };
-  // console.log(theme);
-
   // get current theme value from store
   const theme = useAppSelector(getColorTheme);
 

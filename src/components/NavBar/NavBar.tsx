@@ -10,7 +10,6 @@ import useIsMobile from 'hooks/shared/useIsMobile';
 import Aux from 'components/_Aux/_Aux';
 import MobileNavMenu from 'components/MobileNavMenu/MobileNavMenu';
 import NavbarSearch from 'components/NavBarSearch/NavBarSearch';
-// import DarkModeButton from 'components/DarkModeButton/DarkModeButton';
 
 // styles
 import classes from './NavBar.module.scss';
