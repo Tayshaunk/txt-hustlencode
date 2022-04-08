@@ -15,3 +15,4 @@ type Placement =
   | 'rightEnd';
   
 type Gender = 'male' | 'female' | 'unspecified'
+type ColorTheme = 'light'| 'dark' // define type for color theme

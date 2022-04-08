@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axiosInstance from 'config/axios.config';
-import { hncStoredEmailStr, hncTokenStr, prevPathStorageKey } from 'constants/localstorage.constants';
+import { hncColorTheme, hncStoredEmailStr, hncTokenStr, prevPathStorageKey } from 'constants/localstorage.constants';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { loadAppAsyncThunk } from 'store/asyncThunk/userSessionAsyncThunk';
 import { RootState } from '../store';
+
+const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 export interface IUserSessionState {
   token: string | null;
@@ -12,6 +14,7 @@ export interface IUserSessionState {
   isLoadingApp: boolean;
   previousPath: string;
   history: string[];
+  theme: ColorTheme; // add theme to our model - we specify the only two valid values
 }
 
 // initial state for current user session
@@ -22,6 +25,7 @@ const initialState: IUserSessionState = {
   isLoadingApp: localStorage[hncTokenStr] ? true : false, // tracks if the app doing initial load
   previousPath: localStorage[prevPathStorageKey] || '/',
   history: [],
+  theme: localStorage[hncColorTheme], // get local storage value for theme
 };
 
 export const userSessionSlice = createSlice({
@@ -71,6 +75,12 @@ export const userSessionSlice = createSlice({
     setUser: (state, action: PayloadAction<IHustlencodeUser>) => {
       state.user = action.payload;
     },
+
+    // updates user color theme
+    setTheme: (state, action: PayloadAction<ColorTheme>) => {
+      localStorage[hncColorTheme] = action.payload
+      state.theme = action.payload;
+    },
   },
   // add in async reducers for api requests
   extraReducers: builder => {
@@ -95,7 +105,9 @@ export const userSessionSlice = createSlice({
   },
 });
 
-export const { setStoredEmail, clearStoredEmail, logout, setToken, setPath, pushHistory, setUser } = userSessionSlice.actions;
+// expose store actions
+export const { setTheme, setStoredEmail, clearStoredEmail, logout, setToken, setPath, pushHistory, setUser } =
+  userSessionSlice.actions;
 
 // accessor for admin user
 export const getUser = (state: RootState) => state.currentUser.user;
@@ -114,5 +126,8 @@ export const getHistory = (state: RootState) => state.currentUser.history;
 
 // get loader
 export const getIsLoadingApp = (state: RootState) => state.currentUser.isLoadingApp;
+
+// get color theme
+export const getColorTheme = (state: RootState) => state.currentUser.theme;
 
 export default userSessionSlice.reducer;

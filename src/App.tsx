@@ -6,6 +6,7 @@ import AuthRoutes from 'routing/routes/auth.routes';
 import PageLoader from 'components/PageLoader/PageLoader';
 import useApp from 'hooks/app/useApp';
 import useLocalStorage from 'use-local-storage';
+import { getColorTheme } from './store/slices/userSessionSlice';
 
 function App() {
   // get user session token
@@ -17,14 +18,20 @@ function App() {
   // req user session data
   useApp();
 
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'light' : 'dark');
+  // const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // console.log(defaultDark);
+  // const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'light' : 'dark');
 
-  const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+  // const switchTheme = () => {
+  //   const newTheme = theme === 'light' ? 'dark' : 'light';
 
-    setTheme(newTheme);
-  };
+  //   setTheme(newTheme);
+  // };
+  // console.log(theme);
+
+  // get current theme value from store
+  const theme = useAppSelector(getColorTheme);
+
   console.log(theme);
   return (
     <div data-theme={theme}>
