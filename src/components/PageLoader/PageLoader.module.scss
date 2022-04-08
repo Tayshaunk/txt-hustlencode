@@ -1,7 +1,3 @@
-$color-loader-center: white;
-$color-loader-inner: #a7cced;
-$color-loader-outer: #008DDE;
-
 .Wrapper {
   width: 100%;
   height: 100%;
@@ -9,12 +5,10 @@ $color-loader-outer: #008DDE;
   align-items: center;
   justify-content: center;
   font-family: 'Lato', sans-serif;
-  color: white;
   opacity: 1;
   transition: all ease-in-out 300ms;
   z-index: 9;
   flex: 1;
-  background-color: red;
 }
 
 .Fullscreen {
@@ -32,13 +26,13 @@ $color-loader-outer: #008DDE;
   justify-content: center;
   position: relative;
   transform: rotate(45deg);
-  transform: scale(.8);
+  transform: scale(0.8);
 }
 
 .Center {
   width: 8px;
   height: 8px;
-  background-color: $color-loader-center;
+  background-color: var(--color-loader-center);
   border-radius: 50%;
 }
 
@@ -58,7 +52,7 @@ $color-loader-outer: #008DDE;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: $color-loader-inner;
+  background-color: var(--color-loader-inner);
 }
 
 .Outer {
@@ -69,7 +63,7 @@ $color-loader-outer: #008DDE;
 .Outer__item {
   width: 10px;
   height: 10px;
-  background-color: $color-loader-outer;
+  background-color: var(color-loader-outer);
 }
 
 .Fullscreen {

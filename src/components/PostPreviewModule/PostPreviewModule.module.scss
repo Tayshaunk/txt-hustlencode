@@ -1,10 +1,6 @@
-$color-blue: #008dde;
-$color-dark-blue: #273647;
-$color-black: #282828;
-
 .container {
   margin-top: 25px;
-  background-color: #fff;
+  background-color: rgb(235, 0, 0);
   overflow: hidden;
   border-radius: 3px;
 
@@ -42,7 +38,7 @@ $color-black: #282828;
       .name {
         p {
           text-transform: capitalize;
-          color: $color-blue;
+          color: var(--color-blue);
           font-weight: 500;
           font-size: 15px;
         }

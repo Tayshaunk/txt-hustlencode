@@ -27,7 +27,11 @@ const Explore = () => {
 
   return (
     <Aux>
-      {user ? renderContent() : <PageLoader style={{ height: '100vh', width: '100vw' }} isVisible={true} fullscreen={false} theme={'dark'} />}
+      {user ? (
+        renderContent()
+      ) : (
+        <PageLoader style={{ height: '100vh', width: '100vw' }} isVisible={true} fullscreen={false} theme={'dark'} />
+      )}
     </Aux>
   );
 };

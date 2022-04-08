@@ -1,9 +1,3 @@
-$color-blue: #57bcea;
-$color-black: #282828;
-$color-background: #282828;
-$color-red: #F8D7DA;
-$color-dark-red: #881C24;
-
 .preview {
   width: 200px;
   margin: 25px auto;
@@ -70,7 +64,7 @@ $color-dark-red: #881C24;
   }
 
   // btn to remove selected image
-  .imageRemoveBtn{
+  .imageRemoveBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,18 +85,18 @@ $color-dark-red: #881C24;
     margin-top: 25px;
     cursor: pointer;
     text-align: center;
-    background-color: $color-red;
+    background-color: var(--color-pink);
 
-    button{
+    button {
       background-color: transparent;
-      color: $color-dark-red;
+      color: var(--color-dark-red);
       display: flex;
       justify-content: center;
       align-items: center;
     }
   }
 
-  .imageEditBtnContainer{
+  .imageEditBtnContainer {
     display: flex;
     text-align: center;
     margin-top: 20px;

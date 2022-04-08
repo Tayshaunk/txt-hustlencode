@@ -1,18 +1,3 @@
-:root {
-  --color-blue: #008dde;
-  --color-dark-blue: #273647;
-  --color-black: #282828;
-  --color-white: white;
-  --color-yellow: yellow;
-}
-
-[data-theme='dark'] {
-  --color-blue: grey;
-  --color-white: black;
-  --color-black: white;
-  --color-yellow: red;
-}
-
 .ContentWrapper {
   max-width: 100%;
   margin: auto;

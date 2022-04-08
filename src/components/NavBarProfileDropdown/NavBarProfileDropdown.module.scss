@@ -1,6 +1,32 @@
-$color-blue: #57bcea;
-$color-black: #282828;
-$colorBackground: #282828;
+:root {
+  --color-blue: #008dde;
+  --color-dark-blue: #273647;
+  --color-black: #282828;
+  --color-white: white;
+  --color-dark-red: #881c24;
+  --color-pink: #f8d7da;
+  --color-background: #282828;
+
+  --color-loader-center: white;
+  --color-loader-inner: #a7cced;
+  --color-loader-outer: #008dde;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme='dark'] {
+    --color-blue: #5090d3;
+    --color-dark-blue: #273647;
+    --color-black: grey;
+    --color-white: #38444d;
+    --color-dark-red: #881c24;
+    --color-pink: #f8d7da;
+    --color-background: #282828;
+
+    --color-loader-center: black;
+    --color-loader-inner: #a7cced;
+    --color-loader-outer: #008dde;
+  }
+}
 
 .profileContainer {
   display: flex;
@@ -11,6 +37,7 @@ $colorBackground: #282828;
   order: 2;
   margin-right: 10px;
   margin-left: auto;
+  background-color: var(--color-background);
 
   .dropdown {
     display: none;
@@ -27,7 +54,7 @@ $colorBackground: #282828;
       width: 100%;
       text-align: left;
       padding: 8px 35px;
-      color: $color-black;
+      color: var(--color-black);
     }
 
     .dropdownLink:last-child {
@@ -41,7 +68,7 @@ $colorBackground: #282828;
       cursor: pointer;
 
       &:hover .Name {
-        color: $color-blue;
+        color: var(--color-blue);
       }
 
       .thumbnail {
@@ -70,7 +97,7 @@ $colorBackground: #282828;
           color: #fff;
 
           &:hover {
-            color: $color-blue;
+            color: var(--color-blue);
             transition: all ease-in-out 300ms;
           }
         }
@@ -80,7 +107,7 @@ $colorBackground: #282828;
           font-size: 12px;
           text-align: right;
           text-transform: capitalize;
-          color: $color-blue;
+          color: var(--color-blue);
         }
       }
     }

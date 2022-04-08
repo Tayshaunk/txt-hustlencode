@@ -1,12 +1,7 @@
-$color-blue: #008DDE;
-$color-black: #282828;
-$color-background: #282828;
-$color-red: #f8d7da;
-$color-dark-red: #881c24;
-
 .FormRow {
   display: flex;
   flex-direction: row;
+  background-color: aquamarine;
 
   .FormCol {
     flex: 1;
@@ -20,7 +15,7 @@ $color-dark-red: #881c24;
     }
   }
 
-  .FormColFull{
+  .FormColFull {
     flex: 1;
   }
 }
@@ -37,7 +32,7 @@ $color-dark-red: #881c24;
 
 .FormLabel {
   font-size: 15px;
-  color: $color-black;
+  color: var(--color-black);
   font-weight: 600;
   margin-bottom: 6px !important;
 }

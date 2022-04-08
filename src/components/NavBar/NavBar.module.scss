@@ -1,11 +1,7 @@
-$color-blue: #57bcea;
-$color-black: #282828;
-$colorBackground: #282828;
-
 .navbar {
   display: flex;
   position: fixed !important;
-  background-color: $colorBackground;
+  background-color: var(--color-background);
   width: 100vw;
   left: 0;
   top: 0;
@@ -38,12 +34,12 @@ $colorBackground: #282828;
       color: #fff;
 
       &:hover {
-        color: $color-blue;
+        color: var(--color-blue);
         transition: all ease-in-out 300ms;
       }
 
       span {
-        color: $color-blue;
+        color: var(--color-blue);
       }
     }
   }
@@ -68,7 +64,7 @@ $colorBackground: #282828;
     div {
       height: 3px;
       border-radius: 2px;
-      background: $color-black;
+      background: var(--color-black);
       margin: 10px;
       transition: all 0.65s cubic-bezier(0.075, 0.82, 0.165, 1);
       width: 40px;
@@ -77,7 +73,7 @@ $colorBackground: #282828;
 }
 
 .burgerActive {
-  background-color: $color-black;
+  background-color: var(--color-black);
   .burgerStrip {
     transform: scale(0.7) rotate(45deg);
     transition: all 0.2s ease 0.05s;
@@ -99,5 +95,3 @@ $colorBackground: #282828;
     }
   }
 }
-
-
