@@ -42,15 +42,15 @@
   background-color: var(--color-background);
 
   .dropdown {
-    display: none;
     @media (min-width: 768px) {
       display: block;
+      background-color: var(--color-background);
     }
 
     .dropdownLink {
       font-family: 'Roboto', sans-serif;
       padding: 0px;
-
+      margin-top: 0px;
       display: block;
       width: 100%;
       height: 100%;
@@ -61,7 +61,7 @@
     }
 
     .dropdownLink:last-child {
-      border-top: solid 1px #dddfe2;
+      border-top: solid 1px var(--color-white);
     }
 
     .profile {

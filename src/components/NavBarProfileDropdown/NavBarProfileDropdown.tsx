@@ -2,10 +2,8 @@ import { Dropdown } from 'rsuite';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { getProfileImage } from 'util/profile.util';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorage from 'use-local-storage';
 import { Toggle } from 'rsuite';
 import { getColorTheme, setTheme } from 'store/slices/userSessionSlice';
-import useApp from 'hooks/app/useApp';
 // styles
 import classes from './NavBarProfileDropdown.module.scss';
 import { IDropdownMenuItem } from 'interfaces/dropdown.interface';

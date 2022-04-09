@@ -13,28 +13,34 @@ const EditProfile = () => {
   const user = useAppSelector(getUser);
 
   const renderContent = () => (
-    <div className={classes.content}>
-      <Container fluid>
-        <Row style={{ justifyContent: 'center' }}>
-          <Col md={12} lg={12}>
+    <div className={classes.contentWrapper}>
+      <div className={classes.content}>
+        <Container fluid>
+          <Row style={{ justifyContent: 'center' }}>
+            <Col md={12} lg={12}>
               <div className={classes.header}>
-              <h1>{`${user?.name} / General`}</h1>
+                <h1>{`${user?.name} / General`}</h1>
               </div>
-          </Col>
-          <Col md={4} lg={4}>
-            <EditProfileSideMenu />
-          </Col>
-          <Col md={8} lg={8}>
-            <Outlet />
-          </Col>
-        </Row>
-      </Container>
+            </Col>
+            <Col md={4} lg={4}>
+              <EditProfileSideMenu />
+            </Col>
+            <Col md={8} lg={8}>
+              <Outlet />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 
   return (
     <Aux>
-      {user ? renderContent() : <PageLoader style={{ height: '100vh', width: '100vw' }} isVisible={true} fullscreen={false} theme={'dark'} />}
+      {user ? (
+        renderContent()
+      ) : (
+        <PageLoader style={{ height: '100vh', width: '100vw' }} isVisible={true} fullscreen={false} theme={'dark'} />
+      )}
     </Aux>
   );
 };

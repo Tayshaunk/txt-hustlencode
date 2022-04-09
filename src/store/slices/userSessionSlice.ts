@@ -5,8 +5,6 @@ import { IHustlencodeUser } from 'interfaces/user.interface';
 import { loadAppAsyncThunk } from 'store/asyncThunk/userSessionAsyncThunk';
 import { RootState } from '../store';
 
-const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
 export interface IUserSessionState {
   token: string | null;
   user: IHustlencodeUser | null;
@@ -78,7 +76,7 @@ export const userSessionSlice = createSlice({
 
     // updates user color theme
     setTheme: (state, action: PayloadAction<ColorTheme>) => {
-      localStorage[hncColorTheme] = action.payload
+      localStorage[hncColorTheme] = action.payload;
       state.theme = action.payload;
     },
   },

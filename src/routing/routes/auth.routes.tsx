@@ -20,7 +20,6 @@ import Explore from 'pages/Explore/Explore';
 import useScrollToTop from 'hooks/shared/useScrollToTop';
 import NotFound from 'components/NotFound/NotFound';
 import PageLoader from 'components/PageLoader/PageLoader';
-import useLocalStorage from 'use-local-storage';
 /**
  * Public routes that are not protected
  * @returns React element
@@ -29,17 +28,8 @@ const AuthRoutes = () => {
   // scroll to top of the page route changes
   useScrollToTop();
 
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'light' : 'dark');
-
-  const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-
-    setTheme(newTheme);
-  };
-
   return (
-    <Aux data-theme={theme}>
+    <Aux>
       {/* <ScrollToTop /> */}
       <NavBar />
       <Routes>
