@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 // fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,11 +13,23 @@ import ViewComment from './ViewComment';
 // styles
 import classes from './CommentFeed.module.scss';
 
+const commmentsToLoad = 1;
+let arrayHoldingComments: any = [];
+
 /**
  * @param props takes in post Id from PostFeed component to be able to filter out comments
  * @returns listing out comments based on the post
  */
 const CommentFeed = (props: any) => {
+    const [commentsToShow, setCommentsToShow] = useState([]);
+    const [next, setNext] = useState(1);
+
+    const loopWithSlice = (start: any, end: any) => {
+        const slicedPosts = userPostDummyPosts.slice(start, end);
+        arrayHoldingComments = [...arrayHoldingComments, ...slicedPosts];
+        setCommentsToShow(arrayHoldingComments)
+    }
+
     const loadMoreComments = () => {
         console.log('loading more comments!')
     }

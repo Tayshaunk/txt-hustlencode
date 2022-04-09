@@ -4,7 +4,6 @@ $color-black: #282828;
 
 .container {
   background-color: #fff;
-
   border-radius: 4px;
 
 
@@ -12,8 +11,6 @@ $color-black: #282828;
     vertical-align: middle;
     margin-bottom: 0;
     padding: 8px 8px 8px 16px;
-    // border-top-left-radius: 4px;
-    // border-top-right-radius: 4px;
     display: flex;
     border-right: 1px solid #dddfe2;
     border-top: 1px solid #dddfe2;
@@ -63,7 +60,6 @@ $color-black: #282828;
   .commentBorder {
     border-left: 1px solid #dddfe2;
     border-right: 1px solid #dddfe2;
-    // border-bottom: 1px solid #dddfe2;
 
     .commentSection {
         padding-left: 65px;
