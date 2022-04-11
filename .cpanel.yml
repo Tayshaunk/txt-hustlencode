@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/rob/public_html/hustlencode-test
-    - /bin/cp build/* $DEPLOYPATH
+    - /bin/cp -R build/* $DEPLOYPATH
