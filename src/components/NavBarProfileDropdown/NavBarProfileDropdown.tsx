@@ -2,14 +2,11 @@ import { Dropdown } from 'rsuite';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { getProfileImage } from 'util/profile.util';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorage from 'use-local-storage';
-import { Toggle } from 'rsuite';
-import { getColorTheme, setTheme } from 'store/slices/userSessionSlice';
-import useApp from 'hooks/app/useApp';
+import { getColorTheme } from 'store/slices/userSessionSlice';
 // styles
 import classes from './NavBarProfileDropdown.module.scss';
 import { IDropdownMenuItem } from 'interfaces/dropdown.interface';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 interface IProps {
   user: IHustlencodeUser;
@@ -26,18 +23,15 @@ const NavBarProfileDropdown = (props: IProps) => {
 
   const navigate = useNavigate();
 
-  // get store dispatcher
-  const dispatch = useAppDispatch();
-
   // get current theme
   const theme = useAppSelector(getColorTheme);
 
-  const switchTheme = () => {
-    const newTheme: ColorTheme = theme === 'light' ? 'dark' : 'light';
-    console.log(newTheme);
-    // call action to update theme
-    dispatch(setTheme(newTheme));
-  };
+  // const switchTheme = () => {
+  //   const newTheme: ColorTheme = theme === 'light' ? 'dark' : 'light';
+  //   console.log(newTheme);
+  //   // call action to update theme
+  //   dispatch(setTheme(newTheme));
+  // };
 
   // Dropdown menu items
   const dropdown: IDropdownMenuItem[] = [
@@ -77,13 +71,13 @@ const NavBarProfileDropdown = (props: IProps) => {
           </Dropdown.Item>
 
           <Dropdown.Item className={classes.dropdownLink}>
-            <Toggle
+            {/* <Toggle
               checked={theme === 'light' ? true : false}
               arial-label="Switch"
               onChange={switchTheme}
               checkedChildren="light"
               unCheckedChildren="dark"
-            />{' '}
+            />{' '} */}
           </Dropdown.Item>
         </Dropdown>
       ) : null}

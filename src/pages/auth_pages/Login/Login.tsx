@@ -6,15 +6,12 @@ import Fade from 'components/Fade/Fade';
 import LogoBrand from 'components/Logos/LogoBrand/LogoBrand';
 import { PICKER_LANGUAGE } from 'constants/picker.constants';
 import { SelectPicker } from 'rsuite';
-import useLocalStorage from 'use-local-storage';
-import { Toggle } from 'rsuite';
 
 // styles
 import classes from './Login.module.scss';
 import OceanScene from 'components/OceanScene/OceanScene';
-import { COLOR } from 'rsuite/esm/utils';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { getColorTheme, setTheme } from 'store/slices/userSessionSlice';
+import { useAppSelector } from '../../../store/hooks';
+import { getColorTheme } from 'store/slices/userSessionSlice';
 
 /**
  * Renders a view with a welcome message and Login
@@ -31,20 +28,17 @@ const Login = () => {
     i18n.changeLanguage(language);
   };
 
-  // get store dispatcher
-  const dispatch = useAppDispatch();
-
   // get current theme
   const theme = useAppSelector(getColorTheme);
 
-  const switchTheme = () => {
-    const newTheme: ColorTheme = theme === 'light' ? 'dark' : 'light';
-    console.log(newTheme)
-    // call action to update theme
-    dispatch(setTheme(newTheme));
-  };
+  // const switchTheme = () => {
+  //   const newTheme: ColorTheme = theme === 'light' ? 'dark' : 'light';
+  //   console.log(newTheme)
+  //   // call action to update theme
+  //   dispatch(setTheme(newTheme));
+  // };
 
-  console.log(theme === 'light')
+  console.log(theme === 'light');
   return (
     <Container className={`${classes.loginContainer} g-0`} fluid data-theme={theme}>
       <Row className={classes.row}>
@@ -53,13 +47,13 @@ const Login = () => {
             <div className={classes.navbar}>
               <LogoBrand color="#273647" />
               {/* <button onClick={switchTheme}>Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme</button> */}
-              <Toggle
+              {/* <Toggle
                 checked={theme === 'light' ? true:false}
                 arial-label="Switch"
                 onChange={switchTheme}
                 checkedChildren="light"
                 unCheckedChildren="dark"
-              />
+              /> */}
               <SelectPicker
                 style={{ minWidth: 75 }}
                 value={i18n.language || 'en'}
