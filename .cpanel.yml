@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/rob/public_html/test
+    - export DEPLOYPATH=/home/rob/public_html/production
     - /bin/cp -R build/* $DEPLOYPATH
