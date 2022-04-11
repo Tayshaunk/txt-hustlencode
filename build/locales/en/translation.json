@@ -1,0 +1,13 @@
+{
+  "login": {
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "rememberMeLabel": "Remember Me",
+    "btnLabel": "Sign In"
+  },
+
+  "forgotPassword": {
+    "emailLabel": "Email",
+    "btnLabel": "Send Reset Instructions"
+  }
+}
