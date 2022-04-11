@@ -3,6 +3,7 @@ import axiosInstance from 'config/axios.config';
 import { hncColorTheme, hncStoredEmailStr, hncTokenStr, prevPathStorageKey } from 'constants/localstorage.constants';
 import { IHustlencodeUser } from 'interfaces/user.interface';
 import { loadAppAsyncThunk } from 'store/asyncThunk/userSessionAsyncThunk';
+import { getTheme } from 'util/theme.util';
 import { RootState } from '../store';
 
 export interface IUserSessionState {
@@ -23,7 +24,7 @@ const initialState: IUserSessionState = {
   isLoadingApp: localStorage[hncTokenStr] ? true : false, // tracks if the app doing initial load
   previousPath: localStorage[prevPathStorageKey] || '/',
   history: [],
-  theme: localStorage[hncColorTheme], // get local storage value for theme
+  theme: getTheme(), // get local storage value for theme
 };
 
 export const userSessionSlice = createSlice({

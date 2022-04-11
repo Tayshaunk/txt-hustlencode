@@ -3,11 +3,11 @@ import { IHustlencodeUser } from 'interfaces/user.interface';
 import { getProfileImage } from 'util/profile.util';
 import { useNavigate } from 'react-router-dom';
 import { Toggle } from 'rsuite';
-import { getColorTheme, setTheme } from 'store/slices/userSessionSlice';
 // styles
 import classes from './NavBarProfileDropdown.module.scss';
 import { IDropdownMenuItem } from 'interfaces/dropdown.interface';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getColorTheme, setTheme } from 'store/slices/userSessionSlice';
 
 interface IProps {
   user: IHustlencodeUser;
@@ -90,3 +90,5 @@ const NavBarProfileDropdown = (props: IProps) => {
 };
 
 export default NavBarProfileDropdown;
+
+
