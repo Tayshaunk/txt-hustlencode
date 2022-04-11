@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/rob/public_html/production
+    - export DEPLOYPATH=/home/rob/public_html/hnc-production
     - /bin/cp -R build/* $DEPLOYPATH
